@@ -9,9 +9,9 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   address: >
-  <p>46-3123, McGovern Institute</p>
-  <p>43 Vassar Street</p>
-  <p>Cambridge, MA 02139</p>
+   <p>office: 46-3123</p>
+   <p>43 Vassar Street</p>
+   <p>Cambridge, MA 02139</p>
 
 news: true  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
