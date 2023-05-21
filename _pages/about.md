@@ -20,8 +20,6 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 
-
-
 Hi friends, welcome to my personal website. It makes me happy that you are interested in me. 
 
 
