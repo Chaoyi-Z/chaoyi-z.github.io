@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Joined Guoping Feng lab in MIT as Postdoc Research Fellow :sparkles: :smile:
+Joined Guoping Feng lab at MIT as Postdoc Research Fellow :sparkles: :smile:

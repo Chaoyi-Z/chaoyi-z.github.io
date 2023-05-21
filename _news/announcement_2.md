@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Joined Gord Fishell lab at Harvad Medical School as Postdoc Research Fellow
+Joined Gord Fishell lab at Harvard Medical School as Postdoc Research Fellow
