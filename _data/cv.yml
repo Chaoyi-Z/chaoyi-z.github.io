@@ -2,7 +2,7 @@
   type: map
   contents:
     - name: Full Name
-      value: Chaoyi
+      value: Chaoyi Zhang
     - name: Date of Birth
       value: 20th November 1992
     - name: Languages
@@ -17,7 +17,6 @@
       description:
         - School of Brain Science and Brain Medicine
         - Neurobiology; 
-        - Mentor Hailan Hu.
         
     - title: B.S.
       institution: Wenzhou Medical University, Wenzhou, China
@@ -39,11 +38,11 @@
       institution: Gord Fishell Lab, Harvard Medical School, Boston, U.S.
       year: 2022 - 2023
       description:
-        - Investigating how the wS1 circuits assembled to control whisking behavior during the development
+        - Investigated how the wS1 circuits assembled to control whisking behavior during the development
         
 
     - title: Ph.D.
-      institution: Hailan Hu Lab, Zhejiang University, Hangzhou, China.
+      institution: Hailan Hu Lab, Zhejiang University, Hangzhou, China
       year: 2016 - 2022
       description:
         - Explored the roles and dynamics of different mPFC cell types in social competition behavior
