@@ -2,96 +2,95 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Chaoyi
     - name: Date of Birth
-      value: 14th March 1879
+      value: 20th November 1992
     - name: Languages
-      value: English, German
+      value: Chinese, English
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Ph.D.
+      institution: Zhejiang University, Hangzhou, China
+      year: 2016-2022
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - School of Brain Science and Brain Medicine
+        - Neurobiology; 
+        - Mentor Hailan Hu.
+        
+    - title: B.S.
+      institution: Wenzhou Medical University, Wenzhou, China
+      year: 2012-2016
       description:
-        - Description 1.
-        - Description 2.
+        - School of pharmacy
+        - Biopharmaceutics
 
-- title: Experience
+- title: Research Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Postdoc
+      institution: Guoping Feng Lab, Massachusetts Institute of Technology, Cambridge, U.S.
+      year: 2023 - current
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Investigating the biological mechanism of psychiatric diseases
+
+    - title: Postdoc
+      institution: Gord Fishell Lab, Harvard Medical School, Boston, U.S.
+      year: 2022 - 2023
       description:
-        - Description 1.
-        - Description 2.
+        - Investigating how the wS1 circuits assembled to control whisking behavior during the development
+        
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Ph.D.
+      institution: Hailan Hu Lab, Zhejiang University, Hangzhou, China.
+      year: 2016 - 2022
       description:
+        - Explored the roles and dynamics of different mPFC cell types in social competition behavior
+        - Deciphered the relationship within mPFC microcircuits via in vivo optrodes recording and miniature two-photon microscope
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
 
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: Summer Scholar
+      institution: Minmin Luo Lab, National institute of Biological Sciences (NIBS), Beijing, China 
+      year: 2016 summer
+      description:
+      - Explored the roles of dopamine neurons and serotonin neurons in reward behavior via fiber photometry recording and optogenetics
+
+    - title: Undergraduate Research Assistant
+      institution: Xiaokun Li Lab, Wenzhou Medical University, Wenzhou, China
+      year: 2013 - 2016
+      description:
+      - Validated the repair function of the basic fibroblast growth factor (bFGF) on the blood brain barrier after brain injury on mice model 
+
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2023
       items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
+        - Excellent Doctoral Dissertations of Zhejiang University 
+    - year: 2022
       items: 
-        - Max Planck Medal
+        - Ray Wu Prize
+        - Excellent graduate of Zhejiang Province
+    - year: 2020
+      items: 
+        - National scholarship
+    - year: 2016
+      items: 
+        - Excellent graduate of Zhejiang Province
+
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Neuroscience
       items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+        - The neurobiological mechinism of psychiatric diseases
+        - The neural mechanism of emotion in non-human primate
+  
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Hobbies:</u> Tennis, Cycling, Swimming 
