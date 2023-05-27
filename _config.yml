@@ -16,7 +16,6 @@ keywords: Chaoyi Zhang, personal, academic-website, portfolio-website  # add you
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: favicon.ico  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
-
 url: https://chaoyi-z.github.io # the base hostname & protocol for your site
 baseurl:  # the subpath of your site, e.g. /blog/
 last_updated: false # set to true if you want to display last updated in the footer
@@ -269,8 +268,8 @@ display_tags: ['formatting', 'images', 'links', 'math', 'code'] # these tags wil
 
 scholar:
 
-  last_name: [Chaoyi]
-  first_name: [Zhang]
+  last_name: [Zhang]
+  first_name: [Chaoyi]
 
   style: apa
   locale: en

@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Postdoc in Feng Lab, McGovern Institute at MIT</a>
+subtitle: <a href='#'>Postdoc in Guoping Feng Lab, McGovern Institute at MIT</a>
 
 profile:
   align: right
@@ -18,8 +18,6 @@ latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true"
 social: true  # includes social icons at the bottom of the page
 ---
-- 
-
 
 Hi friends, welcome to my personal website. It makes me happy that you are interested in me. 
 
