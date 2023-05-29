@@ -139,7 +139,20 @@
         <div class="author">
         
 
-        </div>
+        Zhengxiao Fan, Jiarui Chang, Yilan Liang, and
+          <span class="more-authors" title="click to view 7 more authors" onclick="
+                var element = $(this);
+                element.attr('title', '');
+                var more_authors_text = element.text() == '7 more authors' ? 'Hong Zhu, Chaoyi Zhang, Diyang Zheng, Junying Wang, Ying Xu, Qi-Jing Li, Hailan Hu' : '7 more authors';
+                var cursorPosition = 0;
+                var textAdder = setInterval(function(){
+                  element.text(more_authors_text.substring(0, cursorPosition + 1));
+                  if (++cursorPosition == more_authors_text.length){
+                    clearInterval(textAdder);
+                  }
+              }, '10');
+              ">7 more authors</span>
+</div>
 
         <!-- Journal/Book title and date -->
         
@@ -153,7 +166,6 @@
 
           <!-- Links/Buttons -->
           <div class="links">
-            <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
             <a href="https://www.cell.com/cell/fulltext/S0092-8674(22)01576-8" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">HTML</a>
             <a href="/assets/pdf/Cell2023.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
           </div>
@@ -163,19 +175,7 @@
               <span class="__dimensions_badge_embed__" data-doi="https://doi.org/10.1016/j.cell.2022.12.033" data-hide-zero-citations="true" data-style="small_rectangle" data-legend="hover-right" style="margin-bottom: 3px;"></span>
           </div>
 
-          <!-- Hidden bibtex block -->
-          <div class="bibtex hidden">
-            <figure class="highlight"><pre><code class="language-bibtex" data-lang="bibtex"><span class="nc">@article</span><span class="p">{</span><span class="nl">Chaoyi2023social</span><span class="p">,</span>
-  <span class="na">title</span> <span class="p">=</span> <span class="s">{Neural mechanism underlying depressive-like state associated with social status loss}</span><span class="p">,</span>
-  <span class="na">author</span> <span class="p">=</span> <span class="s">{}</span><span class="p">,</span>
-  <span class="na">year</span> <span class="p">=</span> <span class="s">{2023}</span><span class="p">,</span>
-  <span class="na">journal</span> <span class="p">=</span> <span class="s">{Cell}</span><span class="p">,</span>
-  <span class="na">volume</span> <span class="p">=</span> <span class="s">{186}</span><span class="p">,</span>
-  <span class="na">issue</span> <span class="p">=</span> <span class="s">{3}</span><span class="p">,</span>
-  <span class="na">pages</span> <span class="p">=</span> <span class="s">{560--576}</span><span class="p">,</span>
-  <span class="na">doi</span> <span class="p">=</span> <span class="s">{https://doi.org/10.1016/j.cell.2022.12.033}</span><span class="p">,</span>
-<span class="p">}</span></code></pre></figure>
-          </div>
+          
         </div>
       </div>
 </li></ol>
@@ -209,7 +209,7 @@
 
           <!-- Links/Buttons -->
           <div class="links">
-            <a href="/assets/pdf/Chaoyi%20Zhang%E2%80%99s%20Doc%20thesis.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
+            <a href="/assets/pdf/thesis.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
           </div>
           
           <div class="badges">
@@ -237,7 +237,7 @@
     
 
     <!-- Fallback to the original file -->
-    <img src="/assets/img/publication_preview/neuron_cover" class="preview z-depth-1 rounded" width="auto" height="auto" alt="neuron_cover" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/publication_preview/neuron_cover.png" class="preview z-depth-1 rounded" width="auto" height="auto" alt="neuron_cover.png" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
 
   </picture>
 
@@ -252,7 +252,20 @@
         <div class="author">
         
 
-        </div>
+        <em>Chaoyi Zhang</em>, Hong Zhu, Zheyi Ni, and
+          <span class="more-authors" title="click to view 11 more authors" onclick="
+                var element = $(this);
+                element.attr('title', '');
+                var more_authors_text = element.text() == '11 more authors' ? 'Qiuhong Xin, Tingting Zhou, Runlong Wu, Guangping Gao, Zhihua Gao, Huan Ma, Haohong Li, Miao He, Jue Zhang, Heping Cheng, Hailan Hu' : '11 more authors';
+                var cursorPosition = 0;
+                var textAdder = setInterval(function(){
+                  element.text(more_authors_text.substring(0, cursorPosition + 1));
+                  if (++cursorPosition == more_authors_text.length){
+                    clearInterval(textAdder);
+                  }
+              }, '10');
+              ">11 more authors</span>
+</div>
 
         <!-- Journal/Book title and date -->
         

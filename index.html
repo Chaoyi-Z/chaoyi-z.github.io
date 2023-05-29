@@ -233,7 +233,7 @@
     
 
     <!-- Fallback to the original file -->
-    <img src="/assets/img/publication_preview/neuron_cover" class="preview z-depth-1 rounded" width="auto" height="auto" alt="neuron_cover" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/publication_preview/neuron_cover.png" class="preview z-depth-1 rounded" width="auto" height="auto" alt="neuron_cover.png" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
 
   </picture>
 
@@ -248,7 +248,20 @@
         <div class="author">
         
 
-        </div>
+        <em>Chaoyi Zhang</em>, Hong Zhu, Zheyi Ni, and
+          <span class="more-authors" title="click to view 11 more authors" onclick="
+                var element = $(this);
+                element.attr('title', '');
+                var more_authors_text = element.text() == '11 more authors' ? 'Qiuhong Xin, Tingting Zhou, Runlong Wu, Guangping Gao, Zhihua Gao, Huan Ma, Haohong Li, Miao He, Jue Zhang, Heping Cheng, Hailan Hu' : '11 more authors';
+                var cursorPosition = 0;
+                var textAdder = setInterval(function(){
+                  element.text(more_authors_text.substring(0, cursorPosition + 1));
+                  if (++cursorPosition == more_authors_text.length){
+                    clearInterval(textAdder);
+                  }
+              }, '10');
+              ">11 more authors</span>
+</div>
 
         <!-- Journal/Book title and date -->
         
