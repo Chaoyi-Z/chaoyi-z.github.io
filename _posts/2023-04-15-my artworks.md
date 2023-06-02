@@ -5,7 +5,7 @@ date: 2023-04-15 21:01:00
 description: These are LOGOs I designed in the past
 tags: formatting images
 categories: sample-posts
-thumbnail: assets/img/Tennis team.png
+thumbnail: assets/img/Tennis team.jpg
 ---
 These are LOGOs I designed in the past. For the lab, the school, the team, and myself. Most of them are not adopted 😮‍💨, just for fun😁.
 
