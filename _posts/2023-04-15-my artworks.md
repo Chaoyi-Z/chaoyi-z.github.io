@@ -24,7 +24,10 @@ These are LOGOs I designed in the past. For the lab, the school, the team, and m
         {% include figure.html path="assets/img/Hulab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/Fishell_lab.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/Fishell Lab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+     </div>   
+        <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/school of brainscience.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
@@ -36,7 +39,7 @@ Images are zoomable.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/Tennis team.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/Tennis team.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html path="assets/img/ZJU tennis team jacket.png" class="img-fluid rounded z-depth-1" zoomable=true %}
