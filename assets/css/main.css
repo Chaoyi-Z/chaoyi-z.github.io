@@ -470,7 +470,7 @@ footer.sticky-bottom {
 }
 .post-list li .post-meta {
   color: var(--global-text-color-light);
-  font-size: 2rem;
+  font-size: 0.875rem;
   margin-bottom: 0;
 }
 .post-list li .post-tags {
