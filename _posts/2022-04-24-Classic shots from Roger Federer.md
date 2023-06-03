@@ -5,6 +5,7 @@ date: 2022-04-24 21:01:00
 description: I learned a lot form this movie
 tags: Videos
 categories: Videos
+thumbnail: assets/img/Roger's hit.png
 ---
 This movie I adopted from the internet. I do learn a lot after I watch it over and over again.
 
