@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: [Postdoc in Guoping Feng Lab, McGovern Institute at MIT] (https://mcgovern.mit.edu/)
+subtitle: <a href='#'>Postdoc in Guoping Feng Lab, McGovern Institute at MIT</a>
 
 profile:
   align: right

@@ -10,8 +10,6 @@ related_posts: false
 
 ---
 
-<font size =12>There are some beauriful sentense soft me and give me power.</font>
-
 
 There are some beauriful sentense soft me and give me power.
 
