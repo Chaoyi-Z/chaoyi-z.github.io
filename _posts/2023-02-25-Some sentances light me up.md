@@ -12,6 +12,7 @@ related_posts: false
 
 There are some beauriful sentense soft me and give me power.
 
+<font size =12>There are some beauriful sentense soft me and give me power.</font>
 
 After the night I burned all memory, my dream becomes transparent, as I trashed all yesterdays, my step becomes lighter
 
