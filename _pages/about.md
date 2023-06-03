@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: <a href='#'>Postdoc in Guoping Feng Lab, McGovern Institute at MIT</a>
 
