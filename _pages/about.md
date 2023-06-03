@@ -2,16 +2,17 @@
 layout: about
 title: About
 permalink: /
-subtitle: <a href='#'>Postdoc in Guoping Feng Lab, McGovern Institute at MIT</a>
+subtitle: <a href='#'>Postdoc in Guoping Feng Lab, McGovern Institute at MIT</a> (https://mcgovern.mit.edu/)
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   address: >
-   <p>Office:46-3123</p>
-   <p>43 Vassar Street</p>
-   <p>Cambridge, MA 02139</p>
+   <a>Office:46-3123</a>
+   <a>43 Vassar Street</a>
+   <a>Cambridge, MA 02139</a>
+   <a>zhangcy@mit.edu</a>
 
 news: true  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
