@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  my art work galleries
+title:  My art work gallery
 date: 2023-04-15 21:01:00
 description: These are LOGOs I designed in the past
 tags: formatting images
@@ -35,7 +35,6 @@ These are LOGOs I designed in the past. For the lab, the school, the team, and m
     Those three are what I designed for the labs and school. Unfortunately, beaten by other candidates.
 </div>
 
-Images are zoomable.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
