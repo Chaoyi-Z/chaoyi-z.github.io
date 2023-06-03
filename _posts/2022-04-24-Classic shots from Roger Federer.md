@@ -3,8 +3,8 @@ layout: post
 title:  Classic shots from Roger Federer
 date: 2022-04-24 21:01:00
 description: I learned a lot form this movie
-tags: including videos
-categories: sample-posts
+tags: Videos
+categories: Videos
 ---
 This movie I adopted from the internet. I do learn a lot after I watch it over and over again.
 

@@ -3,7 +3,8 @@ layout: post
 title: Some sentances light me up
 date: 2023-02-25 10:14:00-0400
 description: There are some sentense I colleted whem I am down
-categories: sample-posts
+categories: Article
+tags: Articles
 giscus_comments: true
 related_posts: false
 
