@@ -10,7 +10,6 @@ related_posts: false
 
 ---
 
-
 There are some beauriful sentense soft me and give me power.
 
 
