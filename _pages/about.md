@@ -9,7 +9,7 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   address: >
-     <p>Office:46-3123</p>
+     <p>Office:46-3115</p>
      <p>43 Vassar Street</p>
      <p>Cambridge, MA 02139</p>
   
