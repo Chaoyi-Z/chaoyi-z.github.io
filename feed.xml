@@ -1,5 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-06-28T23:52:17+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">My art work gallery</title><link href="https://chaoyi-z.github.io/blog/2023/my-artworks/" rel="alternate" type="text/html" title="My art work gallery" /><published>2023-04-15T21:01:00+00:00</published><updated>2023-04-15T21:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2023/my%20artworks</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2023/my-artworks/"><![CDATA[<p>These are LOGOs I designed in the past. For the lab, the school, the team, and myself. Most of them are not adopted 😮‍💨, just for fun😁.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-16T04:58:59+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Recent happens in HMS-CSSA</title><link href="https://chaoyi-z.github.io/blog/2023/HMS-CSSA/" rel="alternate" type="text/html" title="Recent happens in HMS-CSSA" /><published>2023-06-24T21:01:00+00:00</published><updated>2023-06-24T21:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2023/HMS-CSSA</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2023/HMS-CSSA/"><![CDATA[<p>There is so much fun I got from HMS-CSSA. Science, Friendship, Insights about career development, and many fun activities.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+    The 2023 HMS-CSSA annual symposium
+</div>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/HMS-CSSA/2023%20dragon%20boat.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+     </div>   
+        <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+   2023 Dragon boat festival on Charles river, and we got a bronze medal
+</div>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[Recent fun in HMS-CSSA]]></summary></entry><entry><title type="html">My art work gallery</title><link href="https://chaoyi-z.github.io/blog/2023/my-artworks/" rel="alternate" type="text/html" title="My art work gallery" /><published>2023-04-15T21:01:00+00:00</published><updated>2023-04-15T21:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2023/my%20artworks</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2023/my-artworks/"><![CDATA[<p>These are LOGOs I designed in the past. For the lab, the school, the team, and myself. Most of them are not adopted 😮‍💨, just for fun😁.</p>
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
