@@ -1,37 +1,37 @@
 ---
 layout: post
-title: 2023 RayWu symposium
+title: 2023 RayWu symposium at Westlake university
 date: 2023-07-10 21:01:00
-description: 2023 RayWu symposium at Westlake University
+description: It's my great honor to attend the 2023 RayWu symposium at Westlake university
 tags: Photos
 categories: Photos
-thumbnail: assets/img/2023 RayWu Symposium/Ray Wu.png
+thumbnail: assets/img/HMS-CSSA/hms-cssa-logo.png
 ---
-It's my great honor to attend the 2023 Ray Wu symposium at Westlake University. Meet with friends enjoyed science, and learnt a lot from colleagues and seniors.
+There is so much fun I got from HMS-CSSA. Science, Friendship, Insights about career development, and many fun activities.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/2023 RayWu Symposium/2022 Ray Wu winners.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/HMS-CSSA/2023 Annual meeting.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
 <div class="caption">
-    The 2022 RayWu prize winners
+    The 2023 HMS-CSSA annual symposium
 </div>
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/2023 RayWu Symposium/IMG_5882.JPG" zoomable=true %}
+        {% include figure.html path="assets/img/HMS-CSSA/2023 dragon boat team.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/2023 RayWu Symposium/IMG_5879.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/HMS-CSSA/2023 dragon boat.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
      </div>   
         <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/2023 RayWu Symposium/IMG_5873.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/HMS-CSSA/Boat in Charels river.JPG" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
 <div class="caption">
-   My presentation ( A little nervous in such a big stage)
+   2023 Dragon boat festival on Charles river, and we got a bronze medal
 </div>
 
