@@ -7,7 +7,7 @@ tags: Photos
 categories: Photos
 thumbnail: assets/img/2023 RayWu Symposium/Ray Wu.png
 ---
-It's my great honor to attend the 2023 Ray Wu symposium at Westlake University. Meet with friends, enjoyed the science, and learned a lot from colleagues and seniors.
+It's my great honor to attend the 2023 Ray Wu symposium at [Westlake University](https://en.westlake.edu.cn/). Meet with friends, enjoyed the science, and learned a lot from colleagues and seniors.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -32,6 +32,6 @@ It's my great honor to attend the 2023 Ray Wu symposium at Westlake University. 
 </div>
 
 <div class="caption">
-   My presentation (alittle nervous stand in such a big stage)
+   My presentation (a little nervous stand in such a big stage)
 </div>
 
