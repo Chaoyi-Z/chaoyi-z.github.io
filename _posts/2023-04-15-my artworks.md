@@ -11,7 +11,7 @@ These are LOGOs I designed in the past. For the lab, the school, the team, and m
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/MyLOGO.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/My Logos/MyLOGO.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
@@ -21,13 +21,13 @@ These are LOGOs I designed in the past. For the lab, the school, the team, and m
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/Hulab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/My Logos/Hulab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/Fishell Lab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/My Logos/Fishell Lab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
      </div>   
         <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/school of brainscience.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/My Logos/school of brainscience.png" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
@@ -38,10 +38,10 @@ These are LOGOs I designed in the past. For the lab, the school, the team, and m
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/Tennis team.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/My Logos/Tennis team.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/Tennis jacket.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+        {% include figure.html path="assets/img/My Logos/Tennis jacket.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 

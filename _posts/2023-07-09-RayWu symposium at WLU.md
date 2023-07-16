@@ -32,6 +32,6 @@ It's my great honor to attend the 2023 Ray Wu symposium at [Westlake University]
 </div>
 
 <div class="caption">
-   My presentation (a little nervous stand in such a big stage)
+   My presentation (a little nervous standing on such a big stage)
 </div>
 
