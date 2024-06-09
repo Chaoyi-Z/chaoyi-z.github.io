@@ -6,7 +6,7 @@ subtitle: <a href='https://mcgovern.mit.edu/'>Postdoc in Guoping Feng Lab, McGov
 
 profile:
   align: right
-  image: image.png
+  image: Chaoyi_pro.jpg
   image_circular: false # crops the image to make it circular
   address: >
      <p>Office:46-3115</p>
