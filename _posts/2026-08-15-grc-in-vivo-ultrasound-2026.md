@@ -19,5 +19,5 @@ From August 15–21, 2026 I attended the 2026 In Vivo Ultrasound Gordon Research
 </div>
 
 <div class="caption">
-    The 2026 In Vivo Ultrasound Gordon Research Conference
+    The 2026 In Vivo Ultrasound Gordon Research Seminar
 </div>
