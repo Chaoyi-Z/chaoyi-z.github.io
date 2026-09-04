@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-09-04T20:39:27+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>Chaoyi Zhang, postdoctoral fellow in the Guoping Feng Lab at MIT, studying the neurobiological mechanisms of psychiatric disease in non-human primate models.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-09-04T20:41:38+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>Chaoyi Zhang, postdoctoral fellow in the Guoping Feng Lab at MIT, studying the neurobiological mechanisms of psychiatric disease in non-human primate models.
 </subtitle><entry><title type="html">Summer 2026: mentoring three young scientists</title><link href="https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring/" rel="alternate" type="text/html" title="Summer 2026: mentoring three young scientists" /><published>2026-08-31T13:00:00+00:00</published><updated>2026-08-31T13:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring/"><![CDATA[<p>A lot of fun working with three talented young people this summer — two summer students and a new technician:</p>
 
 <ul>
@@ -147,7 +147,97 @@
 
 <div class="caption">
     We escaped &mdash; and then we ate.
-</div>]]></content><author><name></name></author><category term="Conferences" /><category term="Conferences" /><summary type="html"><![CDATA[Three days of non-human primate systems neuroscience at Carnegie Mellon]]></summary></entry><entry><title type="html">I created an Youtube channel to memory my life</title><link href="https://chaoyi-z.github.io/blog/2024/My-you-tube-channel/" rel="alternate" type="text/html" title="I created an Youtube channel to memory my life" /><published>2024-12-26T22:01:00+00:00</published><updated>2024-12-26T22:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2024/%20My%20you%20tube%20channel</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2024/My-you-tube-channel/"><![CDATA[<p>These are two travel vlogs I edited recently. (click the picture below you will be directly lead to Youtube)</p>
+</div>]]></content><author><name></name></author><category term="Conferences" /><category term="Conferences" /><summary type="html"><![CDATA[Three days of non-human primate systems neuroscience at Carnegie Mellon]]></summary></entry><entry><title type="html">2025 USTA League season: from Sectionals to Nationals</title><link href="https://chaoyi-z.github.io/blog/2025/usta-league-season-sectionals-to-nationals/" rel="alternate" type="text/html" title="2025 USTA League season: from Sectionals to Nationals" /><published>2025-10-18T22:00:00+00:00</published><updated>2025-10-18T22:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/usta-league-season-sectionals-to-nationals</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/usta-league-season-sectionals-to-nationals/"><![CDATA[<p>A good season with the team. We played the USTA League <strong>Adult 18 &amp; Over Section Championships</strong> for New England, at the Winchester Indoor Lawn Tennis Center.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/USTA-2025/sectionals-winchester-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/USTA-2025/sectionals-winchester-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/USTA-2025/sectionals-winchester-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/USTA-2025/sectionals-winchester.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/USTA-2025/sectionals-team-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/USTA-2025/sectionals-team-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/USTA-2025/sectionals-team-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/USTA-2025/sectionals-team.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+    USTA League New England, Adult 18 &amp; Over Section Championships
+</div>
+
+<p>And from there on to the <strong>USTA League National Championships</strong>.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/USTA-2025/nationals-banner-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/USTA-2025/nationals-banner-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/USTA-2025/nationals-banner-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/USTA-2025/nationals-banner.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/USTA-2025/nationals-flags-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/USTA-2025/nationals-flags-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/USTA-2025/nationals-flags-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/USTA-2025/nationals-flags.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+    2025 USTA League National Championships &mdash; New England colours a long way from home
+</div>
+
+<p>Tennis remains the best part of the week that has nothing to do with a microscope.</p>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[A season with the team, from the New England Section Championships to the USTA League National Championships]]></summary></entry><entry><title type="html">I created an Youtube channel to memory my life</title><link href="https://chaoyi-z.github.io/blog/2024/My-you-tube-channel/" rel="alternate" type="text/html" title="I created an Youtube channel to memory my life" /><published>2024-12-26T22:01:00+00:00</published><updated>2024-12-26T22:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2024/%20My%20you%20tube%20channel</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2024/My-you-tube-channel/"><![CDATA[<p>These are two travel vlogs I edited recently. (click the picture below you will be directly lead to Youtube)</p>
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -518,90 +608,4 @@
 
 <div class="caption">
    My presentation (a little nervous standing on such a big stage)
-</div>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[It’s my great honor to attend the 2023 Ray Wu symposium at Westlake University. Meet with friends, enjoyed the science, and learned a lot from colleagues and seniors. The 2022 Ray Wu prize winners My presentation (a little nervous standing on such a big stage)]]></summary></entry><entry><title type="html">Recent happens in HMS-CSSA</title><link href="https://chaoyi-z.github.io/blog/2023/HMS-CSSA/" rel="alternate" type="text/html" title="Recent happens in HMS-CSSA" /><published>2023-06-24T21:01:00+00:00</published><updated>2023-06-24T21:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2023/HMS-CSSA</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2023/HMS-CSSA/"><![CDATA[<p>There is so much fun I got from HMS-CSSA. Science, Friendship, Insights about career development, and many fun activities.</p>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/2023%20Annual%20meeting.JPG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-</div>
-
-<div class="caption">
-    The 2023 HMS-CSSA annual symposium
-</div>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team.JPG-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team.JPG-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team.JPG-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/2023%20dragon%20boat%20team.JPG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat.JPG-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat.JPG-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20dragon%20boat.JPG-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/2023%20dragon%20boat.JPG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-     </div>   
-        <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river.JPG-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river.JPG-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river.JPG-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/Boat%20in%20Charels%20river.JPG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-</div>
-
-<div class="caption">
-   2023 Dragon boat festival on Charles River, and we got a bronze medal
-</div>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[Recent fun in HMS-CSSA]]></summary></entry></feed>
+</div>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[It’s my great honor to attend the 2023 Ray Wu symposium at Westlake University. Meet with friends, enjoyed the science, and learned a lot from colleagues and seniors. The 2022 Ray Wu prize winners My presentation (a little nervous standing on such a big stage)]]></summary></entry></feed>
