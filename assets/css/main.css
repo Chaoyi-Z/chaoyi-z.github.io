@@ -153,6 +153,10 @@ table th {
   font-weight: bold;
 }
 
+.news table th {
+  white-space: nowrap;
+}
+
 a,
 table.table a {
   color: var(--global-theme-color);
