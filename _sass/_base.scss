@@ -34,6 +34,12 @@ table {
   }
 }
 
+// News dates must never wrap: the table uses auto layout, so a long news
+// line steals width from the date column and breaks "Aug 31, 2026" in two.
+.news table th {
+  white-space: nowrap;
+}
+
 a,
 table.table a {
   color: var(--global-theme-color);
