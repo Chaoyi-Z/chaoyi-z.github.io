@@ -11,7 +11,7 @@ thumbnail: assets/img/Travel/Hiking.JPG
 These are two travel vlogs I edited recently. (click the picture below you will be directly lead to Youtube)
 
 
-<<div class="row mt-3">
+<div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
         <a href="https://youtu.be/TGYtdjSaQ04">
             {% include figure.html path="assets/img/Travel/2024 Fall in VT_Screenshot.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
