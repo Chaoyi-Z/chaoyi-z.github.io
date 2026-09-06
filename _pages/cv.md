@@ -1,7 +1,7 @@
 ---
 layout: cv
 permalink: /cv/
-title: CV
+title: Biosketch
 nav: true
 nav_order: 4
 cv_pdf: CV_Chaoyi Zhang.pdf
