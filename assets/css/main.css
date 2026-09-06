@@ -513,42 +513,6 @@ footer.sticky-bottom {
   text-decoration: none;
 }
 
-.projects a {
-  text-decoration: none;
-}
-.projects a:hover .card-title {
-  color: var(--global-theme-color);
-}
-.projects .card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.projects .card img {
-  width: 100%;
-}
-.projects .card-body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.projects .card-item {
-  width: auto;
-  margin-bottom: 10px;
-}
-.projects .card-item .row {
-  display: flex;
-  align-items: center;
-}
-.projects .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
-}
-.projects .grid-item a {
-  height: 100%;
-  display: block;
-}
 .projects h2.category {
   color: var(--global-divider-color);
   border-bottom: 1px solid var(--global-divider-color);
