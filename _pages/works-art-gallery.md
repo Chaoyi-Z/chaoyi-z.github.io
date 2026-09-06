@@ -1,0 +1,47 @@
+---
+layout: page
+title: My Art Work Gallery
+permalink: /works/art-gallery/
+description: LOGOs I designed in the past
+---
+These are LOGOs I designed in the past. For the lab, the school, the team, and myself. Most of them are not adopted 😮‍💨, just for fun😁.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/My Logos/MyLOGO.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
+<div class="caption">
+    This is the LOGO I designed for myself, based on my name initial.
+</div>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/My Logos/Hulab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/My Logos/Fishell Lab.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+     </div>   
+        <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/My Logos/school of brainscience.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
+<div class="caption">
+    Those three are what I designed for the labs and school. Unfortunately, beaten by other candidates.
+</div>
+
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/My Logos/Tennis team.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/My Logos/Tennis jacket.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
+<div class="caption">
+    The LOGO I designed for the Zhejiang University tennis team is adopted and made a jacket for our team.
+</div>
