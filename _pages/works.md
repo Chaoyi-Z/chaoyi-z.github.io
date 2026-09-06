@@ -8,6 +8,4 @@ nav_order: 0
 display_categories: []
 ---
 
-> What I cannot create, I do not understand.
->
-> &mdash; Richard Feynman
+> What I cannot create, I do not understand. &mdash; Richard Feynman
