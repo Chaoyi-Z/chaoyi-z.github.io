@@ -82,4 +82,4 @@
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Tennis, Cycling, Swimming
+    - '<u>Hobbies:</u> Tennis <span class="hobby-emoji">🎾</span>, Cycling <span class="hobby-emoji" style="animation-delay: 0.3s">🚴</span>, Swimming <span class="hobby-emoji" style="animation-delay: 0.6s">🏊</span>'

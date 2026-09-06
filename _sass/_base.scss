@@ -1002,3 +1002,33 @@ nav[data-toggle="toc"] {
     }
   }
 }
+
+// CV
+
+.cv-download-link {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 1rem;
+  color: var(--global-bg-color);
+  background-color: var(--global-theme-color);
+
+  &:hover {
+    color: var(--global-bg-color);
+    opacity: 0.85;
+  }
+}
+
+@keyframes hobby-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.hobby-emoji {
+  display: inline-block;
+  animation: hobby-bounce 1.2s ease-in-out infinite;
+}
