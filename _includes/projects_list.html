@@ -1,0 +1,35 @@
+<!-- _includes/projects_list.html -->
+<ul class="post-list">
+  {% for project in include.projects %}
+  <li>
+    {%- if project.img -%}
+    <div class="row">
+      <div class="col-sm-9">
+    {%- endif -%}
+        <h3>
+          {%- if project.redirect -%}
+            {%- if project.redirect contains '://' -%}
+            <a class="post-title" href="{{ project.redirect }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+            {%- else -%}
+            <a class="post-title" href="{{ project.redirect | relative_url }}">{{ project.title }}</a>
+            {%- endif -%}
+          {%- else -%}
+            <span class="post-title">{{ project.title }}</span>
+          {%- endif -%}
+        </h3>
+        <p>{{ project.description }}</p>
+        {%- if project.github -%}
+        <p class="post-tags">
+          <a href="{{ project.github }}"><i class="fab fa-github fa-sm"></i> Code</a>
+        </p>
+        {%- endif -%}
+    {%- if project.img -%}
+      </div>
+      <div class="col-sm-3">
+        <img class="card-img" src="{{ project.img | relative_url }}" style="object-fit: cover; height: 90%" alt="project thumbnail">
+      </div>
+    </div>
+    {%- endif -%}
+  </li>
+  {% endfor %}
+</ul>

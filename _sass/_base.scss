@@ -503,55 +503,6 @@ footer.sticky-bottom {
 // Projects
 
 .projects {
-  a {
-    text-decoration: none;
-
-    &:hover {
-      .card-title {
-        color: var(--global-theme-color);
-      }
-    }
-  }
-
-  .card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  .card-item {
-    width: auto;
-    margin-bottom: 10px;
-
-    .row {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
-  }
-
-  .grid-item {
-    a {
-      height: 100%;
-      display: block;
-    }
-  }
-
   h2.category {
     color: var(--global-divider-color);
     border-bottom: 1px solid var(--global-divider-color);
