@@ -11,7 +11,7 @@ thumbnail: assets/img/Mentoring-2026/team-lunch.jpg
 A lot of fun working with three talented young people this summer — two summer students and a new technician:
 
 - **Taoran Ye** — functional ultrasound data analysis
-- **Jefferson Wang** — cross-modality imaging analysis
+- **Jefferson Wong Wai Ki** — cross-modality imaging analysis
 - **Fenger (Eric) Ye** — non-human primate behavior recording setup and analysis
 
 <div class="row mt-3">
