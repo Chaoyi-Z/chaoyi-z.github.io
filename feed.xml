@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-09-06T17:52:45+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>Chaoyi Zhang, postdoctoral fellow in the Guoping Feng Lab at MIT, studying the neurobiological mechanisms of psychiatric disease in non-human primate models.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-09-06T18:42:02+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>Chaoyi Zhang, postdoctoral fellow in the Guoping Feng Lab at MIT, studying the neurobiological mechanisms of psychiatric disease in non-human primate models.
 </subtitle><entry><title type="html">Summer 2026: mentoring three young scientists</title><link href="https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring/" rel="alternate" type="text/html" title="Summer 2026: mentoring three young scientists" /><published>2026-08-31T13:00:00+00:00</published><updated>2026-08-31T13:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring/"><![CDATA[<p>A lot of fun working with three talented young people this summer — two summer students and a new technician:</p>
 
 <ul>
@@ -237,7 +237,38 @@
     2025 USTA League National Championships &mdash; New England colours a long way from home
 </div>
 
-<p>Tennis remains the best part of the week that has nothing to do with a microscope.</p>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[A season with the team, from the New England Section Championships to the USTA League National Championships]]></summary></entry><entry><title type="html">Volunteering with ACEing Autism</title><link href="https://chaoyi-z.github.io/blog/2025/volunteering-with-aceing-autism/" rel="alternate" type="text/html" title="Volunteering with ACEing Autism" /><published>2025-05-15T21:00:00+00:00</published><updated>2025-05-15T21:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/volunteering-with-aceing-autism</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/volunteering-with-aceing-autism/"><![CDATA[<p>I volunteered with <a href="https://aceingautism.org/">ACEing Autism</a> during the spring 2025 session — an organization that enhances the lives of children and adults with ASD through tennis.</p>
+<p>Tennis remains the best part of the week that has nothing to do with a microscope.</p>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[A season with the team, from the New England Section Championships to the USTA League National Championships]]></summary></entry><entry><title type="html">Talk at fUSbrain #Days 2025</title><link href="https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025/" rel="alternate" type="text/html" title="Talk at fUSbrain #Days 2025" /><published>2025-06-20T13:05:00+00:00</published><updated>2025-06-20T13:05:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025/"><![CDATA[<p>On June 19–20, 2025 I attended <a href="https://www.physicsformedicine.espci.fr/fUSbrain2025">fUSbrain #Days</a> in Paris, France, organized by Physics for Medicine (ESPCI) with the support of Iconeus. In the Behavioral Studies session on Friday, I gave a talk:</p>
+
+<blockquote>
+  <p><strong>Brain-wide fUS imaging in head-fixed marmosets</strong></p>
+</blockquote>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/fUSbrain-2025/full-program-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/fUSbrain-2025/full-program-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/fUSbrain-2025/full-program-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/fUSbrain-2025/full-program.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+    The full fUSbrain #Days 2025 program &mdash; <a href="/assets/pdf/fUSbrain2025_program.pdf" target="_blank" rel="noopener noreferrer">download the PDF</a>
+</div>
+
+<p>Two packed days of functional ultrasound neuroimaging talks, from rodent connectivity to human intraoperative mapping — great to share where our marmoset work fits in, and even better to catch up with everyone over dinner on a boat down the Seine.</p>]]></content><author><name></name></author><category term="Conferences" /><category term="Conferences" /><summary type="html"><![CDATA[Presenting brain-wide fUS imaging in head-fixed marmosets in Paris]]></summary></entry><entry><title type="html">Volunteering with ACEing Autism</title><link href="https://chaoyi-z.github.io/blog/2025/volunteering-with-aceing-autism/" rel="alternate" type="text/html" title="Volunteering with ACEing Autism" /><published>2025-05-15T21:00:00+00:00</published><updated>2025-05-15T21:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/volunteering-with-aceing-autism</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/volunteering-with-aceing-autism/"><![CDATA[<p>I volunteered with <a href="https://aceingautism.org/">ACEing Autism</a> during the spring 2025 session — an organization that enhances the lives of children and adults with ASD through tennis.</p>
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-5 mt-3 mt-md-0">
@@ -529,48 +560,4 @@
     2024&ndash;2026 J. Douglas Tan Postdoctoral Fellow, Center for Autism Research
 </div>
 
-<p>Thanks to the <a href="https://www.instagram.com/p/DVjP8bHkVGW/">Yang Tan Collective</a> for the announcement.</p>]]></content><author><name></name></author><category term="Awards" /><category term="Awards" /><summary type="html"><![CDATA[Named a J. Douglas Tan Postdoctoral Fellow at the Center for Autism Research]]></summary></entry><entry><title type="html">CSSA-HMS Frontier Symposium: Wearable Ultrasound in Cardiovascular Monitoring</title><link href="https://chaoyi-z.github.io/blog/2024/cssa-hms-frontier-symposium/" rel="alternate" type="text/html" title="CSSA-HMS Frontier Symposium: Wearable Ultrasound in Cardiovascular Monitoring" /><published>2024-07-13T01:00:00+00:00</published><updated>2024-07-13T01:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2024/cssa-hms-frontier-symposium</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2024/cssa-hms-frontier-symposium/"><![CDATA[<p>On July 12, 2024, I organized and hosted a <strong>CSSA-HMS Frontier Symposium</strong> on <em>Wearable Ultrasound in Cardiovascular Monitoring</em>, bringing together two speakers working at the frontier of ultrasound patch technology.</p>
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-9 mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/Seminars/cssa-hms-frontier-symposium-2024-07-12-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/Seminars/cssa-hms-frontier-symposium-2024-07-12-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/Seminars/cssa-hms-frontier-symposium-2024-07-12-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/Seminars/cssa-hms-frontier-symposium-2024-07-12.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-</div>
-
-<div class="caption">
-    CSSA-HMS Frontier Symposium &mdash; Wearable Ultrasound in Cardiovascular Monitoring
-</div>
-
-<h3 id="speakers">Speakers</h3>
-
-<p><strong>Sai Zhou</strong> — Ph.D. Candidate, Material Science and Engineering Program, University of California, San Diego</p>
-
-<p><strong>Chonghe Wang, Ph.D.</strong> — Co-founder and CTO, Sonologi, Inc. (MIT)
-<em>8 Years in Ultrasound Patch Technology — Full body continuous ultrasound imaging</em>
-Forbes 30 Under 30 (North America) · Finalist, National Inventors Hall of Fame · 2023 Highly Cited Researcher (Clarivate)</p>
-
-<h3 id="details">Details</h3>
-
-<ul>
-  <li><strong>When:</strong> Friday, July 12, 2024, 9:00 – 10:00 PM EDT</li>
-  <li><strong>Where:</strong> Zoom</li>
-  <li><strong>Organized by:</strong> HMS-CSSA (Chinese Scientists and Scholars Association at Harvard Medical School)</li>
-  <li><strong>Host:</strong> Chaoyi Zhang</li>
-</ul>
-
-<p>Great to see so much interest in wearable ultrasound technology — thanks to both speakers for sharing their work, and to everyone who joined the call.</p>]]></content><author><name></name></author><category term="Seminars" /><category term="Seminars" /><summary type="html"><![CDATA[A symposium I organized and hosted for HMS-CSSA on wearable ultrasound for cardiovascular monitoring]]></summary></entry></feed>
+<p>Thanks to the <a href="https://www.instagram.com/p/DVjP8bHkVGW/">Yang Tan Collective</a> for the announcement.</p>]]></content><author><name></name></author><category term="Awards" /><category term="Awards" /><summary type="html"><![CDATA[Named a J. Douglas Tan Postdoctoral Fellow at the Center for Autism Research]]></summary></entry></feed>
