@@ -190,10 +190,15 @@ blockquote {
 
 .motto blockquote {
   margin: 0.5em 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 .motto blockquote p {
   margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .motto blockquote {
+    white-space: nowrap;
+  }
 }
 
 .equation {
