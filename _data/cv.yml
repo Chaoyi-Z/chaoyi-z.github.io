@@ -1,12 +1,11 @@
-- title: General Information
-  type: map
+- title: Research Interests
+  type: list
   contents:
-    - name: Full Name
-      value: Chaoyi Zhang
-    - name: Date of Birth
-      value: 20th November 1992
-    - name: Languages
-      value: Chinese, English
+    - <strong>Psychiatric disease.</strong> What circuit-level dysfunction gives rise to psychiatric disorders — and can we see it in a primate brain?
+    - <strong>The social brain.</strong> How do primates compute social behavior and emotion, and what happens when those circuits go wrong?
+    - <strong>4D systems neuroscience.</strong> Brain-wide, volume by volume, moment by moment — how do whole-brain dynamics give rise to behavior?
+    - <strong>Ultrasound as neurotechnology.</strong> Functional ultrasound imaging fills the missing scale between electrodes and fMRI. I build the tools as much as I use them.
+    - <strong>The evolution of intelligence.</strong> What does comparing brains across species tell us about how natural intelligence was built?
 
 - title: Education
   type: time_table
@@ -16,8 +15,8 @@
       year: 2016-2022
       description:
         - School of Brain Science and Brain Medicine
-        - Neurobiology; 
-        
+        - Neurobiology;
+
     - title: B.S.
       institution: Wenzhou Medical University, Wenzhou, China
       year: 2012-2016
@@ -39,7 +38,7 @@
       year: 2022 - 2023
       description:
         - Investigated how the wS1 circuits assembled to control whisking behavior during the development
-        
+
 
     - title: Ph.D.
       institution: Hailan Hu Lab, Zhejiang University, Hangzhou, China
@@ -50,7 +49,7 @@
 
 
     - title: Summer Scholar
-      institution: Minmin Luo Lab, National institute of Biological Sciences (NIBS), Beijing, China 
+      institution: Minmin Luo Lab, National institute of Biological Sciences (NIBS), Beijing, China
       year: 2016 summer
       description:
       - Explored the roles of dopamine neurons and serotonin neurons in reward behavior via fiber photometry recording and optogenetics
@@ -59,37 +58,28 @@
       institution: Xiaokun Li Lab, Wenzhou Medical University, Wenzhou, China
       year: 2013 - 2016
       description:
-      - Validated the repair function of the basic fibroblast growth factor (bFGF) on the blood brain barrier after brain injury on mice model 
+      - Validated the repair function of the basic fibroblast growth factor (bFGF) on the blood brain barrier after brain injury on mice model
 
 
 - title: Honors and Awards
   type: time_table
   contents:
     - year: 2023
-      items: 
-        - Excellent Doctoral Dissertations of Zhejiang University 
+      items:
+        - Excellent Doctoral Dissertations of Zhejiang University
     - year: 2022
-      items: 
+      items:
         - Ray Wu Prize
         - Excellent graduate of Zhejiang Province
     - year: 2020
-      items: 
+      items:
         - National scholarship
     - year: 2016
-      items: 
+      items:
         - Excellent graduate of Zhejiang Province
 
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Neuroscience
-      items: 
-        - The neurobiological mechinism of psychiatric diseases
-        - The neural mechanism of social and emotion in non-human primate
-  
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Tennis, Cycling, Swimming 
+    - <u>Hobbies:</u> Tennis, Cycling, Swimming
