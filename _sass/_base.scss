@@ -514,9 +514,19 @@ footer.sticky-bottom {
   }
 
   .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
     img {
       width: 100%;
     }
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   .card-item {
@@ -529,10 +539,17 @@ footer.sticky-bottom {
     }
   }
 
-  .grid-sizer,
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
   .grid-item {
-    width: 250px;
-    margin-bottom: 10px;
+    a {
+      height: 100%;
+      display: block;
+    }
   }
 
   h2.category {
