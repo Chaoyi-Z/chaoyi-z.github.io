@@ -22,8 +22,8 @@ selected_papers: true # includes a list of papers marked as "selected={true"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Hi friends, welcome to my personal website. It makes me happy that you are interested in me. 
+Hi friends, welcome to my personal website — I'm glad you're here.
 
-I am born and grew up in a seaside city - Taizhou in east China. Then I studied in Wenzhou and Hangzhou, Zhejiang, China.  Now I am living in Boston on the east coast of the USA. As a postdoc in [Guoping Feng lab](https://fenglaboratory.org/), I am investigating the neurobiological mechanism of psychiatric diseases via non-human primate models at MIT.
+I was born and raised in Taizhou, a seaside city in eastern China, then studied in Wenzhou and Hangzhou, Zhejiang. These days I live in Boston, on the east coast of the US, where I'm a postdoc in the [Guoping Feng lab](https://fenglaboratory.org/) at MIT, studying the neurobiological mechanisms of psychiatric disease using non-human primate models.
 
-I will keep update my progress and thoughts here.
+I'll keep updating this site with my progress and thoughts along the way.
