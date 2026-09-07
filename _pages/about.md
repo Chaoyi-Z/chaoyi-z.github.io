@@ -26,6 +26,6 @@ Hi friends, welcome to my personal website — I'm glad you're here.
 
 I was born and raised in Taizhou, a seaside city in eastern China, then studied in Wenzhou and Hangzhou, Zhejiang. These days I live in Boston, on the east coast of the US, where I'm a postdoc in the [Guoping Feng lab](https://fenglaboratory.org/) at MIT, studying the neurobiological mechanisms of psychiatric disease using non-human primate models.
 
-Right now my main focus is building a brain-wide functional ultrasound imaging platform for behaving marmosets, paired with a system for synchronized behavior and physiology recording — the two pieces I need to watch whole-brain activity while an animal is actually doing something, not just sitting still under anesthesia.
+Right now my main focus is building a brain-wide functional ultrasound imaging platform for behaving marmosets, paired with a system for synchronized behavior and physiology recording, with the goal of identifying biomarkers that translate between animal models and human patients for neuropsychiatric disorders.
 
 I'll keep updating this site with my progress and thoughts along the way.
