@@ -82,6 +82,11 @@ blockquote {
   @media (min-width: 768px) {
     white-space: nowrap;
   }
+
+  .motto-highlight {
+    color: var(--global-theme-color);
+    font-weight: 600;
+  }
 }
 
 .works-title-col .post-description {
