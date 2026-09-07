@@ -201,6 +201,12 @@ blockquote {
   }
 }
 
+@media (min-width: 768px) {
+  .works-title-col .post-description {
+    white-space: nowrap;
+  }
+}
+
 .equation {
   margin-bottom: 1rem;
   text-align: center;
