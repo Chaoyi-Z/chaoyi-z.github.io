@@ -200,6 +200,10 @@ blockquote {
     white-space: nowrap;
   }
 }
+.motto blockquote .motto-highlight {
+  color: var(--global-theme-color);
+  font-weight: 600;
+}
 
 @media (min-width: 768px) {
   .works-title-col .post-description {
