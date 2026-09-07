@@ -949,6 +949,10 @@ nav[data-toggle=toc] .nav-link.active:hover {
   animation: hobby-bounce 1.2s ease-in-out infinite;
 }
 
+.bio-text p {
+  text-align: justify;
+}
+
 /*******************************************************************************
  * Style overrides for distill blog posts.
  ******************************************************************************/
