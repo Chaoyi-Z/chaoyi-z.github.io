@@ -251,8 +251,13 @@ blockquote {
 }
 .profile .address {
   margin-bottom: 5px;
-  margin-top: 5px;
-  font-family: monospace;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--global-divider-color);
+  font-family: inherit;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--global-text-color-light);
 }
 .profile .address p {
   display: inline-block;
