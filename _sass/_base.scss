@@ -84,6 +84,12 @@ blockquote {
   }
 }
 
+.works-title-col .post-description {
+  @media (min-width: 768px) {
+    white-space: nowrap;
+  }
+}
+
 // Math
 
 .equation {
