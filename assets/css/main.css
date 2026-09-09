@@ -467,6 +467,14 @@ footer.sticky-bottom {
   color: var(--global-theme-color);
   font-size: 5rem;
 }
+.header-bar h2 {
+  font-size: 1.5rem;
+}
+@media (min-width: 768px) {
+  .header-bar h2 {
+    white-space: nowrap;
+  }
+}
 
 .tag-list {
   border-bottom: 1px solid var(--global-divider-color);
