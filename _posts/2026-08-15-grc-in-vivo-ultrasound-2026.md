@@ -21,3 +21,13 @@ From August 15–21, 2026 I attended the 2026 In Vivo Ultrasound Gordon Research
 <div class="caption">
     The 2026 In Vivo Ultrasound Gordon Research Seminar
 </div>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/GRC-2026/group photos _In vivo ultrasound_GRC2026.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
+<div class="caption">
+    The 2026 In Vivo Ultrasound Gordon Research Conference
+</div>
