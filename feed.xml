@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-09-12T17:11:47+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>Chaoyi Zhang, postdoctoral fellow in the Guoping Feng Lab at MIT, studying the neurobiological mechanisms of psychiatric disease in non-human primate models.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://chaoyi-z.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://chaoyi-z.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2026-09-12T17:13:42+00:00</updated><id>https://chaoyi-z.github.io/feed.xml</id><title type="html">Chaoyi Zhang</title><subtitle>Chaoyi Zhang, postdoctoral fellow in the Guoping Feng Lab at MIT, studying the neurobiological mechanisms of psychiatric disease in non-human primate models.
 </subtitle><entry><title type="html">Summer 2026: mentoring three young scientists</title><link href="https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring/" rel="alternate" type="text/html" title="Summer 2026: mentoring three young scientists" /><published>2026-08-31T13:00:00+00:00</published><updated>2026-08-31T13:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2026/summer-2026-mentoring/"><![CDATA[<p>A lot of fun working with three talented young people this summer — two summer students and a new technician:</p>
 
 <ul>
@@ -287,7 +287,57 @@
     2025 USTA League National Championships &mdash; New England colours a long way from home
 </div>
 
-<p>Tennis remains the best part of the week that has nothing to do with a microscope.</p>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[A season with the team, from the New England Section Championships to the USTA League National Championships]]></summary></entry><entry><title type="html">Talk at fUSbrain #Days 2025</title><link href="https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025/" rel="alternate" type="text/html" title="Talk at fUSbrain #Days 2025" /><published>2025-06-20T13:05:00+00:00</published><updated>2025-06-20T13:05:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025/"><![CDATA[<p>On June 19–20, 2025 I attended <a href="https://www.physicsformedicine.espci.fr/fUSbrain2025">fUSbrain #Days</a> in Paris, France, organized by Physics for Medicine (ESPCI) with the support of Iconeus. In the Behavioral Studies session on Friday, I gave a talk:</p>
+<p>Tennis remains the best part of the week that has nothing to do with a microscope.</p>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[A season with the team, from the New England Section Championships to the USTA League National Championships]]></summary></entry><entry><title type="html">Decoding the Brain at the MIT Museum</title><link href="https://chaoyi-z.github.io/blog/2025/decoding-the-brain-mit-museum/" rel="alternate" type="text/html" title="Decoding the Brain at the MIT Museum" /><published>2025-09-25T18:00:00+00:00</published><updated>2025-09-25T18:00:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/decoding-the-brain-mit-museum</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/decoding-the-brain-mit-museum/"><![CDATA[<p>As part of the Cambridge Science Festival, I joined “Decoding the Brain” at the MIT Museum, where neuroscientists from MIT’s McGovern Institute shared their latest discoveries in brain science. Along with Henry Hall and Lace Riggs, I ran an interactive lab demo letting visitors compare real human, sheep, and mouse brains.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/Decoding-the-Brain-2025/lab-demo-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/Decoding-the-Brain-2025/lab-demo-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/Decoding-the-Brain-2025/lab-demo-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/Decoding-the-Brain-2025/lab-demo.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+    Comparing real human, sheep, and mouse brains with visitors at the MIT Museum
+</div>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/Decoding-the-Brain-2025/event-flyer-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/Decoding-the-Brain-2025/event-flyer-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/Decoding-the-Brain-2025/event-flyer-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/Decoding-the-Brain-2025/event-flyer.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+
+<div class="caption">
+    Event program for Decoding the Brain
+</div>]]></content><author><name></name></author><category term="Outreach" /><category term="Outreach" /><summary type="html"><![CDATA[Lab demo comparing real human, sheep, and mouse brains for the Cambridge Science Festival]]></summary></entry><entry><title type="html">Talk at fUSbrain #Days 2025</title><link href="https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025/" rel="alternate" type="text/html" title="Talk at fUSbrain #Days 2025" /><published>2025-06-20T13:05:00+00:00</published><updated>2025-06-20T13:05:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2025/fusbrain-days-2025/"><![CDATA[<p>On June 19–20, 2025 I attended <a href="https://www.physicsformedicine.espci.fr/fUSbrain2025">fUSbrain #Days</a> in Paris, France, organized by Physics for Medicine (ESPCI) with the support of Iconeus. In the Behavioral Studies session on Friday, I gave a talk:</p>
 
 <blockquote>
   <p><strong>Brain-wide fUS imaging in head-fixed marmosets</strong></p>
@@ -418,169 +468,4 @@
     </div>
 </div>
 
-<p>You could find more in the future in my Youtube Channel : <a href="https://www.youtube.com/@ZhangChaoyi_Joey">https://www.youtube.com/@ZhangChaoyi_Joey</a></p>]]></content><author><name></name></author><category term="Videos" /><category term="Videos" /><summary type="html"><![CDATA[Personal youyube channel been created]]></summary></entry><entry><title type="html">Work Summary in HMS-CSSA</title><link href="https://chaoyi-z.github.io/blog/2024/HMS-CSSA-work-summary/" rel="alternate" type="text/html" title="Work Summary in HMS-CSSA" /><published>2024-09-24T21:01:00+00:00</published><updated>2024-09-24T21:01:00+00:00</updated><id>https://chaoyi-z.github.io/blog/2024/HMS-CSSA%20work%20summary</id><content type="html" xml:base="https://chaoyi-z.github.io/blog/2024/HMS-CSSA-work-summary/"><![CDATA[<p>It’s been two years since I joined HMS-CSSA in October 2022, my arrival in Boston. My journey has taken me from a regular member to a committee member, where I’ve been fortunate to contribute to numerous activities, from planning to successful execution. This experience has been a mix of challenges and immense satisfaction.</p>
-
-<p>As I step down from my role, I’m eager to dedicate more time to my scientific pursuits. I am deeply grateful to the HMS-CSSA community for helping me adjust to life in Boston. I cherish the friendships I’ve made and the valuable experience I’ve gained in organizing and hosting scientific seminars.</p>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2024%20annual%20HCLS.PNG-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2024%20annual%20HCLS.PNG-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2024%20annual%20HCLS.PNG-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/2024%20annual%20HCLS.PNG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-</div>
-
-<div class="caption">
-    The 2024 HMS-CSSA annual symposium
-</div>
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/0404%20lighting%20talk-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/0404%20lighting%20talk-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/0404%20lighting%20talk-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/0404%20lighting%20talk.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2023%20lightning%20talks-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2023%20lightning%20talks-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2023%20lightning%20talks-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/2023%20lightning%20talks.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>   
-        <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/2024dragon%20boat-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/2024dragon%20boat-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/2024dragon%20boat-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/2024dragon%20boat.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/ZJU-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/ZJU-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/ZJU-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/ZJU.jpg" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/Xuemei%20Chen-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/Xuemei%20Chen-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/Xuemei%20Chen-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/Xuemei%20Chen.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
- 
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/ultrasound%20seminar-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/ultrasound%20seminar-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/ultrasound%20seminar-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/ultrasound%20seminar.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-    </div>
-     <div class="col-sm mt-3 mt-md-0">
-        <figure>
-
-  <picture>
-    
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/HMS-CSSA/Tian%20Xue.JPG-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/HMS-CSSA/Tian%20Xue.JPG-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/HMS-CSSA/Tian%20Xue.JPG-1400.webp" />
-    
-
-    <!-- Fallback to the original file -->
-    <img src="/assets/img/HMS-CSSA/Tian%20Xue.JPG" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
-
-  </picture>
-
-</figure>
-
-     </div>
-</div>
-
-<div class="caption">
-   Posters I designed and Activities I Orginized or Hosted
-</div>
-
-</div>]]></content><author><name></name></author><category term="Photos" /><category term="Photos" /><summary type="html"><![CDATA[Completed my missions in HMS-CSSA, here is some good memory]]></summary></entry></feed>
+<p>You could find more in the future in my Youtube Channel : <a href="https://www.youtube.com/@ZhangChaoyi_Joey">https://www.youtube.com/@ZhangChaoyi_Joey</a></p>]]></content><author><name></name></author><category term="Videos" /><category term="Videos" /><summary type="html"><![CDATA[Personal youyube channel been created]]></summary></entry></feed>
