@@ -121,6 +121,11 @@
 
   footer { border-top: 1px solid var(--line); padding-top: 20px; font-family: var(--sans); font-size: 13px; color: var(--faint); line-height: 1.65; }
 
+  .refs { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 11px; font-family: var(--sans); font-size: 14px; color: var(--muted); line-height: 1.55; }
+  .refs li::marker { color: var(--faint); font-family: var(--mono); font-size: 12.5px; }
+  .refs a { color: var(--sound); text-decoration: none; }
+  .refs a:hover { text-decoration: underline; }
+
   @media (max-width: 760px) {
     .step { grid-template-columns: 1fr; gap: 10px; }
     .step-n { border-top: none; padding-top: 0; }
@@ -743,6 +748,18 @@
       roughly 100 micrometre spatial scale, sub-second temporal resolution, direct blood-volume
       contrast, portable hardware, and compatibility with an awake, behaving animal.
     </p>
+  </section>
+
+  <section class="prose">
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="ref1">Macé, E., Montaldo, G., Cohen, I., Baulac, M., Fink, M., &amp; Tanter, M. (2011). Functional ultrasound imaging of the brain. <em>Nature Methods</em>, 8(8), 662–664. <a href="https://doi.org/10.1038/nmeth.1641">doi:10.1038/nmeth.1641</a></li>
+      <li id="ref2">Montaldo, G., Tanter, M., Bercoff, J., Benech, N., &amp; Fink, M. (2009). Coherent plane-wave compounding for very high frame rate ultrasonography and transient elastography. <em>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</em>, 56(3), 489–506. <a href="https://doi.org/10.1109/TUFFC.2009.1067">doi:10.1109/TUFFC.2009.1067</a></li>
+      <li id="ref3">Demené, C., Deffieux, T., Pernot, M., et al. (2015). Spatiotemporal clutter filtering of ultrafast ultrasound data highly increases Doppler and fUltrasound sensitivity. <em>IEEE Transactions on Medical Imaging</em>, 34(11), 2271–2285. <a href="https://doi.org/10.1109/TMI.2015.2428634">doi:10.1109/TMI.2015.2428634</a></li>
+      <li id="ref4">Rabut, C., Correia, M., Finel, V., et al. (2019). 4D functional ultrasound imaging of whole-brain activity in rodents. <em>Nature Methods</em>, 16, 994–997. <a href="https://doi.org/10.1038/s41592-019-0572-y">doi:10.1038/s41592-019-0572-y</a></li>
+      <li id="ref5">Dizeux, A., Gesnik, M., Ahnine, H., et al. (2019). Functional ultrasound imaging of the brain reveals propagation of task-related brain activity in behaving primates. <em>Nature Communications</em>, 10, 1400. <a href="https://doi.org/10.1038/s41467-019-09349-w">doi:10.1038/s41467-019-09349-w</a></li>
+      <li id="ref6">Blaize, K., Arcizet, F., Gesnik, M., et al. (2020). Functional ultrasound imaging of deep visual cortex in awake nonhuman primates. <em>PNAS</em>, 117(25), 14453–14463. <a href="https://doi.org/10.1073/pnas.1916787117">doi:10.1073/pnas.1916787117</a></li>
+    </ol>
   </section>
 
   <footer>
