@@ -1,0 +1,764 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>How Functional Ultrasound Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Roboto+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ground:  #f6f7fa;
+    --surface: #ffffff;
+    --sunk:    #edf0f5;
+    --ink:     #11161f;
+    --muted:   #58627a;
+    --faint:   #8a93a6;
+    --line:    #e0e5ee;
+    --line2:   #c3cad8;
+
+    --blood:    #b02d1e;
+    --blood-bg: #fceeec;
+    --sound:    #27529f;
+    --sound-bg: #eaf0fb;
+
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans:  "Archivo", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+    --mono:  "Roboto Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:  #0d1015;
+      --surface: #161b23;
+      --sunk:    #1c222c;
+      --ink:     #e6eaf1;
+      --muted:   #99a3b5;
+      --faint:   #6e788b;
+      --line:    #232a35;
+      --line2:   #39424f;
+      --blood:    #ff7f6c;
+      --blood-bg: #2a1512;
+      --sound:    #85adf5;
+      --sound-bg: #111c2f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:  #0d1015;
+    --surface: #161b23;
+    --sunk:    #1c222c;
+    --ink:     #e6eaf1;
+    --muted:   #99a3b5;
+    --faint:   #6e788b;
+    --line:    #232a35;
+    --line2:   #39424f;
+    --blood:    #ff7f6c;
+    --blood-bg: #2a1512;
+    --sound:    #85adf5;
+    --sound-bg: #111c2f;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--ground); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 56px 26px 100px; display: flex; flex-direction: column; gap: 52px; }
+  .prose { max-width: 68ch; }
+
+  /* masthead */
+  .mast { display: flex; flex-direction: column; gap: 16px; }
+  .kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--blood); }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 5.4vw, 54px); line-height: 1.06; letter-spacing: -.018em; margin: 0; max-width: 17ch; text-wrap: balance; }
+  .dek { font-size: 20px; line-height: 1.55; color: var(--muted); max-width: 62ch; margin: 0; font-weight: 300; }
+
+  h2 { font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); margin: 0 0 6px; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 27px; line-height: 1.2; letter-spacing: -.012em; margin: 0; max-width: 24ch; text-wrap: balance; }
+  p { margin: 0 0 17px; }
+  p:last-child { margin-bottom: 0; }
+  section { display: flex; flex-direction: column; gap: 22px; }
+
+  /* numbered steps — the signal chain really is a sequence */
+  .step { display: grid; grid-template-columns: 62px 1fr; gap: 26px; align-items: start; }
+  .step-n { font-family: var(--mono); font-size: 13px; color: var(--blood); padding-top: 9px; border-top: 2px solid var(--blood); letter-spacing: .04em; }
+  .step-body { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+
+  strong { font-weight: 600; }
+  em.term { font-style: normal; font-weight: 600; color: var(--blood); }
+  em.term2 { font-style: normal; font-weight: 600; color: var(--sound); }
+  code { font-family: var(--mono); font-size: .86em; background: var(--sunk); padding: 1.5px 5px; border-radius: 2px; }
+
+  /* figures */
+  figure { margin: 0; display: flex; flex-direction: column; gap: 11px; }
+  .shot { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 8px; overflow-x: auto; }
+  /* the two volume-viewer panels carry their own dark ground; match the frame to it
+     so the padding does not ring them in white on a light page */
+  .shot.viewer { background: #1b1b1b; border-color: #2b2b2b; }
+  .shot img { display: block; width: 100%; min-width: 560px; height: auto; border-radius: 2px; }
+  .diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 20px 18px; overflow-x: auto; }
+  .diagram svg { display: block; width: 100%; min-width: 520px; height: auto; color: var(--ink); }
+  figcaption { font-size: 14.5px; line-height: 1.55; color: var(--muted); max-width: 74ch; }
+  figcaption b { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink); }
+
+  .svg-lab { font-family: "Archivo", system-ui, sans-serif; font-size: 12.5px; }
+  .svg-num { font-family: "Roboto Mono", monospace; font-size: 11.5px; }
+  .svg-ttl { font-family: "Archivo", system-ui, sans-serif; font-size: 13.5px; font-weight: 600; }
+
+  /* comparison table */
+  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 600px; font-family: var(--sans); font-size: 14.5px; }
+  th, td { padding: 13px 17px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 600; border-bottom: 1px solid var(--line2); }
+  thead th.b { color: var(--sound); }
+  thead th.d { color: var(--blood); }
+  tbody th { font-weight: 500; color: var(--muted); font-size: 13.5px; width: 22%; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: none; }
+
+  /* pull quote / key idea */
+  .key { border-left: 3px solid var(--blood); background: var(--blood-bg); padding: 18px 22px; border-radius: 0 3px 3px 0; font-size: 18px; line-height: 1.5; }
+  .key b { font-weight: 600; }
+
+  /* spec strip */
+  .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .strip div { background: var(--surface); padding: 13px 15px; display: flex; flex-direction: column; gap: 3px; }
+  .strip .l { font-family: var(--sans); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--faint); }
+  .strip .v { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 20px; font-family: var(--sans); font-size: 13px; color: var(--faint); line-height: 1.65; }
+
+  @media (max-width: 760px) {
+    .step { grid-template-columns: 1fr; gap: 10px; }
+    .step-n { border-top: none; padding-top: 0; }
+    .wrap { padding: 38px 18px 72px; gap: 42px; }
+    body { font-size: 16px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="kicker">Functional ultrasound · a primer from the Feng Lab</div>
+    <h1>How functional ultrasound sees the brain working</h1>
+    <p class="dek">
+      It doesn't image neurons. It images blood — fast enough, and sensitively enough, that the
+      blood tells you where the neurons just fired. Here is the whole chain, from a sound pulse to
+      a brain map, using real data from the volumetric fUS platform I'm building for behaving
+      marmosets at MIT.
+    </p>
+  </header>
+
+  <figure>
+    <div class="shot">
+      <img src="fus_image.png" alt="A coronal power-Doppler image of marmoset cortex, masked to the brain, showing the sagittal sinus at the midline and penetrating arterioles fanning down into cortex on both sides.">
+    </div>
+    <figcaption>
+      <b>This is a functional ultrasound image.</b> Not an anatomical scan with blood drawn on
+      top — every bright thread <em>is</em> blood, and brightness is how much of it is moving in
+      that voxel. It has been masked to the brain: ultrasound also images the scalp and muscle
+      outside the skull, and those sit brightly at the edges of the raw frame with no relevance to
+      anything here. What follows explains how a sound pulse becomes this picture, and then how the
+      picture becomes a measurement of brain activity.
+    </figcaption>
+  </figure>
+
+  <section class="prose">
+    <h2>The premise</h2>
+    <h3>Why blood is a usable proxy for neural activity</h3>
+    <p>
+      When a patch of brain becomes more active, it needs more oxygen and glucose, and within a
+      second or two the local vasculature dilates and delivers more blood to that patch. This is
+      <em class="term">neurovascular coupling</em>, and it is the same phenomenon fMRI relies on.
+      Measure local blood volume over time and you have an indirect but reliable readout of where
+      and when the brain is working.
+    </p>
+    <p>
+      Ultrasound is a good way to measure it. Sound passes through soft tissue, reflects off
+      everything it meets, and — crucially — the echoes from <em>moving</em> red blood cells differ
+      from frame to frame in a way that static tissue's echoes do not. The entire technique is built
+      on separating those two things.
+    </p>
+  </section>
+
+  <section>
+    <h2>Step one</h2>
+    <div class="step">
+      <div class="step-n">01</div>
+      <div class="step-body">
+        <h3>A pulse goes out, echoes come back, and timing gives you depth</h3>
+        <div class="prose">
+          <p>
+            The probe emits a very short burst of sound and then listens. Sound travels through
+            tissue at about <strong>1540 m/s</strong>, so an echo arriving later came from deeper
+            down — 13 microseconds of round trip per centimetre of depth. One transmit gives you
+            one line of brightness-versus-depth; an array of elements gives you a whole image plane.
+          </p>
+          <p>
+            That is all an ultrasound image fundamentally is: <strong>a map of how strongly each
+            point in tissue reflected sound back at you.</strong>
+          </p>
+        </div>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 700 250" role="img" aria-label="A probe emits a pulse; echoes from a shallow and a deep reflector return at different times, producing peaks at different depths in the resulting echo trace.">
+              <defs>
+                <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <polygon points="0,0 10,5 0,10" fill="currentColor"></polygon>
+                </marker>
+                <marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <polygon points="0,0 10,5 0,10" fill="var(--sound)"></polygon>
+                </marker>
+              </defs>
+
+              <text x="0" y="14" class="svg-ttl" fill="currentColor">Pulse out, echo back</text>
+
+              <rect x="40" y="34" width="150" height="20" rx="3" fill="var(--sound-bg)" stroke="var(--sound)" stroke-width="1.5"></rect>
+              <text x="115" y="48" class="svg-lab" fill="var(--sound)" text-anchor="middle">probe</text>
+
+              <line x1="78" y1="54" x2="78" y2="108" stroke="var(--sound)" stroke-width="1.5" marker-end="url(#arb)"></line>
+              <line x1="152" y1="108" x2="152" y2="58" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ar)"></line>
+              <line x1="60" y1="110" x2="170" y2="110" stroke="currentColor" stroke-width="2.5"></line>
+              <text x="182" y="114" class="svg-lab" fill="currentColor">reflector at 7 mm</text>
+              <text x="182" y="130" class="svg-num" fill="var(--muted)">echo at 9.1 µs</text>
+
+              <line x1="78" y1="112" x2="78" y2="186" stroke="var(--sound)" stroke-width="1.5" marker-end="url(#arb)"></line>
+              <line x1="152" y1="186" x2="152" y2="116" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ar)"></line>
+              <line x1="60" y1="188" x2="170" y2="188" stroke="currentColor" stroke-width="2.5"></line>
+              <text x="182" y="192" class="svg-lab" fill="currentColor">reflector at 14 mm</text>
+              <text x="182" y="208" class="svg-num" fill="var(--muted)">echo at 18.2 µs</text>
+
+              <line x1="400" y1="34" x2="400" y2="215" stroke="var(--line2)" stroke-width="1"></line>
+              <text x="420" y="14" class="svg-ttl" fill="currentColor">what the element hears</text>
+              <line x1="440" y1="215" x2="680" y2="215" stroke="currentColor" stroke-width="1.2"></line>
+              <text x="560" y="236" class="svg-lab" fill="var(--muted)" text-anchor="middle">time after transmit →</text>
+              <line x1="440" y1="215" x2="440" y2="40" stroke="currentColor" stroke-width="1.2"></line>
+              <text x="432" y="46" class="svg-lab" fill="var(--muted)" text-anchor="end">echo</text>
+
+              <polyline points="440,215 496,215 500,150 504,215 560,215 564,120 568,215 680,215"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></polyline>
+              <text x="500" y="142" class="svg-num" fill="var(--muted)" text-anchor="middle">7 mm</text>
+              <text x="564" y="112" class="svg-num" fill="var(--muted)" text-anchor="middle">14 mm</text>
+            </svg>
+          </div>
+          <figcaption>
+            Depth is inferred purely from arrival time. Nothing is focused mechanically and nothing
+            moves — the probe stays still and the clock does the work.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step two</h2>
+    <div class="step">
+      <div class="step-n">02</div>
+      <div class="step-body">
+        <h3>Plane waves make it fast enough to be useful</h3>
+        <div class="prose">
+          <p>
+            Conventional ultrasound builds an image line by line: focus the beam on one line, listen,
+            move to the next, repeat ~128 times. That costs 128 transmits per frame and caps you
+            around 50 frames per second — far too slow to catch the subtle, fast fluctuations that
+            blood flow produces.
+          </p>
+          <p>
+            <em class="term">Ultrafast imaging</em> throws away the transmit focus. Fire a flat
+            wavefront that floods the entire field at once, and a single transmit gives you a whole
+            image — thousands of frames per second. The catch is that an unfocused transmit produces
+            a poor image. The fix is <em class="term">coherent compounding</em>: fire several tilted
+            plane waves in quick succession and sum the reconstructed images, which synthesises a
+            focus everywhere at once.
+          </p>
+          <p>
+            In the marmoset scans used here, that means <strong>11 tilted plane waves spanning
+            ±10°</strong>, summed into one frame, repeated <strong>500 times a second</strong>.
+          </p>
+        </div>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 700 260" role="img" aria-label="Left: focused imaging uses one narrow beam per line and 128 transmits per frame. Right: plane-wave compounding floods the whole field with 11 tilted wavefronts, giving one frame from 11 transmits.">
+              <text x="0" y="14" class="svg-ttl" fill="var(--muted)">Focused, line by line</text>
+              <rect x="20" y="34" width="280" height="18" rx="3" fill="var(--sunk)" stroke="var(--line2)" stroke-width="1.3"></rect>
+              <path d="M150 52 L128 200 L172 200 Z" fill="var(--sound-bg)" stroke="var(--sound)" stroke-width="1.4"></path>
+              <line x1="60" y1="56" x2="60" y2="196" stroke="var(--line2)" stroke-width="1" stroke-dasharray="3 4"></line>
+              <line x1="105" y1="56" x2="105" y2="196" stroke="var(--line2)" stroke-width="1" stroke-dasharray="3 4"></line>
+              <line x1="215" y1="56" x2="215" y2="196" stroke="var(--line2)" stroke-width="1" stroke-dasharray="3 4"></line>
+              <line x1="260" y1="56" x2="260" y2="196" stroke="var(--line2)" stroke-width="1" stroke-dasharray="3 4"></line>
+              <text x="160" y="222" class="svg-num" fill="var(--muted)">128 transmits → 1 frame</text>
+              <text x="160" y="242" class="svg-num" fill="var(--muted)">≈ 50 frames / s</text>
+
+              <line x1="350" y1="20" x2="350" y2="250" stroke="var(--line2)" stroke-width="1"></line>
+
+              <text x="382" y="14" class="svg-ttl" fill="var(--blood)">Plane wave, compounded</text>
+              <rect x="382" y="34" width="280" height="18" rx="3" fill="var(--blood-bg)" stroke="var(--blood)" stroke-width="1.3"></rect>
+              <path d="M382 52 L662 52 L662 200 L382 200 Z" fill="var(--blood-bg)" opacity=".45"></path>
+              <line x1="392" y1="78" x2="652" y2="98" stroke="var(--blood)" stroke-width="1.6"></line>
+              <line x1="392" y1="130" x2="652" y2="130" stroke="var(--blood)" stroke-width="1.6"></line>
+              <line x1="392" y1="192" x2="652" y2="172" stroke="var(--blood)" stroke-width="1.6"></line>
+              <text x="522" y="222" class="svg-num" fill="var(--blood)" text-anchor="middle">11 transmits → 1 frame</text>
+              <text x="522" y="242" class="svg-num" fill="var(--blood)" text-anchor="middle">500 frames / s</text>
+            </svg>
+          </div>
+          <figcaption>
+            The whole difference is what one transmit buys you. Tilting the flat wavefront and
+            summing coherently recovers the image quality that dropping the transmit focus gave away.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step three · the key distinction</h2>
+    <div class="step">
+      <div class="step-n">03</div>
+      <div class="step-body">
+        <h3>B-mode looks at one frame. Doppler looks at how frames differ.</h3>
+        <div class="prose">
+          <p>
+            This is the distinction people most often get muddled, and it is simpler than it sounds.
+          </p>
+          <p>
+            <em class="term2">B-mode</em> — "brightness mode" — is the grey anatomical image everyone
+            recognises from a clinical scan. Take the echo magnitude at every point in a
+            <strong>single frame</strong> and display it. It shows structure: boundaries, membranes,
+            tissue interfaces. What it does <em>not</em> show well is blood, because red blood cells
+            are far weaker reflectors than tissue — roughly a thousand times weaker in returned
+            power. In a B-mode image a blood vessel is typically a dark hole.
+          </p>
+          <p>
+            <em class="term">Doppler</em> ignores any single frame and asks a different question:
+            at this point in space, <strong>how did the echo change across a few hundred
+            frames?</strong> Tissue sits still, so its echo repeats almost identically frame after
+            frame. Blood moves, so its echo decorrelates rapidly. Collect 200 frames over 0.4
+            seconds and the two become separable — not by their strength, but by their behaviour
+            over time.
+          </p>
+        </div>
+
+        <div class="key">
+          <b>The one-line version:</b> B-mode measures <em>how strongly a point reflects</em>.
+          Doppler measures <em>how fast a point changes</em>. Blood is invisible to the first and
+          obvious to the second.
+        </div>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 700 300" role="img" aria-label="Two hundred frames stacked into a space-by-time matrix are decomposed by SVD; the first components, which are strong and slowly varying, are tissue and are discarded, while the weak rapidly varying remainder is blood and is kept, squared and averaged into one power-Doppler value.">
+              <defs>
+                <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                  <polygon points="0,0 10,5 0,10" fill="currentColor"></polygon>
+                </marker>
+              </defs>
+
+              <rect x="14" y="60" width="74" height="62" rx="2" fill="var(--sunk)" stroke="var(--line2)" stroke-width="1.2"></rect>
+              <rect x="22" y="52" width="74" height="62" rx="2" fill="var(--sunk)" stroke="var(--line2)" stroke-width="1.2"></rect>
+              <rect x="30" y="44" width="74" height="62" rx="2" fill="var(--surface)" stroke="currentColor" stroke-width="1.4"></rect>
+              <text x="67" y="78" class="svg-lab" fill="currentColor" text-anchor="middle">200</text>
+              <text x="67" y="94" class="svg-lab" fill="currentColor" text-anchor="middle">frames</text>
+              <text x="59" y="140" class="svg-num" fill="var(--muted)" text-anchor="middle">0.4 s at 500 Hz</text>
+
+              <line x1="112" y1="82" x2="152" y2="82" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar2)"></line>
+
+              <rect x="158" y="48" width="96" height="68" rx="2" fill="var(--surface)" stroke="currentColor" stroke-width="1.4"></rect>
+              <text x="206" y="76" class="svg-lab" fill="currentColor" text-anchor="middle">SVD of the</text>
+              <text x="206" y="92" class="svg-lab" fill="currentColor" text-anchor="middle">space × time</text>
+              <text x="206" y="108" class="svg-lab" fill="currentColor" text-anchor="middle">matrix</text>
+
+              <path d="M260 70 L292 70 L292 42" fill="none" stroke="var(--sound)" stroke-width="1.4" marker-end="url(#ar2)" style="color: var(--sound)"></path>
+              <path d="M260 96 L292 96 L292 190" fill="none" stroke="var(--blood)" stroke-width="1.4" marker-end="url(#ar2)" style="color: var(--blood)"></path>
+
+              <rect x="302" y="16" width="250" height="66" rx="2" fill="var(--sound-bg)" stroke="var(--sound)" stroke-width="1.3"></rect>
+              <text x="316" y="36" class="svg-lab" fill="var(--sound)">tissue — first few components</text>
+              <polyline points="316,62 336,50 356,44 376,50 396,62 416,74 436,80 456,74 476,62"
+                        fill="none" stroke="var(--sound)" stroke-width="2"></polyline>
+              <text x="470" y="70" class="svg-num" fill="var(--sound)">strong, slow</text>
+              <text x="566" y="46" class="svg-lab" fill="var(--sound)">discard</text>
+              <line x1="556" y1="41" x2="556" y2="57" stroke="var(--sound)" stroke-width="1.2"></line>
+
+              <rect x="302" y="160" width="250" height="66" rx="2" fill="var(--blood-bg)" stroke="var(--blood)" stroke-width="1.3"></rect>
+              <text x="316" y="180" class="svg-lab" fill="var(--blood)">blood — everything left over</text>
+              <polyline points="316,200 324,193 332,200 340,207 348,200 356,193 364,200 372,207 380,200 388,193 396,200 404,207 412,200 420,193 428,200 436,207 444,200 452,193 460,200 468,207 476,200"
+                        fill="none" stroke="var(--blood)" stroke-width="2"></polyline>
+              <text x="486" y="204" class="svg-num" fill="var(--blood)">weak, fast</text>
+              <text x="566" y="190" class="svg-lab" fill="var(--blood)">keep</text>
+              <line x1="556" y1="185" x2="556" y2="201" stroke="var(--blood)" stroke-width="1.2"></line>
+
+              <path d="M600 193 L636 193" fill="none" stroke="var(--blood)" stroke-width="1.4" marker-end="url(#ar2)" style="color: var(--blood)"></path>
+              <text x="644" y="180" class="svg-lab" fill="currentColor">square</text>
+              <text x="644" y="196" class="svg-lab" fill="currentColor">&amp; average</text>
+              <text x="644" y="216" class="svg-num" fill="var(--blood)">= one voxel</text>
+
+              <text x="0" y="290" class="svg-num" fill="var(--faint)">Tissue is strong but spatially coherent, so it collapses into the first few singular components. Blood is weak but incoherent, so it survives in the remainder.</text>
+            </svg>
+          </div>
+          <figcaption>
+            <b>The clutter filter is the heart of the method.</b> Tissue echoes are around a
+            thousand times stronger than blood echoes, so they must be removed before blood is
+            visible at all. Older systems used a simple high-pass filter in time, which also
+            discarded the slowest — and most interesting — blood flow. Modern fUS instead decomposes
+            the space-time matrix and drops the components that are spatially coherent, which is
+            what tissue motion looks like. That change is most of why fUS can see small vessels.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>B-mode versus Doppler, side by side</h2>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" class="b">B-mode</th>
+            <th scope="col" class="d">Doppler / fUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Input</th>
+            <td>One frame</td>
+            <td>A few hundred frames in a row</td>
+          </tr>
+          <tr>
+            <th scope="row">Measures</th>
+            <td>Echo strength at each point</td>
+            <td>How fast the echo changes at each point</td>
+          </tr>
+          <tr>
+            <th scope="row">Shows</th>
+            <td>Tissue structure, boundaries, the skull</td>
+            <td>Moving blood, and nothing else</td>
+          </tr>
+          <tr>
+            <th scope="row">Blood appears as</th>
+            <td>A dark hole — red cells barely reflect</td>
+            <td>The entire signal</td>
+          </tr>
+          <tr>
+            <th scope="row">Time to form</th>
+            <td>Microseconds</td>
+            <td>0.4 s in these scans, set by the ensemble</td>
+          </tr>
+          <tr>
+            <th scope="row">Used here for</th>
+            <td>Placing the probe, checking coupling</td>
+            <td>Every measurement in the study</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prose" style="color: var(--muted); font-size: 15.5px;">
+      One real-world wrinkle worth knowing: the two modes need not even use the same transmit
+      frequency. In one of the marmoset scans here, Doppler transmits at 12.5 MHz while B-mode
+      transmits at 15.625 MHz — so quoting a single "probe frequency" for that scan would be wrong.
+    </p>
+  </section>
+
+  <section class="prose">
+    <h2>A note on the two Dopplers</h2>
+    <h3>Power Doppler, not velocity Doppler</h3>
+    <p>
+      "Doppler" covers two different outputs, and fUS almost always means the first:
+    </p>
+    <p>
+      <strong>Power Doppler</strong> takes the energy remaining after clutter filtering. It is
+      proportional to <em>how much moving blood</em> sits in the voxel — roughly, blood volume. It
+      carries no direction and no speed, it is relatively insensitive to the angle between the beam
+      and the vessel, and it is what every image on this page shows.
+    </p>
+    <p>
+      <strong>Colour or velocity Doppler</strong> takes the mean frequency shift instead, giving
+      speed and direction — flow towards or away from the probe. It is what clinical scanners
+      overlay in red and blue. It is more angle-dependent and noisier, and in this project it
+      appears only in a few dedicated velocity maps.
+    </p>
+  </section>
+
+  <section>
+    <h2>Step four</h2>
+    <div class="step">
+      <div class="step-n">04</div>
+      <div class="step-body">
+        <h3>Repeat the measurement, and you have a functional signal</h3>
+        <div class="prose">
+          <p>
+            One power-Doppler image is an angiogram: a picture of the vasculature. Make one every
+            few hundred milliseconds for minutes on end and each voxel acquires a
+            <strong>time course</strong> — a running measure of how much blood is in that piece of
+            brain, second by second. When the animal sees, hears or does something, the voxels
+            serving the responsible region rise by a few percent within a second or two.
+          </p>
+          <p>
+            That is the functional measurement. It is the same logical step fMRI takes, with a
+            different contrast mechanism: fUS measures blood <em>volume</em> directly rather than
+            blood oxygenation, at finer spatial scale and with a faster response.
+          </p>
+        </div>
+
+        <figure>
+          <div class="shot">
+            <img src="fus_signal.png" alt="A coronal plane with three marked voxels and their power-Doppler time courses over a two-minute window: a vessel and a cortical voxel fluctuate by a few per cent with visible structure, while a voxel above the brain surface shows only low-level noise.">
+          </div>
+          <figcaption>
+            <b>Real traces, no filtering and no averaging.</b> The vessel and the cortical voxel
+            fluctuate by a few per cent around their own means, and the fluctuation has visible
+            structure rather than looking like noise — that is spontaneous haemodynamics. The third
+            voxel sits just above the brain surface: its mean is 72 against the vessel's 7552, so
+            there is simply nothing there to measure. Shaded bands mark stretches interpolated
+            across motion-artifact frames. A stimulus-driven response would appear as a consistent
+            rise in the first two traces, time-locked across repeats — which is exactly what the
+            next section does.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A worked example</h2>
+    <div class="step">
+      <div class="step-n">·</div>
+      <div class="step-body">
+        <h3>One real recording, from raw frames to an activation map</h3>
+        <div class="prose">
+          <p>
+            Everything above, applied end to end to a single session: one coronal plane of a
+            marmoset receiving ten rewards over twelve minutes, sampled at 3.84 volumes per second.
+            The file is 4.3 GB of power-Doppler frames. Every frame has been motion-corrected first,
+            shifting it back into register — the animal moved by up to 23 pixels during the session,
+            about 0.4 mm, which is the same order as the resolution itself.
+          </p>
+        </div>
+
+        <figure>
+          <div class="shot">
+            <img src="mkfus_demo.png" alt="Four panels: the mean power-Doppler vasculature; one region's raw signal across the session with reward times marked; the trial-averaged response showing a small rise; and a map of change after reward across the plane.">
+          </div>
+          <figcaption>
+            <b>Panel b is the point.</b> The raw signal from the most responsive region, with every
+            reward marked, shows nothing an eye can pick out. Only after averaging the same region
+            across all ten rewards (panel c) does a rise appear at all — and it is
+            <strong>+2.5% ± 1.8</strong>, which on its own is not statistically convincing. This is
+            what real functional ultrasound data looks like before the polish.
+          </figcaption>
+        </figure>
+
+        <div class="prose">
+          <p>
+            Three things went wrong on the way to that figure, and all three are standard traps
+            worth knowing before you trust anyone's activation map — including your own.
+          </p>
+        </div>
+
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">The trap</th>
+                <th scope="col">What it produced here</th>
+                <th scope="col">The fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Motion left uncorrected</th>
+                <td>The animal shifted by up to 23 pixels across the session. Separately, 18% of
+                  frames were flagged bad by the session's own quality control — and
+                  <strong>every one of the brightest frames was among them</strong>. Left in, they
+                  swamped the real signal entirely.</td>
+                <td>Shift each frame back into register, then interpolate across the frames that are
+                  beyond saving — both before anything else.</td>
+              </tr>
+              <tr>
+                <th scope="row">Dividing by a near-zero baseline</th>
+                <td>A percent change needs a denominator. Computed on dim pixels, the first pass
+                  reported a <strong>987% "response"</strong> — arithmetic, not physiology.</td>
+                <td>Require a real baseline signal, and normalise against a stable mean rather than
+                  a per-trial one.</td>
+              </tr>
+              <tr>
+                <th scope="row">Choosing the region by its own response</th>
+                <td>Take the maximum over thousands of noisy pixels and you have selected noise.
+                  Even after cleaning, the hand-picked spot reads higher than it should.</td>
+                <td>Define regions anatomically, independent of the data. Doing so in this session
+                  gives <strong>1–4%</strong> — the honest number.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose">
+          <p style="margin-top: 17px;">
+            None of this is unique to ultrasound — it is the same circularity that fMRI spent years
+            learning to control for. What is specific to fUS is how strong the artifacts are: the
+            probe sits on a moving animal, and a brief movement can change the returned power by
+            more than any brain response ever will.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step five</h2>
+    <div class="step">
+      <div class="step-n">05</div>
+      <div class="step-body">
+        <h3>Getting from a plane to a volume</h3>
+        <div class="prose">
+          <p>
+            A linear array images one plane. There are two ways to reach a volume, and this project
+            has data from both.
+          </p>
+          <p>
+            The older approach <strong>translates the probe on a motor</strong>, imaging one plane at
+            each stop. It gives excellent in-plane images over a wide field, but the planes are
+            acquired at different times, so a "volume" is a mosaic rather than a snapshot — fine for
+            anatomy, awkward for fast functional events.
+          </p>
+          <p>
+            The newer approach uses a <strong>matrix array</strong> that steers electronically in
+            both lateral directions, capturing a genuine volume every fraction of a second. The
+            trade is field of view: the volumetric probe here covers 10 × 10 mm against the linear
+            probe's 21 mm width.
+          </p>
+        </div>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 700 230" role="img" aria-label="Left: a linear probe steps along on a motor, acquiring 51 planes one after another over 81 seconds. Right: a matrix array captures a whole volume electronically every 0.6 seconds.">
+              <defs>
+                <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <polygon points="0,0 10,5 0,10" fill="currentColor"></polygon>
+                </marker>
+              </defs>
+              <text x="0" y="14" class="svg-ttl" fill="var(--muted)">Motorised sweep</text>
+              <rect x="24" y="40" width="86" height="14" rx="2" fill="var(--sunk)" stroke="var(--line2)" stroke-width="1.2"></rect>
+              <line x1="24" y1="30" x2="250" y2="30" stroke="currentColor" stroke-width="1.2" marker-end="url(#ar3)"></line>
+              <text x="137" y="22" class="svg-num" fill="var(--muted)" text-anchor="middle">0.200 mm steps</text>
+              <g stroke="var(--sound)" stroke-width="1.3" fill="var(--sound-bg)" opacity=".9">
+                <rect x="30" y="66" width="70" height="96" rx="2"></rect>
+                <rect x="58" y="72" width="70" height="96" rx="2"></rect>
+                <rect x="86" y="78" width="70" height="96" rx="2"></rect>
+                <rect x="114" y="84" width="70" height="96" rx="2"></rect>
+                <rect x="142" y="90" width="70" height="96" rx="2"></rect>
+              </g>
+              <text x="137" y="196" class="svg-num" fill="var(--muted)" text-anchor="middle">51 planes, one at a time</text>
+              <text x="137" y="214" class="svg-num" fill="var(--muted)" text-anchor="middle">81.6 s for one volume</text>
+
+              <line x1="350" y1="10" x2="350" y2="222" stroke="var(--line2)" stroke-width="1"></line>
+
+              <text x="388" y="14" class="svg-ttl" fill="var(--blood)">Matrix array</text>
+              <rect x="416" y="40" width="120" height="14" rx="2" fill="var(--blood-bg)" stroke="var(--blood)" stroke-width="1.3"></rect>
+              <path d="M416 66 L536 66 L600 104 L480 104 Z" fill="var(--blood-bg)" stroke="var(--blood)" stroke-width="1.3"></path>
+              <path d="M416 66 L416 158 L480 196 L480 104 Z" fill="var(--blood-bg)" stroke="var(--blood)" stroke-width="1.3" opacity=".75"></path>
+              <path d="M480 104 L600 104 L600 196 L480 196 Z" fill="var(--blood-bg)" stroke="var(--blood)" stroke-width="1.3" opacity=".55"></path>
+              <text x="508" y="214" class="svg-num" fill="var(--blood)" text-anchor="middle">whole volume at once, every 0.6 s</text>
+            </svg>
+          </div>
+          <figcaption>
+            The difference that matters for functional work is <em>simultaneity</em>: on the left,
+            plane 51 is imaged well over a minute after plane 1.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="shot viewer">
+            <img src="fus_4d.gif" alt="An animation of a real four-dimensional functional ultrasound acquisition: coronal, sagittal and horizontal planes through the same 10 by 10 by 14 millimetre volume updating together across 150 volumes, with a cursor tracking position along the whole-volume mean signal below.">
+          </div>
+          <figcaption>
+            <b>What 4D actually looks like.</b> The same volume cut three ways, all updating
+            together — because all three planes come from one electronically-steered acquisition
+            rather than from separate passes. This is the whole 10 × 10 × 14 mm volume, nothing
+            cropped, taken from a 16.7-minute session at one volume every 0.4 s. Contrast is fixed
+            across every frame, so the brightness changes are real signal rather than autoscaling,
+            and the slow swing in the trace below — tens of seconds long, tens of per cent deep —
+            is haemodynamics, not noise. It is shown as a five-volume rolling mean stepping one
+            volume, because a single volume on its own is sparse enough that only the brightest
+            vessels survive, which is precisely why the functional measurement needs averaging.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="shot viewer" style="display: flex; justify-content: center;">
+            <img src="fus_4d_rotate.gif" style="min-width: 0; max-width: 620px;"
+                 alt="A rotating maximum-intensity projection of the marmoset vasculature, showing surface vessels and the arterioles that descend from them into cortex, turning through a full revolution.">
+          </div>
+          <figcaption>
+            <b>The same data, turned around.</b> A maximum-intensity projection through the whole
+            10 × 10 × 14 mm volume, rotated a full revolution. This is what volumetric imaging
+            buys you: the vessels running along the cortical surface, and the arterioles
+            descending from them into the tissue, are one connected three-dimensional tree rather
+            than a stack of unrelated pictures. Built from the mean of 300 volumes, so it shows
+            the anatomy at the best signal-to-noise available — the <em>function</em> is the
+            change in that anatomy over time, which the animation above shows. The bracketed
+            corners mark the true bounds of the acquired volume and the coloured arrows the
+            anatomical axes; both are computed from the same rotation that resamples the data, so
+            they track it exactly. The volume does not fill its own box because signal fades with
+            depth: that empty lower region is where the ultrasound stops reaching, not absent brain.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The numbers behind these images</h2>
+    <div class="strip">
+      <div><span class="l">Transmit</span><span class="v">12.5 MHz</span></div>
+      <div><span class="l">Wavelength</span><span class="v">0.123 mm</span></div>
+      <div><span class="l">Pulse</span><span class="v">2 cycles</span></div>
+      <div><span class="l">Compounding</span><span class="v">11 × ±10°</span></div>
+      <div><span class="l">Frame rate</span><span class="v">500 Hz</span></div>
+      <div><span class="l">Ensemble</span><span class="v">200 frames</span></div>
+      <div><span class="l">Per image</span><span class="v">0.4 s</span></div>
+      <div><span class="l">Voxel</span><span class="v">0.11 mm</span></div>
+    </div>
+    <p class="prose" style="color: var(--muted); font-size: 15.5px;">
+      One caution for anyone about to write these down: <strong>voxel size is not
+      resolution.</strong> The voxel is how finely the image is sampled, a choice made in
+      reconstruction. Resolution is how close two vessels can be while remaining distinguishable, and
+      it is set by wavelength, aperture and the compounding angles. They differ by several-fold, and
+      the out-of-plane axis is always the worst of the three.
+    </p>
+  </section>
+
+  <section class="prose">
+    <h2>What it is good and bad at</h2>
+    <h3>The honest trade-offs</h3>
+    <p>
+      <strong>Higher frequency buys resolution and costs depth.</strong> Attenuation rises with
+      frequency, so a 15 MHz probe resolves finer detail than a 12 MHz one but gives up penetration.
+      In the images above, the signal fading below roughly 7 mm is attenuation — the anatomy is
+      still there, the sound simply is not.
+    </p>
+    <p>
+      <strong>Bone is nearly opaque to ultrasound.</strong> This is the central practical
+      constraint: fUS generally needs a thinned skull, a cranial window, or a species and age where
+      the skull is thin enough to shoot through. It is why the technique took hold in rodents,
+      neonates and intraoperative human work before adult non-human primates.
+    </p>
+    <p>
+      <strong>In exchange</strong>, you get something no other functional modality offers together:
+      roughly 100 micrometre spatial scale, sub-second temporal resolution, direct blood-volume
+      contrast, portable hardware, and compatibility with an awake, behaving animal.
+    </p>
+  </section>
+
+  <footer>
+    All images are real marmoset data collected on our volumetric fUS platform in the
+    <a href="https://fenglaboratory.org/" style="color: inherit;">Guoping Feng lab</a> at MIT's
+    McGovern Institute. The opening plane is from a 15.625 MHz linear array (coronal AP 30, chosen
+    for being free of the air-bubble echo that spoils the brightest slice in that volume). The time
+    courses and the worked example are both MKFUS.nii — a 512 x 755 x 2761 single-plane reward
+    session at 3.84 Hz — motion-corrected frame by frame against the session's own registration,
+    reproducing its corrected mean to r = 0.994. The two volumetric panels are
+    Birx · 052826 Live-social: 80 x 80 x 114 voxels, 2500 volumes at one every 0.4 s. Acquisition
+    parameters are read from the scanner's own sequence files.<br>
+    Terms introduced here: neurovascular coupling · ultrafast imaging · coherent compounding ·
+    B-mode · clutter filtering · power Doppler · ensemble length.
+  </footer>
+
+</div>
+
+</body></html>
