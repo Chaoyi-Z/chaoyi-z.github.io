@@ -240,7 +240,8 @@ defaults:
 # -----------------------------------------------------------------------------
 
 jekyll-minifier:
-  exclude: ['robots.txt']
+  # marmofact-hr/ is a finished web app; ship its JavaScript as written.
+  exclude: ['robots.txt', 'marmofact-hr/*']
   uglifier_args:
     harmony: true
 

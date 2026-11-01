@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MarmoFACT HR</title>
+<meta name="description" content="Live heart rate from the MarmoFACT pulse board over Web Bluetooth, with recordings in the PC receiver's .mfwl format.">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-512.png">
+<style>
+  :root {
+    --bg: #f6f3ec; --card: #ffffff; --ink: #1d1a17; --muted: #6f675e; --line: #e4ddd0;
+    --fill: #efe9dd; --accent: #17936f; --accent-ink: #ffffff; --trace-bg: #f3efe6;
+    --warn-bg: #fdf0dc; --warn-ink: #7a4b07; --red: #d23a3a; --orange: #e08a1e; --good: #17936f;
+    --ppg: #17936f; --ax: #d24a4a; --ay: #3a6fd2; --az: #8c857c; --grid: rgba(0,0,0,.07);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1716; --card: #17211f; --ink: #ece7dd; --muted: #9a9389; --line: #2a3533;
+      --fill: #22302d; --accent: #2fbf91; --accent-ink: #06231b; --trace-bg: #111b19;
+      --warn-bg: #3a2a10; --warn-ink: #f3c98a; --ppg: #8bffa8; --ax: #ff7b7b; --ay: #7aa7ff; --az: #a39d94;
+      --grid: rgba(255,255,255,.07); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1716; --card: #17211f; --ink: #ece7dd; --muted: #9a9389; --line: #2a3533;
+    --fill: #22302d; --accent: #2fbf91; --accent-ink: #06231b; --trace-bg: #111b19;
+    --warn-bg: #3a2a10; --warn-ink: #f3c98a; --ppg: #8bffa8; --ax: #ff7b7b; --ay: #7aa7ff; --az: #a39d94;
+    --grid: rgba(255,255,255,.07); color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 16px 16px 48px; }
+  header { display: flex; align-items: center; gap: 12px; margin: 4px 0 16px; }
+  header img { width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  header h1 { font-size: 22px; margin: 0; letter-spacing: -.01em; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 960px) { .grid { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .stack > * + * { margin-top: 12px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
+  .muted { color: var(--muted); }
+  .small { font-size: 12px; }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .spacer { flex: 1; }
+  button {
+    font: inherit; border: 1px solid var(--line); background: var(--fill); color: var(--ink);
+    border-radius: 10px; padding: 8px 14px; cursor: pointer; min-height: 38px;
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  button.danger { background: transparent; color: var(--red); border-color: var(--red); }
+  button.big { width: 100%; min-height: 48px; font-size: 16px; }
+  button.rec { background: var(--red); border-color: var(--red); color: #fff; font-weight: 600; }
+  button:disabled { opacity: .45; cursor: default; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--az); flex: none; }
+  .link-title { font-weight: 600; }
+  .hr { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .bpm { font-size: 64px; font-weight: 650; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .bpm small { font-size: 16px; font-weight: 400; color: var(--muted); margin-left: 4px; letter-spacing: 0; }
+  .stats { text-align: right; display: grid; gap: 6px; }
+  .stat .k { font-size: 11px; color: var(--muted); }
+  .stat .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .meter { height: 8px; border-radius: 4px; background: var(--fill); overflow: hidden; }
+  .meter > div { height: 100%; width: 0; background: var(--red); border-radius: 4px; transition: width .3s; }
+  canvas { display: block; width: 100%; border-radius: 10px; background: var(--trace-bg); }
+  #ppg { height: 170px; } #imu { height: 90px; }
+  .warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 10px; padding: 9px 12px; font-size: 14px; }
+  .warn::before { content: "\26A0\FE0E  "; }
+  details summary { cursor: pointer; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  td { padding: 2px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+  td:last-child { text-align: right; }
+  label.field { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 0; }
+  input[type=number] { width: 84px; font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+  select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+  input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--accent); }
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .seg button { flex: 1; border: 0; border-radius: 0; background: transparent; }
+  .seg button.on { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .note { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+  .banner { border-radius: 12px; padding: 12px 14px; background: var(--warn-bg); color: var(--warn-ink); margin-bottom: 14px; font-size: 14px; }
+  .banner b { color: inherit; }
+  .files a { color: var(--accent); text-decoration: none; font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .files li { margin: 4px 0; }
+  .files { padding-left: 18px; margin: 0; }
+  .demo-tag { font-size: 11px; font-weight: 600; background: var(--fill); color: var(--muted); padding: 2px 8px; border-radius: 999px; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="icon-192.png" alt="">
+    <div>
+      <h1>MarmoFACT HR</h1>
+      <p>Heart rate from the pulse board, in the browser</p>
+    </div>
+  </header>
+
+  <div id="noBle" class="banner hidden"></div>
+
+  <div class="grid">
+    <main class="stack">
+      <section class="card">
+        <div class="row">
+          <div class="dot" id="linkDot"></div>
+          <div>
+            <div class="link-title" id="linkText">Not connected</div>
+            <div class="small muted" id="linkSub"></div>
+          </div>
+          <div class="spacer"></div>
+          <button class="primary" id="btnConnect">Connect</button>
+          <button id="btnDemo" title="A simulated board, no hardware needed">Try the demo</button>
+          <button class="danger hidden" id="btnDisconnect">Disconnect</button>
+        </div>
+      </section>
+
+      <div id="warnings" class="stack"></div>
+
+      <section class="card stack">
+        <div class="hr">
+          <div>
+            <div class="small muted">Heart rate</div>
+            <div class="bpm"><span id="hr">--</span><small>bpm</small></div>
+            <div class="small muted" id="boardHR">board: --</div>
+            <div class="small muted" id="speciesLine"></div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="k">HRV (RMSSD)</div><div class="v" id="hrv">--</div></div>
+            <div class="stat"><div class="k">PI</div><div class="v" id="pi">--</div></div>
+            <div class="stat"><div class="k">Coverage</div><div class="v" id="cov">--</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="row small"><span class="muted">Placement</span><span class="spacer"></span><span id="meterText">--</span></div>
+          <div class="meter"><div id="meterBar"></div></div>
+        </div>
+        <div>
+          <div class="small muted" id="ppgLabel">PPG, band-passed</div>
+          <canvas id="ppg" data-h="170"></canvas>
+          <div class="note">Dots: beats found here, in the browser. Orange ticks: beats the board marked.</div>
+        </div>
+        <div>
+          <div class="small muted">Accelerometer (g): x red, y blue, z grey</div>
+          <canvas id="imu" data-h="90"></canvas>
+        </div>
+      </section>
+
+      <section class="card stack">
+        <button class="big primary" id="btnRecord" disabled>Record</button>
+        <div class="small muted" id="recLine"></div>
+        <div id="filesBox" class="hidden">
+          <h2 style="margin-top:6px">Recordings from this visit</h2>
+          <ul class="files" id="files"></ul>
+          <p class="note">Each one downloaded when it stopped; click to save it again. They are kept only until this page is closed. On the PC: <code>python hostlib/replay.py &lt;file&gt;.mfwl -o out/</code></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <details>
+          <summary>Board status</summary>
+          <table id="statusTable" style="margin-top:8px"></table>
+          <p class="note" id="covDetail"></p>
+        </details>
+      </section>
+    </main>
+
+    <aside class="stack">
+      <section class="card">
+        <h2>Species</h2>
+        <label class="field"><span>Detect automatically</span><input type="checkbox" id="autoSpecies"></label>
+        <div class="seg" id="speciesSeg">
+          <button data-sp="marmoset">Marmoset</button>
+          <button data-sp="human">Human</button>
+        </div>
+        <label class="field" id="detectedRow"><span class="muted">Detected</span><span id="detected">--</span></label>
+        <p class="note">Sets the board's detector and this page's: marmoset 150-480 bpm on the green channel, human 30-220 bpm on IR. Automatic detection reads the pulse rate: under 150 bpm is a human, over 220 a marmoset, and it switches after a few seconds of agreement. In between (a running human, a very calm marmoset) it leaves the choice alone.</p>
+      </section>
+
+      <section class="card">
+        <h2>LEDs</h2>
+        <label class="field"><span>Set LED currents on connect</span><input type="checkbox" id="setLED"></label>
+        <div id="ledBox">
+          <label class="field"><span>IR <span class="muted small" id="maIR"></span></span><input type="number" id="ledIR" min="0" max="255" step="10"></label>
+          <label class="field"><span>Red <span class="muted small" id="maRed"></span></span><input type="number" id="ledRed" min="0" max="255" step="10"></label>
+          <label class="field"><span>Green <span class="muted small" id="maGreen"></span></span><input type="number" id="ledGreen" min="0" max="255" step="10"></label>
+          <button id="btnLED">Apply now</button>
+        </div>
+        <p class="note">Codes 0-255, 0.2 mA each. The board boots at 50 (10 mA). On the tail the pulse was at the noise floor at 10 mA; 150,60,150 is the PC default to try. Keep IRDC under about 400,000 and OPT=ok.</p>
+      </section>
+
+      <section class="card">
+        <h2>Session</h2>
+        <label class="field"><span>Pre-roll before START (s)</span><input type="number" id="prerollS" min="0" max="10" step="1"></label>
+        <label class="field"><span>Trace window (s)</span><input type="number" id="windowS" min="3" max="20" step="1"></label>
+        <button id="btnRestart">Restart sampling (STOP, START)</button>
+        <label class="field hidden" id="demoRow"><span>Demo subject</span>
+          <select id="demoSubject"><option value="marmoset">Marmoset, ~380 bpm</option><option value="human">Human, ~70 bpm</option></select>
+        </label>
+        <p class="note">The pre-roll is the status-only pause <code>hostlib/receiver.py</code> also makes: the board sends its constant fields (BOARD, IMU, CHARGE) only while idle.</p>
+      </section>
+
+      <section class="card">
+        <h2>About</h2>
+        <p class="note" style="margin:0">Talks to <b>HealthMonitor1</b> (CH591D firmware v6/v7) over Web Bluetooth, with the same protocol and detector as <code>hostlib/</code> and the iPhone app. Works in Chrome or Edge on a Mac, Windows, Linux or Android. Safari and Firefox have no Web Bluetooth. Keep this tab in front while recording: a hidden or sleeping tab stops receiving.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<script src="mfcore.js"></script>
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const NAME = MF.Board.deviceName;
+
+// ------------------------------------------------------------- settings
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("mfhr." + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("mfhr." + k, JSON.stringify(v)); } catch (e) { /* private mode */ } },
+};
+const S = {
+  species: store.get("species", "marmoset"),
+  autoSpecies: store.get("autoSpecies", true),
+  setLED: store.get("setLED", false),
+  ledIR: store.get("ledIR", 150), ledRed: store.get("ledRed", 60), ledGreen: store.get("ledGreen", 150),
+  prerollS: store.get("prerollS", 5), windowS: store.get("windowS", 6),
+  demoSubject: store.get("demoSubject", "marmoset"),
+};
+const save = (k, v) => { S[k] = v; store.set(k, v); };
+
+// ------------------------------------------------------------- ingest
+// Everything that happens to a frame, in hostlib/receiver.py's order: the
+// archive first, verbatim, then the coverage count, then the display buffers.
+
+class Ingest {
+  constructor() {
+    this.keepS = 20; this.dtMs = 4; this.species = S.species;
+    this.status = {}; this.statusLine = ""; this.lastStatusMono = null; this.lastRawMono = null;
+    this.linkCoverage = new MF.Coverage(); this.recordCoverage = new MF.Coverage();
+    this.writer = null; this.recordStarted = null;
+    this.clear();
+  }
+  clear() {
+    this.t = []; this.ir = []; this.green = []; this.boardBeats = [];
+    this.imuT = []; this.ax = []; this.ay = []; this.az = [];
+  }
+  handle(kind, b, te, tm) {
+    if (this.writer) this.writer.append(kind, b, te, tm);
+    if (kind === MF.WireKind.raw) {
+      this.linkCoverage.feed(b);
+      if (this.writer) this.recordCoverage.feed(b);
+      this.lastRawMono = tm;
+      const f = MF.parseRaw(b);
+      if (f) this.addPPG(f);
+      else { const m = MF.parseImu(b); if (m) this.addIMU(m); }
+    } else if (kind === MF.WireKind.status) {
+      this.statusLine = MF.fromUtf8(b);
+      // Merge, not replace: the board leaves its constant fields (BOARD, IMU,
+      // CHARGE) out of sampling lines to save bytes.
+      Object.assign(this.status, MF.parseStatus(this.statusLine));
+      this.lastStatusMono = tm;
+    }
+  }
+  linkEvent(what, fields) {
+    if (this.writer) this.writer.event(what, fields || {});
+    if (what === "link_up") {
+      this.linkCoverage = new MF.Coverage();
+      this.status = {};
+      this.lastStatusMono = null; // so `sampling` waits for this link's first line
+    }
+  }
+  note(what, fields) { if (this.writer) this.writer.event(what, fields || {}); }
+  /// The SAMPLING flag of the latest status line, null before the first one.
+  get sampling() { return this.lastStatusMono === null ? null : this.status.SAMPLING === 1; }
+  addPPG(f) {
+    this.dtMs = f.dt;
+    const t0 = f.t0 / 1000;
+    const last = this.t[this.t.length - 1];
+    if (last !== undefined && t0 < last - 1) this.clear(); // a new run restarts the device clock
+    for (let i = 0; i < f.count; i++) {
+      this.t.push(t0 + (i * f.dt) / 1000);
+      this.ir.push(f.ir[i]);
+      this.green.push(f.green ? f.green[i] : NaN);
+    }
+    for (const b of f.beats) this.boardBeats.push(b / 1000);
+    const end = this.t[this.t.length - 1];
+    if (end - this.t[0] > this.keepS + 2) {
+      const cut = this.t.findIndex((v) => v >= end - this.keepS);
+      this.t.splice(0, cut); this.ir.splice(0, cut); this.green.splice(0, cut);
+      this.boardBeats = this.boardBeats.filter((v) => v >= end - this.keepS);
+    }
+  }
+  addIMU(m) {
+    for (const s of m.samples) {
+      this.imuT.push((s.ppgIndex * this.dtMs) / 1000);
+      this.ax.push(s.ax / MF.Board.imuLSBPerG); this.ay.push(s.ay / MF.Board.imuLSBPerG); this.az.push(s.az / MF.Board.imuLSBPerG);
+    }
+    const end = this.imuT[this.imuT.length - 1];
+    if (end - this.imuT[0] > this.keepS + 2) {
+      const cut = this.imuT.findIndex((v) => v >= end - this.keepS);
+      for (const a of [this.imuT, this.ax, this.ay, this.az]) a.splice(0, cut);
+    }
+  }
+  greenUsable() { return this.green.length > 0 && this.green.slice(-200).every((v) => !Number.isNaN(v) && v > 0); }
+  /// Green for the marmoset when the recent window has it, otherwise IR.
+  detectionChannel() {
+    return MF.Profiles[this.species].useGreen && this.greenUsable() ? ["green", this.green] : ["ir", this.ir];
+  }
+  from(seconds) {
+    const last = this.t[this.t.length - 1];
+    if (last === undefined) return -1;
+    const i = this.t.findIndex((v) => v >= last - seconds);
+    return i < 0 ? 0 : i;
+  }
+  detectionWindow(seconds) {
+    const i0 = this.from(seconds);
+    if (i0 < 0) return [[], []];
+    return [this.t.slice(i0), this.detectionChannel()[1].slice(i0)];
+  }
+  channelWindows(seconds) {
+    const i0 = this.from(seconds);
+    if (i0 < 0) return { t: [], ir: [], green: [] };
+    return { t: this.t.slice(i0), ir: this.ir.slice(i0), green: this.greenUsable() ? this.green.slice(i0) : [] };
+  }
+  startRecording(manifest) {
+    if (this.writer) return this.writer;
+    const started = new Date();
+    const p = (x) => String(x).padStart(2, "0");
+    const name = `browser_${started.getFullYear()}${p(started.getMonth() + 1)}${p(started.getDate())}_${p(started.getHours())}${p(started.getMinutes())}${p(started.getSeconds())}`;
+    const w = new MF.WireLogWriter(name, manifest);
+    // The constants the board only sends while idle or once per link.
+    if (this.statusLine) w.event("last_status_before_start", { line: this.statusLine });
+    w.event("recording_start", { session_dir: name, t0_epoch: started.getTime() / 1000, species: this.species });
+    this.writer = w; this.recordStarted = started; this.recordCoverage = new MF.Coverage();
+    return w;
+  }
+  stopRecording() {
+    const w = this.writer, cov = this.recordCoverage;
+    if (!w) return null;
+    this.writer = null; this.recordStarted = null;
+    const fields = { raw_samples: cov.samples, raw_missing: cov.missing };
+    if (cov.percent !== null) fields.coverage_pct = cov.percent;
+    w.event("recording_stop", fields);
+    return { name: w.name + ".mfwl", blob: w.close() };
+  }
+}
+
+// ------------------------------------------------------------- links
+// Both links have the same shape: connect(), disconnect(), send(text, gen),
+// generation, and the callbacks onFrame(kind, bytes, tEpoch, tMono),
+// onState({kind, ...}) and onReady(generation).
+
+class BleLink {
+  constructor() { this.device = null; this.cmd = null; this.want = false; this.generation = 0; this.opening = false; this.writes = Promise.resolve(); this.label = "board"; }
+  setState(s) { this.state = s; this.onState(s); }
+  async connect() {
+    if (!navigator.bluetooth) { this.setState({ kind: "off", why: "This browser has no Web Bluetooth" }); return; }
+    this.want = true;
+    if (!this.device) {
+      this.setState({ kind: "scanning" });
+      try {
+        // The firmware puts the service UUID in its scan response; the name
+        // filter catches boards whose scan response the browser did not read.
+        this.device = await navigator.bluetooth.requestDevice({
+          filters: [{ services: [MF.Board.serviceUUID] }, { name: NAME }],
+          optionalServices: [MF.Board.serviceUUID],
+        });
+      } catch (e) {
+        this.want = false;
+        this.setState({ kind: "idle" });
+        if (e.name !== "NotFoundError") app.error("Bluetooth: " + e.message); // NotFoundError = chooser cancelled
+        return;
+      }
+      this.device.addEventListener("gattserverdisconnected", () => this.lost());
+    }
+    this.open();
+  }
+  async open() {
+    if (this.opening || !this.want || !this.device) return;
+    this.opening = true;
+    this.setState({ kind: "connecting", detail: this.device.name || NAME });
+    try {
+      const server = await this.device.gatt.connect();
+      const svc = await server.getPrimaryService(MF.Board.serviceUUID);
+      const data = await svc.getCharacteristic(MF.Board.dataCharUUID);
+      const raw = await svc.getCharacteristic(MF.Board.rawCharUUID);
+      const cmd = await svc.getCharacteristic(MF.Board.cmdCharUUID);
+      data.addEventListener("characteristicvaluechanged", (e) => this.rx(MF.WireKind.status, e));
+      raw.addEventListener("characteristicvaluechanged", (e) => this.rx(MF.WireKind.raw, e));
+      await data.startNotifications();
+      await raw.startNotifications();
+      this.cmd = cmd;
+      this.generation += 1;
+      this.opening = false;
+      this.setState({ kind: "connected", name: this.device.name || NAME });
+      this.onReady(this.generation);
+    } catch (e) {
+      this.opening = false;
+      this.cmd = null;
+      if (this.want) {
+        this.setState({ kind: "connecting", detail: "retrying" });
+        setTimeout(() => this.open(), 1000);
+      } else this.setState({ kind: "idle" });
+    }
+  }
+  lost() {
+    this.cmd = null;
+    if (this.want) {
+      this.setState({ kind: "connecting", detail: "link lost, reconnecting" });
+      setTimeout(() => this.open(), 500);
+    } else this.setState({ kind: "idle" });
+  }
+  rx(kind, e) {
+    const t = MF.now(); // arrival time first, before anything else runs
+    const v = e.target.value;
+    this.onFrame(kind, new Uint8Array(v.buffer.slice(v.byteOffset, v.byteOffset + v.byteLength)), t.epoch, t.mono);
+  }
+  /// Write a command without response, as the PC does. Writes are queued:
+  /// Web Bluetooth refuses a second GATT operation while one is in flight.
+  send(text, gen) {
+    if (gen !== undefined && gen !== this.generation) return;
+    const c = this.cmd;
+    if (!c) return;
+    const bytes = MF.utf8(text);
+    const t = MF.now();
+    this.onFrame(MF.WireKind.command, bytes, t.epoch, t.mono);
+    this.writes = this.writes
+      .then(() => (c.writeValueWithoutResponse && c.properties.writeWithoutResponse ? c.writeValueWithoutResponse(bytes) : c.writeValue(bytes)))
+      .catch((e) => console.warn("write failed", text, e));
+  }
+  disconnect() {
+    this.want = false;
+    if (this.device && this.device.gatt.connected) this.device.gatt.disconnect();
+    else this.setState({ kind: "idle" });
+  }
+}
+
+/// A board in software: answers START/STOP/SPECIES/LED and sends the same
+/// status lines and binary frames (0xA7 PPG, 0xA8 accelerometer) a CH591D
+/// sends, so the demo exercises the real decoders end to end.
+class DemoLink {
+  constructor() { this.generation = 0; this.want = false; this.label = "demo"; this.timers = []; }
+  setState(s) { this.state = s; this.onState(s); }
+  connect() {
+    this.want = true;
+    this.setState({ kind: "connecting", detail: NAME + " (demo)" });
+    setTimeout(() => {
+      if (!this.want) return;
+      this.generation += 1;
+      this.sampling = false; this.boardSpecies = "HUMAN"; this.led = [50, 50, 50];
+      this.firstLine = true; this.rng = 12345;
+      this.setState({ kind: "connected", name: NAME + " (demo)" });
+      this.onReady(this.generation);
+      this.timers.push(setInterval(() => this.tick(), 40));
+      this.timers.push(setInterval(() => this.statusLine(), 1000));
+      this.statusLine();
+    }, 600);
+  }
+  disconnect() {
+    this.want = false;
+    this.timers.forEach(clearInterval); this.timers = [];
+    this.setState({ kind: "idle" });
+  }
+  send(text, gen) {
+    if (gen !== undefined && gen !== this.generation) return;
+    if (!this.state || this.state.kind !== "connected") return;
+    const t = MF.now();
+    this.onFrame(MF.WireKind.command, MF.utf8(text), t.epoch, t.mono);
+    const u = text.trim().toUpperCase();
+    if (u === "START") this.start();
+    else if (u === "STOP") this.sampling = false;
+    else if (u.startsWith("SPECIES:")) this.boardSpecies = u.slice(8);
+    else if (u.startsWith("LED:")) this.led = u.slice(4).split(",").map(Number);
+  }
+  start() {
+    this.sampling = true; this.seq = 0; this.imuSeq = 0; this.n = 0; this.phase = 0;
+    this.startAt = performance.now(); this.hrNow = 0; this.nextBeatMs = null; this.imuPending = [];
+  }
+  noise() { // a small LCG so the demo looks the same every time
+    this.rng = (this.rng * 1103515245 + 12345) % 2147483648;
+    return this.rng / 2147483648 - 0.5;
+  }
+  subject() { return S.demoSubject === "human" ? { hr: 70, hrv: 4, resp: 0.25, ir: [205000, 0.011], green: [86000, 0.014] }
+                                               : { hr: 380, hrv: 12, resp: 0.8, ir: [152000, 0.0007], green: [61000, 0.0032] }; }
+  tick() {
+    if (!this.sampling) return;
+    const dt = 4, due = Math.floor((performance.now() - this.startAt) / dt);
+    while (due - this.n >= 25) this.frame(25, dt);
+  }
+  frame(count, dt) {
+    const sub = this.subject(), led = this.led;
+    const ir = [], red = [], green = [], beats = [];
+    const t0 = this.n * dt;
+    for (let i = 0; i < count; i++) {
+      const s = ((this.n + i) * dt) / 1000;
+      const hr = sub.hr + sub.hrv * Math.sin(2 * Math.PI * 0.07 * s) + 2 * Math.sin(2 * Math.PI * sub.resp * s);
+      const before = this.phase;
+      this.phase = (this.phase + (hr / 60) * (dt / 1000)) % 1;
+      if (before < 0.15 && this.phase >= 0.15) beats.push(Math.round(t0 + i * dt));
+      const ph = this.phase;
+      const pulse = Math.exp(-(((ph - 0.15) / 0.07) ** 2)) + 0.35 * Math.exp(-(((ph - 0.45) / 0.08) ** 2));
+      const wander = 1 + 0.0004 * Math.sin(2 * Math.PI * sub.resp * s);
+      const k = (code) => Math.max(0.05, code / 150);
+      ir.push(Math.round(sub.ir[0] * k(led[0]) * wander * (1 - sub.ir[1] * pulse) + 12 * this.noise()));
+      red.push(Math.round(48000 * k(led[1]) * wander * (1 - 0.6 * sub.ir[1] * pulse) + 10 * this.noise()));
+      green.push(Math.round(sub.green[0] * k(led[2]) * wander * (1 - sub.green[1] * pulse) + 10 * this.noise()));
+      if ((this.n + i) % 10 === 0) {
+        const wob = S.demoSubject === "human" ? 0.01 : 0.03;
+        this.imuPending.push([Math.round(4096 * wob * this.noise()), Math.round(4096 * (0.12 + wob * this.noise())), Math.round(4096 * (0.99 + wob * this.noise())), this.n + i]);
+      }
+    }
+    this.n += count;
+    this.lastHR = this.subject().hr;
+    // 0xA7: magic, n, nb, slots, seq u32, t0 u32, dt u16, then big-endian slots.
+    const b = new Uint8Array(14 + count * 9 + beats.length * 4);
+    const dv = new DataView(b.buffer);
+    b[0] = 0xa7; b[1] = count; b[2] = beats.length; b[3] = 3;
+    dv.setUint32(4, this.seq++, true); dv.setUint32(8, t0, true); dv.setUint16(12, dt, true);
+    let o = 14;
+    for (let i = 0; i < count; i++) for (const v of [ir[i], red[i], green[i]]) {
+      const c = Math.min(MF.Board.adcCeiling, Math.max(0, v));
+      b[o++] = (c >> 16) & 0xff; b[o++] = (c >> 8) & 0xff; b[o++] = c & 0xff;
+    }
+    for (const bt of beats) { dv.setUint32(o, bt, true); o += 4; }
+    const t = MF.now();
+    this.onFrame(MF.WireKind.raw, b, t.epoch, t.mono);
+    if (this.imuPending.length >= 8) {
+      const ms = this.imuPending.splice(0, 8);
+      const m = new Uint8Array(6 + ms.length * 10);
+      const mv = new DataView(m.buffer);
+      m[0] = 0xa8; m[1] = ms.length; mv.setUint32(2, this.imuSeq++, true);
+      ms.forEach((s, i) => { const q = 6 + i * 10; mv.setInt16(q, s[0], true); mv.setInt16(q + 2, s[1], true); mv.setInt16(q + 4, s[2], true); mv.setUint32(q + 6, s[3], true); });
+      const t2 = MF.now();
+      this.onFrame(MF.WireKind.raw, m, t2.epoch, t2.mono);
+    }
+  }
+  statusLine() {
+    if (!this.state || this.state.kind !== "connected") return;
+    const sub = this.subject();
+    const det = this.boardSpecies === "MARMOSET" ? "green" : "ir";
+    const pi = (det === "green" ? sub.green[1] : sub.ir[1]) * 100;
+    const irdc = Math.round(sub.ir[0] * Math.max(0.05, this.led[0] / 150));
+    let line = `SAMPLING=${this.sampling ? 1 : 0}`;
+    if (this.sampling) {
+      const up = (performance.now() - this.startAt) / 1000;
+      line += `,HR=${Math.round(sub.hr)},VALID=1,PI=${pi.toFixed(2)},IRDC=${irdc},WARMUP=${Math.min(100, Math.round(up * 25))},SENSOR=ok,OPT=ok,DROP=0/${this.seq},IMUC=${this.imuSeq * 8}`;
+    } else line += `,SENSOR=ok,OPT=ok`;
+    line += `,SPECIES=${this.boardSpecies},LED=${this.led.join("/")}`;
+    if (!this.sampling || this.firstLine) line += ",CHARGE=battery,BOARD=demo,IMU=ok";
+    if (this.sampling) line += `,DET=${det}`;
+    this.firstLine = false;
+    const t = MF.now();
+    this.onFrame(MF.WireKind.status, MF.utf8(line), t.epoch, t.mono);
+  }
+}
+
+// ------------------------------------------------------------- monitor
+// Session set-up, recording, 15 Hz display refresh, 1 Hz detector: a port of
+// the iPhone app's Monitor.
+
+const app = {
+  ingest: new Ingest(),
+  link: null,
+  linkState: { kind: "idle" },
+  phoneHR: null, phoneHRV: null, phoneBeats: [], spectral: null,
+  startDeadline: null, detected: null, votes: [], files: [], wakeLock: null,
+
+  get connected() { return this.linkState.kind === "connected"; },
+  get recording() { return !!this.ingest.writer; },
+
+  error(msg) { console.error(msg); alert(msg); },
+
+  use(link) {
+    this.link = link;
+    const ingest = this.ingest;
+    link.onFrame = (k, b, te, tm) => ingest.handle(k, b, te, tm);
+    link.onState = (st) => {
+      if (st.kind === "connected") ingest.linkEvent("link_up", { device: st.name });
+      else if (st.kind === "off") ingest.linkEvent("bluetooth_off", { detail: st.why });
+      else ingest.linkEvent("link_down");
+      this.linkState = st;
+      if (st.kind === "idle" && !this.recording) { this.link = null; }
+      render.link();
+    };
+    link.onReady = (g) => this.sessionSetup(g);
+  },
+
+  connect(demo) {
+    if (this.link) return;
+    this.use(demo ? new DemoLink() : new BleLink());
+    $("demoRow").classList.toggle("hidden", !demo);
+    this.link.connect();
+  },
+
+  disconnect() {
+    if (this.recording) this.stopRecording();
+    const link = this.link;
+    if (!link) return;
+    link.send(MF.Command.stop);
+    this.startDeadline = null;
+    setTimeout(() => { link.disconnect(); this.link = null; this.reset(); render.link(); }, 300); // let the STOP go out
+  },
+
+  reset() { this.phoneHR = null; this.phoneHRV = null; this.phoneBeats = []; this.spectral = null; this.detected = null; this.votes = []; },
+
+  setSpecies(sp, fromAuto) {
+    if (sp === S.species) return;
+    save("species", sp);
+    this.ingest.species = sp;
+    if (this.connected) this.link.send(MF.Command.species(sp));
+    if (fromAuto) { this.phoneHR = null; this.phoneHRV = null; this.phoneBeats = []; }
+    render.species();
+  },
+
+  /// The receiver's sequence: species, LED currents, a status-only pre-roll
+  /// (the only frames that carry the board's constants), START. Except: if
+  /// the board is still sampling (a reconnect inside its 60 s link grace),
+  /// carry on with the same run instead of restarting it.
+  async sessionSetup(g) {
+    const link = this.link;
+    link.send(MF.Command.species(S.species), g);
+    if (S.setLED) { const c = MF.Command.led(S.ledIR, S.ledRed, S.ledGreen); if (c) link.send(c, g); }
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    for (let i = 0; i < 20 && this.ingest.sampling === null; i++) await sleep(100);
+    if (link.generation !== g || this.link !== link) return;
+    if (this.ingest.sampling === true) return;
+    this.startDeadline = performance.now() + S.prerollS * 1000;
+    await sleep(Math.max(0, S.prerollS) * 1000);
+    if (link.generation !== g || this.link !== link || !this.connected) return;
+    this.startDeadline = null;
+    link.send(MF.Command.start, g);
+  },
+
+  restartSampling() {
+    if (!this.connected) return;
+    this.link.send(MF.Command.stop);
+    setTimeout(() => this.connected && this.link.send(MF.Command.start), 500);
+  },
+
+  applyLED() { const c = MF.Command.led(S.ledIR, S.ledRed, S.ledGreen); if (c && this.connected) this.link.send(c); },
+
+  async startRecording() {
+    this.ingest.startRecording({
+      tool: "MarmoFACT Web HR Monitor",
+      app_version: "0.1.0",
+      browser: navigator.userAgent,
+      device_name: NAME,
+      transport: this.link && this.link.label === "demo" ? "demo" : "ble",
+      data_char: MF.Board.dataCharUUID, raw_char: MF.Board.rawCharUUID, cmd_char: MF.Board.cmdCharUUID,
+      default_species: S.species,
+    });
+    try { this.wakeLock = await navigator.wakeLock.request("screen"); } catch (e) { this.wakeLock = null; }
+    render.record();
+  },
+
+  stopRecording() {
+    const r = this.ingest.stopRecording();
+    if (this.wakeLock) { this.wakeLock.release().catch(() => {}); this.wakeLock = null; }
+    if (r) {
+      const url = URL.createObjectURL(r.blob);
+      this.files.unshift({ name: r.name, url, size: r.blob.size });
+      download(url, r.name);
+    }
+    render.record();
+    render.files();
+  },
+
+  runDetector() {
+    const [t, x] = this.ingest.detectionWindow(MF.Detector.windowS);
+    if (t.length < MF.Detector.minSamples) {
+      if (!t.length) { this.phoneHR = null; this.spectral = null; this.phoneBeats = []; }
+      return;
+    }
+    const p = MF.Profiles[S.species];
+    const r = MF.detect(t, x, p);
+    if (r) {
+      this.phoneHR = r.hr;
+      if (r.hrv !== null) this.phoneHRV = r.hrv;
+      this.phoneBeats = r.beats;
+    }
+    this.spectral = MF.spectralPulse(t, x, p);
+    if (S.autoSpecies) {
+      const ch = this.ingest.channelWindows(MF.Detector.windowS);
+      this.vote(MF.Classifier.classifyChannels(ch.t, [ch.ir, ch.green]));
+    }
+  },
+
+  /// One verdict a second; switch species when 4 of the last 6 agree, so a
+  /// single odd window cannot flip the board back and forth.
+  vote(v) {
+    this.detected = v;
+    if (!v) return;
+    this.votes.push(v.species);
+    if (this.votes.length > 6) this.votes.splice(0, this.votes.length - 6);
+    const n = this.votes.filter((s) => s === v.species).length;
+    if (n < 4 || v.species === S.species) return;
+    this.votes = [];
+    this.setSpecies(v.species, true);
+    this.ingest.note("species_auto", { species: v.species, bpm: v.bpm, snr: v.snr });
+  },
+};
+
+function download(url, name) {
+  const a = document.createElement("a");
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ------------------------------------------------------------- drawing
+
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+/// A scrolling line plot against device time, the right edge at the newest
+/// sample, with optional beat dots (on the first series) and ticks.
+function drawTrace(canvas, series, windowS, marks, ticks, placeholder) {
+  const dpr = window.devicePixelRatio || 1;
+  // The CSS height lives in data-h: canvas.height is the backing store, which
+  // the line below rewrites, so reading it back would grow it on every frame.
+  const w = canvas.clientWidth, h = Number(canvas.dataset.h);
+  if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); canvas.style.height = h + "px";
+  }
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  let tEnd = -Infinity;
+  for (const s of series) if (s.t.length) tEnd = Math.max(tEnd, s.t[s.t.length - 1]);
+  if (!isFinite(tEnd)) {
+    ctx.fillStyle = css("--muted"); ctx.font = "13px -apple-system, Segoe UI, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText(placeholder || "Waiting for data", w / 2, h / 2 + 4);
+    return;
+  }
+  const t0 = tEnd - windowS;
+  let lo = Infinity, hi = -Infinity;
+  for (const s of series) for (let i = 0; i < s.t.length; i++) {
+    if (s.t[i] >= t0 && isFinite(s.y[i])) { lo = Math.min(lo, s.y[i]); hi = Math.max(hi, s.y[i]); }
+  }
+  if (!isFinite(lo)) return;
+  if (hi - lo < 1e-9) { hi += 1; lo -= 1; }
+  const pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+  const X = (t) => (w * (t - t0)) / windowS, Y = (y) => h * (1 - (y - lo) / (hi - lo));
+  ctx.strokeStyle = css("--grid"); ctx.lineWidth = 1;
+  for (let g = Math.ceil(t0); g < tEnd; g++) { ctx.beginPath(); ctx.moveTo(X(g), 0); ctx.lineTo(X(g), h); ctx.stroke(); }
+  ctx.lineWidth = 1.5; ctx.lineJoin = "round";
+  for (const s of series) {
+    ctx.strokeStyle = s.color; ctx.beginPath();
+    let started = false;
+    for (let i = 0; i < s.t.length; i++) {
+      if (s.t[i] < t0 || !isFinite(s.y[i])) continue;
+      if (started) ctx.lineTo(X(s.t[i]), Y(s.y[i])); else { ctx.moveTo(X(s.t[i]), Y(s.y[i])); started = true; }
+    }
+    ctx.stroke();
+  }
+  const first = series[0];
+  if (marks && first && first.t.length) {
+    ctx.fillStyle = css("--red");
+    for (const m of marks) {
+      if (m < t0) continue;
+      let a = 0, b = first.t.length - 1;
+      while (a < b) { const mid = (a + b) >> 1; if (first.t[mid] < m) a = mid + 1; else b = mid; }
+      if (a >= first.y.length) continue;
+      ctx.beginPath(); ctx.arc(X(first.t[a]), Y(first.y[a]), 3.5, 0, 2 * Math.PI); ctx.fill();
+    }
+  }
+  if (ticks) {
+    ctx.strokeStyle = css("--orange"); ctx.lineWidth = 1.5;
+    for (const k of ticks) { if (k < t0) continue; ctx.beginPath(); ctx.moveTo(X(k), h - 8); ctx.lineTo(X(k), h); ctx.stroke(); }
+  }
+}
+
+// ------------------------------------------------------------- rendering
+
+const fmtCov = (c) => (c && c.percent !== null ? c.percent.toFixed(2) + " %" : "--");
+const elapsed = (d) => {
+  const s = Math.floor((Date.now() - d.getTime()) / 1000);
+  return `${Math.floor(s / 3600)}:${String(Math.floor(s / 60) % 60).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+};
+const fmtBytes = (n) => (n < 1024 ? n + " B" : n < 1048576 ? (n / 1024).toFixed(0) + " KB" : (n / 1048576).toFixed(1) + " MB");
+
+const render = {
+  link() {
+    const st = app.linkState, ing = app.ingest;
+    let text, color = css("--az");
+    switch (st.kind) {
+      case "off": text = st.why; break;
+      case "scanning": text = `Looking for ${NAME}...`; color = css("--orange"); break;
+      case "connecting": text = `Connecting (${st.detail})`; color = css("--orange"); break;
+      case "connected": {
+        text = `${st.name}, ${ing.status.SAMPLING === 1 ? "sampling" : "idle"}`;
+        const fresh = ing.lastRawMono !== null && MF.now().mono - ing.lastRawMono < 2;
+        color = fresh ? css("--good") : css("--orange");
+        break;
+      }
+      default: text = "Not connected";
+    }
+    $("linkText").textContent = text;
+    $("linkDot").style.background = color;
+    let sub = "";
+    if (app.startDeadline !== null) sub = `Starting in ${Math.ceil(Math.max(0, app.startDeadline - performance.now()) / 1000)} s (reading the board's settings)`;
+    else if (st.kind === "connected") sub = app.link && app.link.label === "demo" ? "simulated board" : "Web Bluetooth";
+    $("linkSub").textContent = sub;
+    const busy = !!app.link;
+    $("btnConnect").classList.toggle("hidden", busy);
+    $("btnDemo").classList.toggle("hidden", busy);
+    $("btnDisconnect").classList.toggle("hidden", !busy);
+    $("btnRecord").disabled = !app.connected && !app.recording;
+    $("btnLED").disabled = !app.connected;
+    $("btnRestart").disabled = !app.connected;
+  },
+
+  species() {
+    $("autoSpecies").checked = S.autoSpecies;
+    for (const b of $("speciesSeg").querySelectorAll("button")) {
+      b.classList.toggle("on", b.dataset.sp === S.species);
+      b.disabled = S.autoSpecies;
+    }
+    $("detectedRow").classList.toggle("hidden", !S.autoSpecies);
+    let d;
+    if (!app.connected) d = "not connected";
+    else if (!app.detected) d = "no clear pulse yet";
+    else d = `${app.detected.species}, ${Math.round(app.detected.bpm)} bpm`;
+    $("detected").textContent = d;
+    let line = S.species;
+    if (!S.autoSpecies) line += ", set by hand";
+    else if (!app.connected) line += ", auto";
+    else line += app.detected && app.detected.species === S.species ? ", detected" : ", detecting...";
+    $("speciesLine").textContent = line;
+  },
+
+  numbers() {
+    const st = app.ingest.status;
+    $("hr").textContent = app.phoneHR ? Math.round(app.phoneHR) : "--";
+    const bhr = st.HR;
+    $("boardHR").textContent = "board: " + (typeof bhr === "number" && bhr > 0 ? `${bhr} bpm${st.VALID === 1 ? "" : " (not valid)"}` : "--");
+    $("hrv").textContent = app.phoneHRV ? app.phoneHRV.toFixed(1) + " ms" : "--";
+    $("pi").textContent = st.PI !== undefined ? st.PI + " %" : "--";
+    $("cov").textContent = fmtCov(app.ingest.linkCoverage);
+    const sp = app.spectral, snr = sp ? sp.snr : 0;
+    const level = Math.min(1, Math.log10(Math.max(snr, 1)) / Math.log10(300));
+    const [color, word] = snr < 8 ? [css("--red"), "no clear pulse"] : snr < 30 ? [css("--orange"), "weak pulse"] : [css("--good"), "good pulse"];
+    $("meterBar").style.width = (level * 100).toFixed(1) + "%";
+    $("meterBar").style.background = color;
+    $("meterText").textContent = sp ? `${word}, SNR ${Math.round(snr)}${sp.bpm ? ` at ${Math.round(sp.bpm)} bpm` : ""}` : "--";
+  },
+
+  warnings() {
+    const out = [];
+    if (app.connected) {
+      const s = app.ingest.status;
+      if (s.SENSOR === "error") out.push("The board reports SENSOR=error: the MAX86916 is not answering. Hardware fault.");
+      if (s.OPT === "dark") out.push("No optical signal (OPT=dark): the LED supply has dropped out. The board retries by itself.");
+      if (typeof s.WARMUP === "number" && s.WARMUP >= 0 && s.WARMUP < 100) out.push(`Warming up, ${s.WARMUP} %`);
+      if (typeof s.IRDC === "number" && s.IRDC > 480000) out.push(`IR is near the ADC ceiling (IRDC ${s.IRDC}). Lower the LED current.`);
+      const age = app.ingest.lastStatusMono !== null ? MF.now().mono - app.ingest.lastStatusMono : null;
+      if (age !== null && age > 3) out.push(`No status from the board for ${Math.floor(age)} s.`);
+      const c = app.ingest.linkCoverage;
+      if (c.percent !== null && c.percent < 99 && c.samples > 2000) out.push(`${c.percent.toFixed(1)} % of the waveform arrived. Move closer to the board.`);
+    }
+    if (document.hidden && app.recording) out.push("This tab is hidden: the browser may pause it and drop data.");
+    const box = $("warnings");
+    const html = out.map((w) => `<div class="warn">${w.replace(/</g, "&lt;")}</div>`).join("");
+    if (box.innerHTML !== html) box.innerHTML = html;
+  },
+
+  traces() {
+    const ing = app.ingest;
+    const i0 = ing.from(S.windowS);
+    const [name, ch] = ing.detectionChannel();
+    $("ppgLabel").textContent = `PPG, ${name} channel, band-passed`;
+    let t = [], y = [];
+    if (i0 >= 0) {
+      t = ing.t.slice(i0);
+      const raw = ch.slice(i0);
+      const a = t[0], b = t[t.length - 1];
+      const p = MF.Profiles[S.species];
+      if (t.length > 50 && b > a) {
+        const fs = (t.length - 1) / (b - a);
+        const hiHz = Math.min(p.hrMax / 60, fs / 2 - 0.2);
+        if (hiHz > p.hrMin / 60) {
+          // Inverted, so a beat is an upward peak where the detector marks it.
+          let prev = raw.find((v) => !Number.isNaN(v)) || 0;
+          const x = raw.map((v) => { if (!Number.isNaN(v)) prev = v; return -prev; });
+          y = MF.filtfilt(MF.bandpass2(p.hrMin / 60, hiHz, fs), x);
+        } else t = [];
+      } else t = [];
+    }
+    const tEnd = ing.t.length ? ing.t[ing.t.length - 1] : 0;
+    drawTrace($("ppg"), [{ t, y, color: css("--ppg") }], S.windowS, app.phoneBeats, ing.boardBeats.filter((v) => v >= tEnd - S.windowS));
+    const j0 = ing.imuT.findIndex((v) => v >= tEnd - S.windowS);
+    const s = j0 < 0 ? ing.imuT.length : j0;
+    drawTrace($("imu"), [
+      { t: ing.imuT.slice(s), y: ing.ax.slice(s), color: css("--ax") },
+      { t: ing.imuT.slice(s), y: ing.ay.slice(s), color: css("--ay") },
+      { t: ing.imuT.slice(s), y: ing.az.slice(s), color: css("--az") },
+    ], S.windowS, null, null, "No accelerometer data");
+  },
+
+  record() {
+    const b = $("btnRecord");
+    if (app.recording) {
+      b.textContent = "Stop recording"; b.classList.remove("primary"); b.classList.add("rec");
+      const w = app.ingest.writer;
+      $("recLine").textContent = `${w.name}.mfwl  ${elapsed(app.ingest.recordStarted)}  ${fmtBytes(w.size)}  coverage ${fmtCov(app.ingest.recordCoverage)}`;
+    } else {
+      b.textContent = "Record"; b.classList.add("primary"); b.classList.remove("rec");
+      $("recLine").textContent = app.connected ? "Records every frame as it arrived, in the PC receiver's .mfwl format." : "";
+    }
+  },
+
+  files() {
+    $("filesBox").classList.toggle("hidden", !app.files.length);
+    $("files").innerHTML = app.files.map((f, i) => `<li><a href="#" data-i="${i}">${f.name}</a> <span class="muted small">${fmtBytes(f.size)}</span></li>`).join("");
+  },
+
+  status() {
+    const s = app.ingest.status;
+    const rows = Object.keys(s).sort().map((k) => `<tr><td>${k}</td><td>${String(s[k]).replace(/</g, "&lt;")}</td></tr>`).join("");
+    const tbl = $("statusTable");
+    if (tbl.innerHTML !== rows) tbl.innerHTML = rows;
+    const c = app.ingest.linkCoverage;
+    $("covDetail").textContent = `frames ${c.frames}, samples ${c.samples}, missing ${c.missing}, IMU frames ${c.imuFrames}, restarts ${c.seqRestarts}`;
+  },
+
+  all() { this.link(); this.species(); this.numbers(); this.warnings(); this.traces(); this.record(); this.status(); },
+};
+
+// ------------------------------------------------------------- wiring
+
+function bindNumber(id, key, lo, hi, after) {
+  const el = $(id);
+  el.value = S[key];
+  el.addEventListener("change", () => {
+    const v = Math.max(lo, Math.min(hi, Math.round(Number(el.value))));
+    if (!Number.isFinite(v)) { el.value = S[key]; return; }
+    el.value = v; save(key, v);
+    if (after) after();
+  });
+}
+
+function ledMA() {
+  $("maIR").textContent = `${(S.ledIR * MF.Board.ledMAPerCode).toFixed(0)} mA`;
+  $("maRed").textContent = `${(S.ledRed * MF.Board.ledMAPerCode).toFixed(0)} mA`;
+  $("maGreen").textContent = `${(S.ledGreen * MF.Board.ledMAPerCode).toFixed(0)} mA`;
+  $("ledBox").classList.toggle("hidden", !S.setLED);
+}
+
+$("btnConnect").onclick = () => app.connect(false);
+$("btnDemo").onclick = () => app.connect(true);
+$("btnDisconnect").onclick = () => app.disconnect();
+$("btnRecord").onclick = () => (app.recording ? app.stopRecording() : app.startRecording());
+$("btnLED").onclick = () => app.applyLED();
+$("btnRestart").onclick = () => app.restartSampling();
+$("autoSpecies").onchange = (e) => { save("autoSpecies", e.target.checked); app.votes = []; if (!S.autoSpecies) app.detected = null; render.species(); };
+for (const b of $("speciesSeg").querySelectorAll("button")) b.onclick = () => app.setSpecies(b.dataset.sp, false);
+$("setLED").checked = S.setLED;
+$("setLED").onchange = (e) => { save("setLED", e.target.checked); ledMA(); };
+bindNumber("ledIR", "ledIR", 0, 255, ledMA);
+bindNumber("ledRed", "ledRed", 0, 255, ledMA);
+bindNumber("ledGreen", "ledGreen", 0, 255, ledMA);
+bindNumber("prerollS", "prerollS", 0, 10);
+bindNumber("windowS", "windowS", 3, 20);
+$("demoSubject").value = S.demoSubject;
+$("demoSubject").onchange = (e) => save("demoSubject", e.target.value);
+$("files").onclick = (e) => {
+  const a = e.target.closest("a[data-i]");
+  if (!a) return;
+  e.preventDefault();
+  const f = app.files[Number(a.dataset.i)];
+  download(f.url, f.name);
+};
+window.addEventListener("beforeunload", (e) => { if (app.recording) { e.preventDefault(); e.returnValue = ""; } });
+ledMA();
+
+if (!navigator.bluetooth) {
+  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  $("noBle").innerHTML = ios
+    ? "<b>Safari on iPhone cannot use Bluetooth from a web page.</b> Use the MarmoFACT HR iPhone app, or open this page in a Web Bluetooth browser such as Bluefy. The demo works here."
+    : window.isSecureContext
+      ? "<b>This browser has no Web Bluetooth.</b> Open the page in Chrome or Edge on a computer or an Android phone. The demo works here."
+      : "<b>Bluetooth needs a secure page.</b> Open this page over https, or from http://localhost. The demo works here.";
+  $("noBle").classList.remove("hidden");
+  $("btnConnect").disabled = true;
+}
+
+setInterval(() => render.all(), 1000 / 15);
+setInterval(() => app.runDetector(), 1000);
+render.all();
+render.files();
+</script>
+</body>
+</html>
