@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MarmoFACT HR tests</title>
+<style>
+  body { margin: 0; padding: 16px; background: #f6f3ec; color: #1d1a17; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  @media (prefers-color-scheme: dark) { body { background: #0f1716; color: #ece7dd; } }
+  h1 { font: 600 18px -apple-system, "Segoe UI", sans-serif; }
+  .fail { color: #d23a3a; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1 id="h">Running...</h1>
+<pre id="out"></pre>
+<script src="../mfcore.js"></script>
+<script src="vectors.js"></script>
+<script src="tests.js"></script>
+<script>
+  const out = document.getElementById("out");
+  const r = MFTests((line) => {
+    const span = document.createElement("span");
+    if (/FAIL/.test(line)) span.className = "fail";
+    span.textContent = line + "\n";
+    out.appendChild(span);
+  });
+  document.getElementById("h").textContent = r.failed ? `${r.failed} check(s) failed` : `All ${r.passed} checks passed`;
+  document.title = r.failed ? "FAILED" : "passed";
+</script>
+</body>
+</html>
