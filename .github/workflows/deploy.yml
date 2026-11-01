@@ -16,7 +16,9 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # ubuntu-latest became 26.04 on 2026-10-19, which has no Ruby 3.2.1.
+    # 24.04 is the image the last good deploys ran on.
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout 🛎️
       uses: actions/checkout@v3
