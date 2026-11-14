@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-**Upcoming poster** at [Neuroscience 2026 (SfN Annual Meeting)](https://www.sfn.org/meetings/neuroscience-2026) — *Reading the social brain with volumetric functional ultrasound imaging in behaving marmosets* :microphone:
+**Upcoming poster** at [Neuroscience 2026 (SfN Annual Meeting)](https://www.sfn.org/meetings/neuroscience-2026) — *Reading the social brain with volumetric functional ultrasound imaging in behaving marmosets*, Session I.06 Social Cognition, Presentation LBP084.09, Weds., Nov. 18, 1&ndash;2 p.m. :microphone:
