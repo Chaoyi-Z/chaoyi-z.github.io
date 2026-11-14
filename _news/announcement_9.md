@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-**Upcoming talk** at the [MIT Simons Center for the Social Brain Lunch Series](https://scsb.mit.edu/calendar_event/scsb-lunch-series-chaoyi-zhang/) — *Reading the social brain: volumetric functional ultrasound imaging in behaving marmosets*
+Gave a talk at the [MIT Simons Center for the Social Brain Lunch Series](https://scsb.mit.edu/calendar_event/scsb-lunch-series-chaoyi-zhang/) — *Reading the social brain: volumetric functional ultrasound imaging in behaving marmosets*
