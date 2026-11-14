@@ -1,10 +1,11 @@
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
 let toggleTheme = (theme) => {
-  const next = (theme == "dark") ? "light" : "dark";
-  // Remember the visitor's own choice: it wins over any page default, on every page.
-  localStorage.setItem("theme-chosen", next);
-  setTheme(next);
+  if (theme == "dark") {
+    setTheme("light");
+  } else {
+    setTheme("dark");
+  }
 }
 
 
@@ -76,17 +77,11 @@ let transTheme = () => {
 }
 
 
-// Which theme a page opens in:
-//   1. the visitor's own choice, if they have used the toggle;
-//   2. else the page's default (front matter `default_theme: dark`, see head.html);
-//   3. else the system preference.
-let initTheme = () => {
-  let theme = localStorage.getItem("theme-chosen");
-  if (theme != "dark" && theme != "light") {
-    theme = window.PAGE_DEFAULT_THEME || null;
-    if (theme != "dark" && theme != "light") {
-      const userPref = window.matchMedia;
-      theme = (userPref && userPref('(prefers-color-scheme: dark)').matches) ? 'dark' : null;
+let initTheme = (theme) => {
+  if (theme == null || theme == 'null') {
+    const userPref = window.matchMedia;
+    if (userPref && userPref('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
     }
   }
 
@@ -94,4 +89,4 @@ let initTheme = () => {
 }
 
 
-initTheme();
+initTheme(localStorage.getItem("theme"));
