@@ -1,8 +1,11 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
-<title>Marmoset Cranial Atlas</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+---
+layout: page
+title: Marmoset Cranial Atlas
+description: An interactive 3D viewer segmenting a marmoset cranium into its named bones
+permalink: /works/marmoset-cranial-atlas/
+---
 <style>
-:root{
+.work-atlas{
   --ground:#f4f1ec; --surface:#fffdfa; --sunk:#eae5dc;
   --ink:#17140f; --muted:#6b635a; --faint:#948b80;
   --rule:#ded6ca; --rule-soft:#e9e2d8;
@@ -10,17 +13,7 @@
   --stage-top:#eeeae3; --stage-bot:#ddd6cb;
   --shadow:0 1px 2px rgba(23,20,15,.06),0 8px 24px rgba(23,20,15,.06);
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ground:#131110; --surface:#1c1a17; --sunk:#100e0d;
-    --ink:#ece5d9; --muted:#9c9287; --faint:#736a60;
-    --rule:#2f2a24; --rule-soft:#252119;
-    --accent:#cd9d63; --accent-soft:#3a2d1c;
-    --stage-top:#1e1b18; --stage-bot:#100e0c;
-    --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px rgba(0,0,0,.45);
-  }
-}
-:root[data-theme="dark"]{
+html[data-theme='dark'] .work-atlas{
   --ground:#131110; --surface:#1c1a17; --sunk:#100e0d;
   --ink:#ece5d9; --muted:#9c9287; --faint:#736a60;
   --rule:#2f2a24; --rule-soft:#252119;
@@ -28,103 +21,106 @@
   --stage-top:#1e1b18; --stage-bot:#100e0c;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px rgba(0,0,0,.45);
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);
-  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+.work-atlas *{box-sizing:border-box}
+.work-atlas{margin:0;background:var(--ground);color:var(--ink);
+  font-family:inherit;
   -webkit-font-smoothing:antialiased}
-.wrap{display:grid;grid-template-columns:236px minmax(0,1fr) 268px;gap:0;
+.work-atlas .wrap{display:grid;grid-template-columns:236px minmax(0,1fr) 268px;gap:0;
   height:100vh;height:100dvh;min-height:520px}
-aside{background:var(--surface);display:flex;flex-direction:column;min-height:0}
-.rail-l{border-right:1px solid var(--rule)}
-.rail-r{border-left:1px solid var(--rule)}
-.pad{padding:18px 18px 16px}
-.masthead{border-bottom:1px solid var(--rule)}
-.kicker{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.16em;
+.work-atlas aside{background:var(--surface);display:flex;flex-direction:column;min-height:0}
+.work-atlas .rail-l{border-right:1px solid var(--rule)}
+.work-atlas .rail-r{border-left:1px solid var(--rule)}
+.work-atlas .pad{padding:18px 18px 16px}
+.work-atlas .masthead{border-bottom:1px solid var(--rule)}
+.work-atlas .kicker{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:10px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--faint);margin:0 0 8px}
-h1{font-family:Spectral,Georgia,"Times New Roman",serif;font-weight:600;font-size:23px;
+.work-atlas h1{font-family:inherit;font-weight:600;font-size:23px;
   line-height:1.14;margin:0;text-wrap:balance;letter-spacing:-.005em}
-.sub{font-size:11.5px;line-height:1.5;color:var(--muted);margin:9px 0 0}
-h2{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.16em;
+.work-atlas .sub{font-size:11.5px;line-height:1.5;color:var(--muted);margin:9px 0 0}
+.work-atlas h2{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:10px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--faint);margin:0 0 10px;font-weight:500}
-.sect{padding:16px 18px;border-bottom:1px solid var(--rule-soft)}
-.views{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
-.vbtn{border:1px solid var(--rule);background:var(--surface);border-radius:3px;
+.work-atlas .sect{padding:16px 18px;border-bottom:1px solid var(--rule-soft)}
+.work-atlas .views{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.work-atlas button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.work-atlas .vbtn{border:1px solid var(--rule);background:var(--surface);border-radius:3px;
   padding:6px 7px;font-size:11.5px;text-align:left;display:flex;justify-content:space-between;
   align-items:center;gap:4px;transition:background .12s,border-color .12s}
-.vbtn:hover{background:var(--sunk);border-color:var(--faint)}
-.vbtn kbd{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--faint);
+.work-atlas .vbtn:hover{background:var(--sunk);border-color:var(--faint)}
+.work-atlas .vbtn kbd{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:9.5px;color:var(--faint);
   border:1px solid var(--rule);border-radius:2px;padding:0 3px;line-height:1.5}
-.vbtn:focus-visible,.row:focus-visible,.tog:focus-visible,.eye:focus-visible{
+.work-atlas .vbtn:focus-visible, .work-atlas .row:focus-visible, .work-atlas .tog:focus-visible, .work-atlas .eye:focus-visible{
   outline:2px solid var(--accent);outline-offset:1px}
-dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:11.5px}
-dt{color:var(--muted)}
-dd{margin:0;font-family:"IBM Plex Mono",monospace;text-align:right;font-variant-numeric:tabular-nums}
-.axes{margin-top:12px;font-size:11px;color:var(--muted);line-height:1.65}
-.axes b{font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--ink)}
-main{position:relative;min-width:0;background:
+.work-atlas dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:11.5px}
+.work-atlas dt{color:var(--muted)}
+.work-atlas dd{margin:0;font-family:SFMono-Regular,Consolas,Menlo,monospace;text-align:right;font-variant-numeric:tabular-nums}
+.work-atlas .axes{margin-top:12px;font-size:11px;color:var(--muted);line-height:1.65}
+.work-atlas .axes b{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-weight:500;color:var(--ink)}
+.work-atlas main{position:relative;min-width:0;background:
   radial-gradient(120% 100% at 50% 0%,var(--stage-top),var(--stage-bot))}
-canvas{display:block;width:100%;height:100%;touch-action:none}
-.overlay{position:absolute;inset:0;pointer-events:none}
-.tag{position:absolute;transform:translate(-50%,-50%);font-family:"IBM Plex Mono",monospace;
+.work-atlas canvas{display:block;width:100%;height:100%;touch-action:none}
+.work-atlas .overlay{position:absolute;inset:0;pointer-events:none}
+.work-atlas .tag{position:absolute;transform:translate(-50%,-50%);font-family:SFMono-Regular,Consolas,Menlo,monospace;
   font-size:10px;letter-spacing:.02em;padding:1px 4px;border-radius:2px;
   background:color-mix(in srgb,var(--surface) 84%,transparent);color:var(--ink);
   border:1px solid var(--rule-soft);white-space:nowrap;opacity:0;transition:opacity .15s}
-.tag.on{opacity:1}
-.stagebar{position:absolute;left:14px;bottom:12px;right:14px;display:flex;
+.work-atlas .tag.on{opacity:1}
+.work-atlas .stagebar{position:absolute;left:14px;bottom:12px;right:14px;display:flex;
   justify-content:space-between;align-items:flex-end;gap:12px;pointer-events:none}
-.hint{font-size:11px;color:var(--muted);line-height:1.5;max-width:36ch}
-.scale{display:flex;flex-direction:column;align-items:flex-end;gap:3px;
-  font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted)}
-.scale i{display:block;height:1px;background:var(--muted);width:var(--sw,60px)}
-.register{overflow-y:auto;flex:1;min-height:0;padding:0 10px 14px;width:100%;max-width:620px;margin:0 auto}
-.row{display:grid;grid-template-columns:11px 1fr auto auto;align-items:center;gap:9px;
+.work-atlas .hint{font-size:11px;color:var(--muted);line-height:1.5;max-width:36ch}
+.work-atlas .scale{display:flex;flex-direction:column;align-items:flex-end;gap:3px;
+  font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:10px;color:var(--muted)}
+.work-atlas .scale i{display:block;height:1px;background:var(--muted);width:var(--sw,60px)}
+.work-atlas .register{overflow-y:auto;flex:1;min-height:0;padding:0 10px 14px;width:100%;max-width:620px;margin:0 auto}
+.work-atlas .row{display:grid;grid-template-columns:11px 1fr auto auto;align-items:center;gap:9px;
   width:100%;padding:6px 8px;border-radius:3px;text-align:left;line-height:1.25;
   border:1px solid transparent;transition:background .1s}
-.row:hover{background:var(--sunk)}
-.row[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
-.row.dim{opacity:.42}
-.sw{width:11px;height:11px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
-.nm{font-size:11.5px;min-width:0}
-.nm b{display:block;font-weight:500;font-size:12px;white-space:nowrap;overflow:hidden;
+.work-atlas .row:hover{background:var(--sunk)}
+.work-atlas .row[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.work-atlas .row.dim{opacity:.42}
+.work-atlas .sw{width:11px;height:11px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.work-atlas .nm{font-size:11.5px;min-width:0}
+.work-atlas .nm b{display:block;font-weight:500;font-size:12px;white-space:nowrap;overflow:hidden;
   text-overflow:ellipsis}
-.nm span{color:var(--muted);font-size:10.5px;font-family:"IBM Plex Mono",monospace}
-.pct{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--faint);
+.work-atlas .nm span{color:var(--muted);font-size:10.5px;font-family:SFMono-Regular,Consolas,Menlo,monospace}
+.work-atlas .pct{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:10px;color:var(--faint);
   font-variant-numeric:tabular-nums}
-.eye{width:20px;height:20px;display:grid;place-items:center;border-radius:3px;color:var(--faint)}
-.eye:hover{background:var(--rule-soft);color:var(--ink)}
-.eye svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
-.row.off .nm b,.row.off .sw{opacity:.3}
-.toolbar{display:flex;gap:5px;padding:12px 14px;border-bottom:1px solid var(--rule-soft);
+.work-atlas .eye{width:20px;height:20px;display:grid;place-items:center;border-radius:3px;color:var(--faint)}
+.work-atlas .eye:hover{background:var(--rule-soft);color:var(--ink)}
+.work-atlas .eye svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+.work-atlas .row.off .nm b, .work-atlas .row.off .sw{opacity:.3}
+.work-atlas .toolbar{display:flex;gap:5px;padding:12px 14px;border-bottom:1px solid var(--rule-soft);
   flex-wrap:wrap}
-.tog{border:1px solid var(--rule);border-radius:3px;padding:4px 7px;font-size:10.5px;
+.work-atlas .tog{border:1px solid var(--rule);border-radius:3px;padding:4px 7px;font-size:10.5px;
   color:var(--muted);transition:.12s}
-.tog[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
-.tog:hover{border-color:var(--faint)}
-.foot{padding:12px 18px;border-top:1px solid var(--rule);font-size:10.5px;
+.work-atlas .tog[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.work-atlas .tog:hover{border-color:var(--faint)}
+.work-atlas .foot{padding:12px 18px;border-top:1px solid var(--rule);font-size:10.5px;
   line-height:1.55;color:var(--faint)}
-.foot b{color:var(--muted);font-weight:500}
-.err{position:absolute;inset:0;display:grid;place-items:center;padding:32px;text-align:center;
+.work-atlas .foot b{color:var(--muted);font-weight:500}
+.work-atlas .err{position:absolute;inset:0;display:grid;place-items:center;padding:32px;text-align:center;
   font-size:13px;color:var(--muted)}
 @media (max-width:1040px){
-  .wrap{grid-template-columns:1fr;grid-template-rows:auto minmax(340px,1fr) minmax(200px,40vh)}
-  .rail-l{border-right:none;border-bottom:1px solid var(--rule);
+.work-atlas .wrap{grid-template-columns:1fr;grid-template-rows:auto minmax(340px,1fr) minmax(200px,40vh)}
+.work-atlas .rail-l{border-right:none;border-bottom:1px solid var(--rule);
     display:grid;grid-template-columns:1fr 1fr}
-  .rail-l .masthead{grid-column:1/-1}
-  .sect:last-of-type{border-bottom:none}
-  .rail-r{border-left:none;border-top:1px solid var(--rule)}
+.work-atlas .rail-l .masthead{grid-column:1/-1}
+.work-atlas .sect:last-of-type{border-bottom:none}
+.work-atlas .rail-r{border-left:none;border-top:1px solid var(--rule)}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){
+.work-atlas *{transition:none!important}
+}
+.work-atlas, html[data-theme='dark'] .work-atlas{--ground:var(--global-bg-color);--surface:var(--global-card-bg-color);--ink:var(--global-text-color);--muted:var(--global-text-color-light);--faint:var(--global-text-color-light);--rule:var(--global-divider-color);--rule-soft:var(--global-divider-color);--accent:var(--global-theme-color);--sunk:rgba(130,130,130,.12);--accent-soft:rgba(130,130,130,.16);--stage-top:rgba(130,130,130,.05);--stage-bot:rgba(130,130,130,.20);}
+.work-atlas{background:none;}
+.work-atlas .wrap{height:min(78vh,760px);min-height:520px;width:min(1320px,94vw);margin-left:50%;transform:translateX(-50%);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
+@media (max-width:1040px){.work-atlas .wrap{height:auto;}}
+.work-atlas kbd{background:none;color:inherit;box-shadow:none;}
+.work-atlas .row{margin:0;}
 </style>
-
+<div class="work-atlas">
 <div class="wrap">
   <aside class="rail-l">
-    <div class="pad masthead">
-      <p class="kicker">Specimen scan · 14 bones</p>
-      <h1>Marmoset Cranial Atlas</h1>
-      <p class="sub">Surface segmentation of a marmoset cranium into its named bones. Click any
-        bone in the register or on the model to isolate it.</p>
-    </div>
+    
 
     <div class="sect">
       <h2>Standard views</h2>
@@ -533,5 +529,4 @@ canvas{display:block;width:100%;height:100%;touch-action:none}
   resize(); apply(); goView(VIEWS[0]); tick();
 })();
 </script>
-
-</body></html>
+</div>

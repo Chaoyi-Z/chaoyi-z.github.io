@@ -1,10 +1,11 @@
-<meta charset="UTF-8">
-<title>Comparative Skull Atlas</title>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+---
+layout: page
+title: Comparative Skull Atlas
+description: An interactive comparative atlas of cranial size and calvarial thickness, from mouse to human
+permalink: /works/five-skulls/
+---
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
-  :root{
+.work-skulls{
     --ground:#14171a;
     --surface:#1c211f;
     --surface-2:#262b28;
@@ -20,152 +21,154 @@
     --plate-ink:#262420;
     --plate-line:#d8d0bd;
   }
-
-  *{box-sizing:border-box;}
-  html{background:var(--ground);}
-  body{
+.work-skulls *{box-sizing:border-box;}
+.work-skulls{background:var(--ground);}
+.work-skulls{
     background:var(--ground);
     color:var(--bone);
-    font-family:'Archivo',sans-serif;
+    font-family:inherit;
     line-height:1.5;
     margin:0;
   }
-  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;text-wrap:balance;margin:0;}
-  .sci{font-style:italic;font-family:'Fraunces',serif;}
-  .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;}
-
-  a{color:inherit;}
-
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
-
-  /* ---------- hero ---------- */
-  .hero{
+.work-skulls h1, .work-skulls h2, .work-skulls h3{font-family:inherit;font-weight:600;text-wrap:balance;margin:0;}
+.work-skulls .sci{font-style:italic;font-family:inherit;}
+.work-skulls .mono{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-variant-numeric:tabular-nums;}
+.work-skulls a{color:inherit;}
+.work-skulls .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.work-skulls .hero{
     padding:88px 32px 56px;
     background:
       radial-gradient(ellipse 900px 420px at 50% -10%, rgba(92,154,134,0.16), transparent 65%),
       var(--ground);
     border-bottom:1px solid var(--line);
   }
-  .hero-inner{max-width:1180px;margin:0 auto;}
-  .eyebrow{
+.work-skulls .hero-inner{max-width:1180px;margin:0 auto;}
+.work-skulls .eyebrow{
     display:flex;align-items:center;gap:10px;
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.14em;
+    font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:12.5px;letter-spacing:0.14em;
     text-transform:uppercase;color:var(--teal);margin-bottom:22px;
   }
-  .eyebrow::before{content:'';width:26px;height:1px;background:var(--teal);display:inline-block;}
-  .hero h1{font-size:clamp(40px,6vw,68px);letter-spacing:-0.01em;color:var(--bone);}
-  .hero p.lede{
+.work-skulls .eyebrow::before{content:'';width:26px;height:1px;background:var(--teal);display:inline-block;}
+.work-skulls .hero h1{font-size:clamp(40px,6vw,68px);letter-spacing:-0.01em;color:var(--bone);}
+.work-skulls .hero p.lede{
     max-width:620px;margin:20px 0 0;color:var(--bone-dim);
     font-size:17px;line-height:1.65;
   }
-
-  .filmstrip{
+.work-skulls .filmstrip{
     margin-top:56px;
     display:flex;align-items:flex-end;gap:0;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     padding:28px 0 18px;
     overflow-x:auto;
   }
-  .filmstrip .cell{
+.work-skulls .filmstrip .cell{
     flex:0 0 auto;display:flex;flex-direction:column;align-items:center;
     padding:0 22px;position:relative;
   }
-  .filmstrip .cell + .cell::before{
+.work-skulls .filmstrip .cell + .cell::before{
     content:'';position:absolute;left:0;top:10%;bottom:28px;width:1px;background:var(--line);
   }
-  .filmstrip img{display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));}
-  .filmstrip .tag{margin-top:14px;font-size:12px;letter-spacing:0.04em;color:var(--ink-dim);text-align:center;}
-  .filmstrip .tag b{display:block;color:var(--bone);font-family:'Fraunces',serif;font-weight:500;font-size:14px;}
-
-  /* ---------- section shell ---------- */
-  section{padding:64px 32px;}
-  .section-head{max-width:640px;margin-bottom:40px;}
-  .section-head .kicker{
-    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;
+.work-skulls .filmstrip img{display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));}
+.work-skulls .filmstrip .tag{margin-top:14px;font-size:12px;letter-spacing:0.04em;color:var(--ink-dim);text-align:center;}
+.work-skulls .filmstrip .tag b{display:block;color:var(--bone);font-family:inherit;font-weight:500;font-size:14px;}
+.work-skulls section{padding:64px 32px;}
+.work-skulls .section-head{max-width:640px;margin-bottom:40px;}
+.work-skulls .section-head .kicker{
+    font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:12px;letter-spacing:0.12em;
     text-transform:uppercase;color:var(--terracotta);margin-bottom:10px;display:block;
   }
-  .section-head h2{font-size:30px;color:var(--bone);}
-  .section-head p{color:var(--ink-dim);margin-top:12px;font-size:15.5px;}
-
-  /* ---------- plate (figure) ---------- */
-  .plate-card{
+.work-skulls .section-head h2{font-size:30px;color:var(--bone);}
+.work-skulls .section-head p{color:var(--ink-dim);margin-top:12px;font-size:15.5px;}
+.work-skulls .plate-card{
     max-width:1180px;margin:0 auto;
     background:var(--plate-bg);
     border-radius:6px;
     padding:20px 20px 26px;
     box-shadow:0 24px 60px -24px rgba(0,0,0,0.6), 0 2px 0 rgba(0,0,0,0.15);
   }
-  .plate-card img{width:100%;display:block;border-radius:2px;}
-  .plate-caption{
+.work-skulls .plate-card img{width:100%;display:block;border-radius:2px;}
+.work-skulls .plate-caption{
     display:flex;justify-content:space-between;gap:24px;
     padding:14px 6px 2px;color:var(--plate-ink);
     font-size:12.5px;border-top:1px solid var(--plate-line);margin-top:14px;
   }
-  .plate-caption .label{font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:#8a8060;}
-  .plate-caption p{margin:0;max-width:760px;line-height:1.55;}
-
-  /* ---------- specimen grid ---------- */
-  .grid{
+.work-skulls .plate-caption .label{font-family:SFMono-Regular,Consolas,Menlo,monospace;letter-spacing:0.06em;text-transform:uppercase;color:#8a8060;}
+.work-skulls .plate-caption p{margin:0;max-width:760px;line-height:1.55;}
+.work-skulls .sk-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:1px;background:var(--ground);
     border:1px solid var(--line);border-radius:8px;overflow:hidden;
   }
-  .card{
+.work-skulls .sk-card{
     background:var(--surface);padding:22px 22px 24px;
     display:flex;flex-direction:column;
   }
-  .card .viewbox{
+.work-skulls .sk-card .viewbox{
     height:220px;margin:0 -22px 16px;position:relative;
     background:radial-gradient(ellipse 70% 70% at 50% 45%, rgba(255,255,255,0.05), transparent 70%);
   }
-  .card model-viewer{width:100%;height:100%;--poster-color:transparent;}
-  .card .viewbox::after{
+.work-skulls .sk-card model-viewer{width:100%;height:100%;--poster-color:transparent;}
+.work-skulls .sk-card .viewbox::after{
     content:'drag to rotate \00b7 scroll to zoom';
     position:absolute;bottom:6px;right:12px;
-    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.03em;
+    font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:9.5px;letter-spacing:0.03em;
     color:var(--ink-dim);opacity:0.7;pointer-events:none;
   }
-  .card .names{margin-bottom:14px;}
-  .card .names .common{font-size:19px;color:var(--bone);display:block;}
-  .card .names .sci{font-size:14px;color:var(--accent,var(--teal));display:block;margin-top:2px;}
-  .card .stats{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
-  .stat-row{display:flex;justify-content:space-between;font-size:12.5px;border-bottom:1px dashed var(--line);padding-bottom:6px;}
-  .stat-row .k{color:var(--ink-dim);letter-spacing:0.02em;}
-  .stat-row .v{color:var(--bone);}
-  .card .note{font-size:13px;color:var(--ink-dim);line-height:1.55;margin:0;}
-  .card[data-accent="teal"]{--accent:var(--teal);}
-  .card[data-accent="terracotta"]{--accent:var(--terracotta);}
-  .card[data-accent="slate"]{--accent:var(--slate);}
-  .card[data-accent="slate-deep"]{--accent:var(--slate-deep);}
-  .card .swatch{width:8px;height:8px;border-radius:50%;background:var(--accent,var(--teal));display:inline-block;margin-right:7px;position:relative;top:-1px;}
-
-  /* ---------- methodology ---------- */
-  .method{border-top:1px solid var(--line);}
-  .method-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;}
-  @media (max-width:820px){.method-grid{grid-template-columns:1fr;}}
-  .method h3{color:var(--bone);font-size:17px;margin-bottom:10px;}
-  .method p, .method li{color:var(--ink-dim);font-size:14.5px;line-height:1.65;}
-  .method ul{margin:0;padding-left:18px;}
-  .method li{margin-bottom:8px;}
-  .source-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .source-table th{
-    text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;
+.work-skulls .sk-card .names{margin-bottom:14px;}
+.work-skulls .sk-card .names .common{font-size:19px;color:var(--bone);display:block;}
+.work-skulls .sk-card .names .sci{font-size:14px;color:var(--accent,var(--teal));display:block;margin-top:2px;}
+.work-skulls .sk-card .stats{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.work-skulls .stat-row{display:flex;justify-content:space-between;font-size:12.5px;border-bottom:1px dashed var(--line);padding-bottom:6px;}
+.work-skulls .stat-row .k{color:var(--ink-dim);letter-spacing:0.02em;}
+.work-skulls .stat-row .v{color:var(--bone);}
+.work-skulls .sk-card .sk-note{font-size:13px;color:var(--ink-dim);line-height:1.55;margin:0;}
+.work-skulls .sk-card[data-accent="teal"]{--accent:var(--teal);}
+.work-skulls .sk-card[data-accent="terracotta"]{--accent:var(--terracotta);}
+.work-skulls .sk-card[data-accent="slate"]{--accent:var(--slate);}
+.work-skulls .sk-card[data-accent="slate-deep"]{--accent:var(--slate-deep);}
+.work-skulls .sk-card .swatch{width:8px;height:8px;border-radius:50%;background:var(--accent,var(--teal));display:inline-block;margin-right:7px;position:relative;top:-1px;}
+.work-skulls .method{border-top:1px solid var(--line);}
+.work-skulls .method-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;}
+@media (max-width:820px){
+.work-skulls .method-grid{grid-template-columns:1fr;}
+}
+.work-skulls .method h3{color:var(--bone);font-size:17px;margin-bottom:10px;}
+.work-skulls .method p, .work-skulls .method li{color:var(--ink-dim);font-size:14.5px;line-height:1.65;}
+.work-skulls .method ul{margin:0;padding-left:18px;}
+.work-skulls .method li{margin-bottom:8px;}
+.work-skulls .source-table{width:100%;border-collapse:collapse;font-size:13px;}
+.work-skulls .source-table th{
+    text-align:left;font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:11px;
     letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-dim);
     padding:0 10px 8px 0;border-bottom:1px solid var(--line);font-weight:500;
   }
-  .source-table td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);color:var(--bone-dim);vertical-align:top;}
-  .source-table tr:last-child td{border-bottom:none;}
-
-  footer{
+.work-skulls .source-table td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);color:var(--bone-dim);vertical-align:top;}
+.work-skulls .source-table tr:last-child td{border-bottom:none;}
+.work-skulls footer{
     padding:32px 32px 48px;text-align:center;
     color:var(--ink-dim);font-size:12.5px;border-top:1px solid var(--line);
   }
+.work-skulls, html[data-theme='dark'] .work-skulls{--ground:var(--global-bg-color);--surface:var(--global-card-bg-color);--surface-2:var(--global-card-bg-color);--line:var(--global-divider-color);--bone:var(--global-text-color);--bone-dim:var(--global-text-color);--ink-dim:var(--global-text-color-light);--teal:var(--global-theme-color);--terracotta:#b8692f;--slate:#5f7f8f;--slate-deep:#566a86;}
+html[data-theme='dark'] .work-skulls{--terracotta:#e3a574;--slate:#9db0b8;--slate-deep:#8797a8;}
+.work-skulls{background:none;line-height:inherit;}
+.work-skulls .hero{padding:0 0 1.5rem;background:none;border-bottom:none;}
+.work-skulls .hero p.lede{margin-top:0;max-width:none;font-size:inherit;line-height:inherit;color:inherit;}
+.work-skulls section{padding:2rem 0;}
+.work-skulls .section-head h2{font-size:1.6rem;font-weight:400;}
+.work-skulls h3{font-weight:500;}
+.work-skulls .filmstrip{margin-top:1.5rem;}
+.work-skulls .sk-card .viewbox{background:radial-gradient(ellipse 70% 70% at 50% 45%,rgba(130,130,130,.16),transparent 70%);}
+.work-skulls footer{padding:1.5rem 0 0;}
+html:not([data-theme='dark']) .work-skulls .filmstrip img{filter:brightness(.72) contrast(1.15) drop-shadow(0 4px 10px rgba(0,0,0,.18));}
+html:not([data-theme='dark']) .work-skulls .sk-card .viewbox{background:radial-gradient(ellipse 75% 75% at 50% 45%,rgba(60,60,60,.34),transparent 72%);}
 </style>
+<div class="work-skulls">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+
 
 <div class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">Comparative osteology &middot; five specimens</span>
-    <h1>Comparative Skull Atlas</h1>
+    
     <p class="lede">Mouse to human, rendered from the same five surface meshes at one shared scale &mdash; a working atlas of cranial size and calvarial thickness across the model species used in neuroscience research. Every specimen below is a live 3D model &mdash; drag to rotate, scroll to zoom.</p>
 
     <div class="filmstrip">
@@ -199,9 +202,9 @@
     <h2>The five, in detail</h2>
     <p>Each model below is the specimen's actual 3D mesh, decimated for the web. Measurements are taken directly from the mesh, not textbook averages &mdash; individual skulls vary.</p>
   </div>
-  <div class="grid">
+  <div class="sk-grid">
     
-    <div class="card" data-accent="teal">
+    <div class="sk-card" data-accent="teal">
       <div class="viewbox">
         <model-viewer src="models/mouse.glb" alt="Interactive 3D model of the Mouse skull"
           camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
@@ -214,10 +217,10 @@
         <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">21 mm</span></div>
         <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">0.15–0.50 mm</span></div>
       </div>
-      <p class="note">The standard laboratory rodent. Its calvaria is thin enough that many optical and ultrasound techniques work through intact bone, or through bone merely thinned rather than removed.</p>
+      <p class="sk-note">The standard laboratory rodent. Its calvaria is thin enough that many optical and ultrasound techniques work through intact bone, or through bone merely thinned rather than removed.</p>
     </div>
 
-    <div class="card" data-accent="teal">
+    <div class="sk-card" data-accent="teal">
       <div class="viewbox">
         <model-viewer src="models/rat.glb" alt="Interactive 3D model of the Rat skull"
           camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
@@ -230,10 +233,10 @@
         <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">47 mm</span></div>
         <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">0.65–0.98 mm</span></div>
       </div>
-      <p class="note">Larger than the mouse by skull length alone, with a calvaria roughly twice as thick — already enough of a jump to change which through-bone methods still work.</p>
+      <p class="sk-note">Larger than the mouse by skull length alone, with a calvaria roughly twice as thick — already enough of a jump to change which through-bone methods still work.</p>
     </div>
 
-    <div class="card" data-accent="terracotta">
+    <div class="sk-card" data-accent="terracotta">
       <div class="viewbox">
         <model-viewer src="models/marmoset.glb" alt="Interactive 3D model of the Marmoset skull"
           camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
@@ -246,10 +249,10 @@
         <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">50 mm</span></div>
         <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">≈1.0–1.5 mm</span></div>
       </div>
-      <p class="note">A small New World monkey and a fast-growing model for primate neuroscience, valued partly because its skull stays thin enough for some through-bone methods that fail in larger primates.</p>
+      <p class="sk-note">A small New World monkey and a fast-growing model for primate neuroscience, valued partly because its skull stays thin enough for some through-bone methods that fail in larger primates.</p>
     </div>
 
-    <div class="card" data-accent="slate">
+    <div class="sk-card" data-accent="slate">
       <div class="viewbox">
         <model-viewer src="models/macaque.glb" alt="Interactive 3D model of the Macaque skull"
           camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
@@ -262,10 +265,10 @@
         <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">136 mm</span></div>
         <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">≈2–4 mm</span></div>
       </div>
-      <p class="note">The classic laboratory primate. Its temporal bone is thick enough that most functional-imaging and neuromodulation work still needs a craniotomy or a surgically thinned window.</p>
+      <p class="sk-note">The classic laboratory primate. Its temporal bone is thick enough that most functional-imaging and neuromodulation work still needs a craniotomy or a surgically thinned window.</p>
     </div>
 
-    <div class="card" data-accent="slate-deep">
+    <div class="sk-card" data-accent="slate-deep">
       <div class="viewbox">
         <model-viewer src="models/human.glb" alt="Interactive 3D model of the Human skull"
           camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
@@ -278,7 +281,7 @@
         <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">228 mm</span></div>
         <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">≈4–8 mm</span></div>
       </div>
-      <p class="note">Thickest calvaria of the five: two dense outer tables around a spongy diploë. The temporal squama, at roughly 2–5 mm, is the one patch thin enough for transcranial ultrasound — its “acoustic window.”</p>
+      <p class="sk-note">Thickest calvaria of the five: two dense outer tables around a spongy diploë. The temporal squama, at roughly 2–5 mm, is the one patch thin enough for transcranial ultrasound — its “acoustic window.”</p>
     </div>
   </div>
 </section>
@@ -298,7 +301,7 @@
     <div>
       <h3>Specimen sources</h3>
       <table class="source-table">
-        <tr><th>Specimen</th><th>Format</th><th>Note</th></tr>
+        <thead><tr><th>Specimen</th><th>Format</th><th>Note</th></tr></thead>
         <tr><td>Mouse<br><span class="sci" style="font-size:12px;">Mus musculus</span></td><td>STL</td><td>Whole-skull surface scan</td></tr>
         <tr><td>Rat<br><span class="sci" style="font-size:12px;">Rattus norvegicus</span></td><td>STL</td><td>Whole-skull surface scan</td></tr>
         <tr><td>Marmoset<br><span class="sci" style="font-size:12px;">Callithrix jacchus</span></td><td>STL</td><td>Whole-skull surface scan</td></tr>
@@ -333,3 +336,4 @@
     });
   })();
 </script>
+</div>

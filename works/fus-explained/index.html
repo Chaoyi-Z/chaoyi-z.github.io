@@ -1,11 +1,11 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>How Functional Ultrasound Imaging Works</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Roboto+Mono:wght@400;500&display=swap">
-
+---
+layout: page
+title: How Functional Ultrasound Imaging Works
+description: A visual primer on functional ultrasound imaging, from a sound pulse to a brain map, using real marmoset data
+permalink: /works/fus-explained/
+---
 <style>
-  :root {
+.work-fus{
     --ground:  #f6f7fa;
     --surface: #ffffff;
     --sunk:    #edf0f5;
@@ -24,23 +24,7 @@
     --sans:  "Archivo", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
     --mono:  "Roboto Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground:  #0d1015;
-      --surface: #161b23;
-      --sunk:    #1c222c;
-      --ink:     #e6eaf1;
-      --muted:   #99a3b5;
-      --faint:   #6e788b;
-      --line:    #232a35;
-      --line2:   #39424f;
-      --blood:    #ff7f6c;
-      --blood-bg: #2a1512;
-      --sound:    #85adf5;
-      --sound-bg: #111c2f;
-    }
-  }
-  :root[data-theme="dark"] {
+html[data-theme='dark'] .work-fus{
     --ground:  #0d1015;
     --surface: #161b23;
     --sunk:    #1c222c;
@@ -54,91 +38,72 @@
     --sound:    #85adf5;
     --sound-bg: #111c2f;
   }
-
-  * { box-sizing: border-box; }
-  body { background: var(--ground); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
-
-  .wrap { max-width: 1020px; margin: 0 auto; padding: 56px 26px 100px; display: flex; flex-direction: column; gap: 52px; }
-  .prose { max-width: 68ch; }
-
-  /* masthead */
-  .mast { display: flex; flex-direction: column; gap: 16px; }
-  .kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--blood); }
-  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 5.4vw, 54px); line-height: 1.06; letter-spacing: -.018em; margin: 0; max-width: 17ch; text-wrap: balance; }
-  .dek { font-size: 20px; line-height: 1.55; color: var(--muted); max-width: 62ch; margin: 0; font-weight: 300; }
-
-  h2 { font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); margin: 0 0 6px; }
-  h3 { font-family: var(--serif); font-weight: 600; font-size: 27px; line-height: 1.2; letter-spacing: -.012em; margin: 0; max-width: 24ch; text-wrap: balance; }
-  p { margin: 0 0 17px; }
-  p:last-child { margin-bottom: 0; }
-  section { display: flex; flex-direction: column; gap: 22px; }
-
-  /* numbered steps — the signal chain really is a sequence */
-  .step { display: grid; grid-template-columns: 62px 1fr; gap: 26px; align-items: start; }
-  .step-n { font-family: var(--mono); font-size: 13px; color: var(--blood); padding-top: 9px; border-top: 2px solid var(--blood); letter-spacing: .04em; }
-  .step-body { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-
-  strong { font-weight: 600; }
-  em.term { font-style: normal; font-weight: 600; color: var(--blood); }
-  em.term2 { font-style: normal; font-weight: 600; color: var(--sound); }
-  code { font-family: var(--mono); font-size: .86em; background: var(--sunk); padding: 1.5px 5px; border-radius: 2px; }
-
-  /* figures */
-  figure { margin: 0; display: flex; flex-direction: column; gap: 11px; }
-  .shot { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 8px; overflow-x: auto; }
-  /* the two volume-viewer panels carry their own dark ground; match the frame to it
-     so the padding does not ring them in white on a light page */
-  .shot.viewer { background: #1b1b1b; border-color: #2b2b2b; }
-  .shot img { display: block; width: 100%; min-width: 560px; height: auto; border-radius: 2px; }
-  .diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 20px 18px; overflow-x: auto; }
-  .diagram svg { display: block; width: 100%; min-width: 520px; height: auto; color: var(--ink); }
-  figcaption { font-size: 14.5px; line-height: 1.55; color: var(--muted); max-width: 74ch; }
-  figcaption b { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink); }
-
-  .svg-lab { font-family: "Archivo", system-ui, sans-serif; font-size: 12.5px; }
-  .svg-num { font-family: "Roboto Mono", monospace; font-size: 11.5px; }
-  .svg-ttl { font-family: "Archivo", system-ui, sans-serif; font-size: 13.5px; font-weight: 600; }
-
-  /* comparison table */
-  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
-  table { border-collapse: collapse; width: 100%; min-width: 600px; font-family: var(--sans); font-size: 14.5px; }
-  th, td { padding: 13px 17px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
-  thead th { font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 600; border-bottom: 1px solid var(--line2); }
-  thead th.b { color: var(--sound); }
-  thead th.d { color: var(--blood); }
-  tbody th { font-weight: 500; color: var(--muted); font-size: 13.5px; width: 22%; }
-  tbody tr:last-child th, tbody tr:last-child td { border-bottom: none; }
-
-  /* pull quote / key idea */
-  .key { border-left: 3px solid var(--blood); background: var(--blood-bg); padding: 18px 22px; border-radius: 0 3px 3px 0; font-size: 18px; line-height: 1.5; }
-  .key b { font-weight: 600; }
-
-  /* spec strip */
-  .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
-  .strip div { background: var(--surface); padding: 13px 15px; display: flex; flex-direction: column; gap: 3px; }
-  .strip .l { font-family: var(--sans); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--faint); }
-  .strip .v { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
-
-  footer { border-top: 1px solid var(--line); padding-top: 20px; font-family: var(--sans); font-size: 13px; color: var(--faint); line-height: 1.65; }
-
-  .refs { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 11px; font-family: var(--sans); font-size: 14px; color: var(--muted); line-height: 1.55; }
-  .refs li::marker { color: var(--faint); font-family: var(--mono); font-size: 12.5px; }
-  .refs a { color: var(--sound); text-decoration: none; }
-  .refs a:hover { text-decoration: underline; }
-
-  @media (max-width: 760px) {
-    .step { grid-template-columns: 1fr; gap: 10px; }
-    .step-n { border-top: none; padding-top: 0; }
-    .wrap { padding: 38px 18px 72px; gap: 42px; }
-    body { font-size: 16px; }
-  }
+.work-fus *{ box-sizing: border-box; }
+.work-fus{ background: var(--ground); color: var(--ink); font-family:inherit; font-size: 17px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+.work-fus .wrap{ max-width: 1020px; margin: 0 auto; padding: 56px 26px 100px; display: flex; flex-direction: column; gap: 52px; }
+.work-fus .prose{ max-width: 68ch; }
+.work-fus .mast{ display: flex; flex-direction: column; gap: 16px; }
+.work-fus .kicker{ font-family:SFMono-Regular,Consolas,Menlo,monospace; font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--blood); }
+.work-fus h1{ font-family:inherit; font-weight: 600; font-size: clamp(34px, 5.4vw, 54px); line-height: 1.06; letter-spacing: -.018em; margin: 0; max-width: 17ch; text-wrap: balance; }
+.work-fus .dek{ font-size: 20px; line-height: 1.55; color: var(--muted); max-width: 62ch; margin: 0; font-weight: 300; }
+.work-fus h2{ font-family:inherit; font-size: 12.5px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); margin: 0 0 6px; }
+.work-fus h3{ font-family:inherit; font-weight: 600; font-size: 27px; line-height: 1.2; letter-spacing: -.012em; margin: 0; max-width: 24ch; text-wrap: balance; }
+.work-fus p{ margin: 0 0 17px; }
+.work-fus p:last-child{ margin-bottom: 0; }
+.work-fus section{ display: flex; flex-direction: column; gap: 22px; }
+.work-fus .step{ display: grid; grid-template-columns: 62px 1fr; gap: 26px; align-items: start; }
+.work-fus .step-n{ font-family:SFMono-Regular,Consolas,Menlo,monospace; font-size: 13px; color: var(--blood); padding-top: 9px; border-top: 2px solid var(--blood); letter-spacing: .04em; }
+.work-fus .step-body{ display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.work-fus strong{ font-weight: 600; }
+.work-fus em.term{ font-style: normal; font-weight: 600; color: var(--blood); }
+.work-fus em.term2{ font-style: normal; font-weight: 600; color: var(--sound); }
+.work-fus code{ font-family:SFMono-Regular,Consolas,Menlo,monospace; font-size: .86em; background: var(--sunk); padding: 1.5px 5px; border-radius: 2px; }
+.work-fus figure{ margin: 0; display: flex; flex-direction: column; gap: 11px; }
+.work-fus .shot{ background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 8px; overflow-x: auto; }
+.work-fus .shot.viewer{ background: #1b1b1b; border-color: #2b2b2b; }
+.work-fus .shot img{ display: block; width: 100%; min-width: 560px; height: auto; border-radius: 2px; }
+.work-fus .diagram{ background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 20px 18px; overflow-x: auto; }
+.work-fus .diagram svg{ display: block; width: 100%; min-width: 520px; height: auto; color: var(--ink); }
+.work-fus figcaption{ font-size: 14.5px; line-height: 1.55; color: var(--muted); max-width: 74ch; }
+.work-fus figcaption b{ font-family:inherit; font-size: 13px; font-weight: 600; color: var(--ink); }
+.work-fus .svg-lab{ font-family:inherit; font-size: 12.5px; }
+.work-fus .svg-num{ font-family:SFMono-Regular,Consolas,Menlo,monospace; font-size: 11.5px; }
+.work-fus .svg-ttl{ font-family:inherit; font-size: 13.5px; font-weight: 600; }
+.work-fus .tw{ overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); }
+.work-fus table{ border-collapse: collapse; width: 100%; min-width: 600px; font-family:inherit; font-size: 14.5px; }
+.work-fus th, .work-fus td{ padding: 13px 17px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.work-fus thead th{ font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 600; border-bottom: 1px solid var(--line2); }
+.work-fus thead th.b{ color: var(--sound); }
+.work-fus thead th.d{ color: var(--blood); }
+.work-fus tbody th{ font-weight: 500; color: var(--muted); font-size: 13.5px; width: 22%; }
+.work-fus tbody tr:last-child th, .work-fus tbody tr:last-child td{ border-bottom: none; }
+.work-fus .key{ border-left: 3px solid var(--blood); background: var(--blood-bg); padding: 18px 22px; border-radius: 0 3px 3px 0; font-size: 18px; line-height: 1.5; }
+.work-fus .key b{ font-weight: 600; }
+.work-fus .strip{ display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.work-fus .strip div{ background: var(--surface); padding: 13px 15px; display: flex; flex-direction: column; gap: 3px; }
+.work-fus .strip .l{ font-family:inherit; font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--faint); }
+.work-fus .strip .v{ font-family:SFMono-Regular,Consolas,Menlo,monospace; font-size: 15px; font-variant-numeric: tabular-nums; }
+.work-fus footer{ border-top: 1px solid var(--line); padding-top: 20px; font-family:inherit; font-size: 13px; color: var(--faint); line-height: 1.65; }
+.work-fus .refs{ margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 11px; font-family:inherit; font-size: 14px; color: var(--muted); line-height: 1.55; }
+.work-fus .refs li::marker{ color: var(--faint); font-family:SFMono-Regular,Consolas,Menlo,monospace; font-size: 12.5px; }
+.work-fus .refs a{ color: var(--sound); text-decoration: none; }
+.work-fus .refs a:hover{ text-decoration: underline; }
+@media (max-width: 760px){
+.work-fus .step{ grid-template-columns: 1fr; gap: 10px; }
+.work-fus .step-n{ border-top: none; padding-top: 0; }
+.work-fus .wrap{ padding: 38px 18px 72px; gap: 42px; }
+.work-fus{ font-size: 16px; }
+}
+.work-fus, html[data-theme='dark'] .work-fus{--ground:var(--global-bg-color);--surface:var(--global-card-bg-color);--ink:var(--global-text-color);--muted:var(--global-text-color-light);--faint:var(--global-text-color-light);--line:var(--global-divider-color);--line2:var(--global-divider-color);--sunk:rgba(130,130,130,.10);}
+.work-fus{background:none;font-size:inherit;line-height:inherit;}
+.work-fus .wrap{max-width:none;padding:0 0 2rem;gap:2.6rem;}
+.work-fus .dek{font-size:1.1rem;max-width:none;}
 </style>
-
+<div class="work-fus">
 <div class="wrap">
 
   <header class="mast">
-    <div class="kicker">Functional ultrasound · a primer from the Feng Lab</div>
-    <h1>How functional ultrasound sees the brain working</h1>
+    
     <p class="dek">
       It doesn't image neurons. It images blood — fast enough, and sensitively enough, that the
       blood tells you where the neurons just fired. Here is the whole chain, from a sound pulse to
@@ -777,5 +742,4 @@
   </footer>
 
 </div>
-
-</body></html>
+</div>
