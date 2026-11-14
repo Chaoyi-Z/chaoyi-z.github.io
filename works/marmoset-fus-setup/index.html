@@ -4,50 +4,202 @@ title: Marmoset fUS Imaging Setup
 description: The head implant and chair we built for functional ultrasound imaging in awake marmosets
 permalink: /works/marmoset-fus-setup/
 ---
-<div id="locked-page">
-  <style>
-    #locked-page .gate{max-width:440px;margin:1.5rem auto 3rem;padding:1.6rem 1.5rem;border:1px solid var(--global-divider-color,rgba(0,0,0,.1));border-radius:6px;background:var(--global-card-bg-color,#fff);}
-    #locked-page .lock{width:36px;height:36px;color:var(--global-theme-color,#b509ac);margin-bottom:.6rem;}
-    #locked-page h2{font-size:1.25rem;margin:0 0 .4rem;}
-    #locked-page p{margin:0 0 1rem;}
-    #locked-page label{display:block;font-size:.85rem;color:var(--global-text-color-light,#828282);margin-bottom:.3rem;}
-    #locked-page .row{display:flex;gap:.5rem;}
-    #locked-page input{flex:1;min-width:0;font:inherit;padding:.45rem .65rem;border-radius:4px;border:1px solid var(--global-divider-color,rgba(0,0,0,.2));background:var(--global-bg-color,#fff);color:var(--global-text-color,#000);}
-    #locked-page input:focus{outline:2px solid var(--global-theme-color,#b509ac);outline-offset:1px;}
-    #locked-page button{font:inherit;font-weight:500;padding:.45rem 1rem;border-radius:4px;border:1px solid var(--global-theme-color,#b509ac);background:var(--global-theme-color,#b509ac);color:var(--global-hover-text-color,#fff);cursor:pointer;}
-    #locked-page button:disabled{opacity:.6;cursor:default;}
-    #locked-page .msg{min-height:1.4rem;margin:.6rem 0 0;font-size:.9rem;color:#c0392b;}
-    #locked-page .msg.busy{color:var(--global-text-color-light,#828282);}
-    #locked-page .ask{margin:1rem 0 0;padding-top:.9rem;border-top:1px solid var(--global-divider-color,rgba(0,0,0,.1));font-size:.95rem;}
-  </style>
-  <div class="gate">
-    <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
-    <h2>Access code required</h2>
-    <p>This page is shared on request. Enter the access code to open it.</p>
-    <form id="locked-form" autocomplete="off">
-      <label for="locked-code">Access code</label>
-      <div class="row">
-        <input id="locked-code" type="password" required>
-        <button id="locked-go" type="submit">Unlock</button>
+<style>
+  .fus-setup{--line:var(--global-divider-color,rgba(0,0,0,.1));--muted:var(--global-text-color-light,#828282);--accent:var(--global-theme-color,#b509ac);}
+  .fus-setup h2{margin-top:2.2rem;font-size:1.6rem;}
+  .fus-setup h2:first-of-type{margin-top:1.2rem;}
+  .fus-setup .viewer{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:1.2rem 0 1.6rem;background:var(--global-card-bg-color,#fff);}
+  .fus-setup .stage{position:relative;height:440px;cursor:grab;
+    background:radial-gradient(ellipse 70% 70% at 50% 45%,rgba(130,130,130,.14),transparent 72%);}
+  .fus-setup model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent;background-color:transparent;}
+  .fus-setup .hint{position:absolute;left:14px;bottom:10px;font-size:.75rem;color:var(--muted);pointer-events:none;}
+  .fus-setup .toggle{position:absolute;right:12px;top:12px;font:inherit;font-size:.85rem;padding:.35rem .8rem;border-radius:4px;cursor:pointer;
+    border:1px solid var(--accent);background:var(--global-bg-color,#fff);color:var(--accent);transition:background .15s,color .15s;}
+  .fus-setup .toggle:hover,.fus-setup .toggle[aria-pressed="true"]{background:var(--accent);color:var(--global-hover-text-color,#fff);}
+  .fus-setup .info{padding:1rem 1.2rem 1.1rem;border-top:1px solid var(--line);}
+  .fus-setup .info h3{font-size:1.15rem;margin:0 0 .3rem;}
+  .fus-setup .info p{margin:0 0 .6rem;}
+  .fus-setup .meta{font-size:.85rem;color:var(--muted);margin:0;}
+  .fus-setup .legend{list-style:none;margin:.2rem 0 .7rem;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.9rem;}
+  .fus-setup .legend li{display:flex;align-items:center;gap:.45rem;}
+  .fus-setup .legend i{width:.75rem;height:.75rem;border-radius:2px;display:inline-block;flex:none;}
+  .fus-setup .dl{margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--line);}
+  .fus-setup .dl-btn{font:inherit;font-size:.9rem;padding:.4rem .9rem;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;
+    border:1px solid var(--accent);background:var(--global-bg-color,#fff);color:var(--accent);transition:background .15s,color .15s;}
+  .fus-setup .dl-btn:hover{background:var(--accent);color:var(--global-hover-text-color,#fff);}
+  .fus-setup .dl-btn svg{width:1em;height:1em;}
+  .fus-setup .dl-note{font-size:.85rem;color:var(--muted);margin-left:.6rem;}
+  .fus-setup .dl-form{margin-top:.7rem;max-width:440px;}
+  .fus-setup .dl-form[hidden]{display:none;}
+  .fus-setup .dl-form label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.3rem;}
+  .fus-setup .dl-row{display:flex;gap:.5rem;}
+  .fus-setup .dl-form input{flex:1;min-width:0;font:inherit;padding:.4rem .6rem;border-radius:4px;border:1px solid var(--line);background:var(--global-bg-color,#fff);color:var(--global-text-color,#000);}
+  .fus-setup .dl-form input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .fus-setup .dl-form button{font:inherit;padding:.4rem .9rem;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:var(--global-hover-text-color,#fff);cursor:pointer;}
+  .fus-setup .dl-form button:disabled{opacity:.6;cursor:default;}
+  .fus-setup .dl-msg{min-height:1.3rem;margin:.45rem 0 0;font-size:.88rem;color:#c0392b;}
+  .fus-setup .dl-msg.busy,.fus-setup .dl-msg.ok{color:var(--muted);}
+  .fus-setup .dl-ask{font-size:.88rem;margin:.3rem 0 0;}
+  @media (max-width:576px){.fus-setup .stage{height:340px;}}
+</style>
+
+<div class="fus-setup">
+  <p>This is the custom hardware behind our functional ultrasound imaging in awake marmosets: a head implant that holds the head steady over a cranial window, and a chair that seats the animal under the probe. Each model below is the actual CAD design. Drag to rotate, scroll to zoom, and click a model to take it apart or put it back together. The original CAD files can be downloaded with an access code.</p>
+
+  <h2>Head implant</h2>
+  <p>The implant fixes the head during imaging. The ultrasound probe looks into the brain through a cranial window in the skull.</p>
+
+  <div class="viewer">
+    <div class="stage" data-explode>
+      <model-viewer src="models/headplate.glb" alt="3D model of the headplate with headpost and its cover plate"
+        camera-controls touch-action="pan-y" shadow-intensity="0.5" shadow-softness="1" exposure="0.9"
+        environment-image="neutral" camera-orbit="35deg 60deg 115%" max-camera-orbit="auto auto 400%" field-of-view="30deg"
+        interaction-prompt="none"></model-viewer>
+      <button type="button" class="toggle" aria-pressed="false">Show parts</button>
+      <span class="hint">Click the model to show its parts</span>
+    </div>
+    <div class="info">
+      <h3>Headplate with headpost</h3>
+      <ul class="legend">
+        <li><i style="background:#99a1ab"></i>Frame with headpost</li>
+        <li><i style="background:#cc8f5c"></i>Cover plate</li>
+      </ul>
+      <p>The frame carries the headpost, which is what the chair holds to keep the head still. The cover plate sits on top of the frame and fastens through three screw holes.</p>
+      <p class="meta">Assembled size: 40.0 &times; 20.9 &times; 14.9 mm</p>
+      <div class="dl" data-download="downloads/head-implant-cad.zip" data-name="head-implant-cad.zip">
+        <button type="button" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>Download CAD files</button><span class="dl-note">STEP and STL, 1.1 MB &middot; access code required</span>
+        <form class="dl-form" autocomplete="off" hidden>
+          <label>Access code</label>
+          <div class="dl-row"><input type="password" required><button type="submit">Download</button></div>
+          <div class="dl-msg" role="status"></div>
+          <p class="dl-ask">No code? Email <a href="mailto:zhangcy@mit.edu?subject=Access%20request%3A%20head%20implant%20CAD%20files">zhangcy@mit.edu</a> to request access.</p>
+        </form>
       </div>
-      <div id="locked-msg" class="msg" role="status"></div>
-    </form>
-    <p class="ask">No code? Email <a href="mailto:zhangcy@mit.edu?subject=Access%20request%3A%20Marmoset%20fUS%20Imaging%20Setup">zhangcy@mit.edu</a> to request access.</p>
+    </div>
+  </div>
+
+  <div class="viewer">
+    <div class="stage" data-explode>
+      <model-viewer src="models/implant-on-skull.glb" alt="3D model of the head implant sitting on a marmoset skull"
+        camera-controls touch-action="pan-y" shadow-intensity="0.5" shadow-softness="1" exposure="0.9"
+        environment-image="neutral" camera-orbit="35deg 62deg 110%" max-camera-orbit="auto auto 400%" field-of-view="30deg"
+        interaction-prompt="none"></model-viewer>
+      <button type="button" class="toggle" aria-pressed="false">Show parts</button>
+      <span class="hint">Click the model to show its parts</span>
+    </div>
+    <div class="info">
+      <h3>Implant on the skull</h3>
+      <ul class="legend">
+        <li><i style="background:#d6c9ad"></i>Marmoset skull</li>
+        <li><i style="background:#99a1ab"></i>Frame with headpost</li>
+        <li><i style="background:#cc8f5c"></i>Cover plate</li>
+      </ul>
+      <p>The implant in place on a marmoset skull model. The curved underside of the frame follows the top of the skull, with the headpost pointing toward the back of the head.</p>
+    </div>
+  </div>
+
+  <h2>Marmoset chair</h2>
+  <p>The chair seats the marmoset and holds its head under the ultrasound probe during imaging sessions.</p>
+
+  <div class="viewer">
+    <div class="stage" data-explode>
+      <model-viewer src="models/chair.glb" alt="3D model of the marmoset chair and its parts"
+        camera-controls touch-action="pan-y" shadow-intensity="0.5" shadow-softness="1" exposure="0.9"
+        environment-image="neutral" camera-orbit="135deg 65deg 110%" max-camera-orbit="auto auto 400%" field-of-view="30deg"
+        interaction-prompt="none"></model-viewer>
+      <button type="button" class="toggle" aria-pressed="false">Show parts</button>
+      <span class="hint">Click the model to show its parts</span>
+    </div>
+    <div class="info">
+      <h3>Chair assembly</h3>
+      <ul class="legend">
+        <li><i style="background:#9e85b8"></i>Top plate</li>
+        <li><i style="background:#73ada3"></i>Top bottom plate</li>
+        <li><i style="background:#dbc26b"></i>Gear box</li>
+        <li><i style="background:#789eb8"></i>Frame and body rings</li>
+        <li><i style="background:#d6786b"></i>Neck collar</li>
+        <li><i style="background:#e0a861"></i>Neck ring</li>
+        <li><i style="background:#5c7a99"></i>Body tube</li>
+        <li><i style="background:#4d4f54"></i>Screws</li>
+      </ul>
+      <p class="meta">Assembled size: 260.9 &times; 209.0 &times; 114.3 mm</p>
+      <div class="dl" data-download="downloads/marmoset-chair-cad.zip" data-name="marmoset-chair-cad.zip">
+        <button type="button" class="dl-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>Download CAD files</button><span class="dl-note">STEP and STL, 1.5 MB &middot; access code required</span>
+        <form class="dl-form" autocomplete="off" hidden>
+          <label>Access code</label>
+          <div class="dl-row"><input type="password" required><button type="submit">Download</button></div>
+          <div class="dl-msg" role="status"></div>
+          <p class="dl-ask">No code? Email <a href="mailto:zhangcy@mit.edu?subject=Access%20request%3A%20marmoset%20chair%20CAD%20files">zhangcy@mit.edu</a> to request access.</p>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <script>
 (function () {
+  var DURATION = 900;
+  function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".fus-setup [data-explode]"), function (stage) {
+    var mv = stage.querySelector("model-viewer"), btn = stage.querySelector(".toggle"), hint = stage.querySelector(".hint");
+    var pos = 0, open = false, raf = 0, ready = false;
+
+    function show(p) {
+      pos = p;
+      // stay just inside the clip so the last frame never wraps back to the start
+      mv.currentTime = Math.min(ease(p), 0.999) * (mv.duration || 1);
+    }
+    function prepare() {
+      if (ready) return;
+      ready = true;
+      mv.animationName = "explode";
+      mv.pause();
+      show(0);
+    }
+    function zoom(out) {
+      var o = mv.getCameraOrbit();
+      mv.cameraOrbit = o.theta + "rad " + o.phi + "rad " + (out ? "190%" : "112%");
+    }
+    function toggle() {
+      prepare();
+      open = !open;
+      btn.setAttribute("aria-pressed", open ? "true" : "false");
+      btn.textContent = open ? "Assemble" : "Show parts";
+      hint.textContent = open ? "Click again to put it back together" : "Click the model to show its parts";
+      zoom(open);
+      cancelAnimationFrame(raf);
+      var from = pos, to = open ? 1 : 0, start = performance.now();
+      (function step(now) {
+        var k = Math.min((now - start) / DURATION, 1);
+        show(from + (to - from) * k);
+        if (k < 1) raf = requestAnimationFrame(step);
+      })(start);
+    }
+
+    mv.addEventListener("load", prepare);
+    btn.addEventListener("click", function (e) { e.stopPropagation(); toggle(); });
+
+    // A click on the model toggles too, but a drag (rotate) does not.
+    var down = null;
+    mv.addEventListener("pointerdown", function (e) { down = { x: e.clientX, y: e.clientY, t: Date.now() }; });
+    mv.addEventListener("pointerup", function (e) {
+      if (!down) return;
+      var moved = Math.abs(e.clientX - down.x) + Math.abs(e.clientY - down.y);
+      if (moved < 6 && Date.now() - down.t < 500) toggle();
+      down = null;
+    });
+  });
+})();
+</script>
+
+<script>
+// Locked downloads: the CAD files are stored encrypted (see bin/lock-pages.mjs).
+// The access code decrypts them here in the browser; nothing is sent anywhere.
+(function () {
   var SALT = "LZgWWGVSuUgDOGVGkoK0rw==", ITER = 600000, STORE = "locked-pages-code";
-  var TYPES = { glb: "model/gltf-binary", js: "text/javascript", css: "text/css", png: "image/png", jpg: "image/jpeg",
-    jpeg: "image/jpeg", gif: "image/gif", svg: "image/svg+xml", webp: "image/webp", json: "application/json",
-    mp4: "video/mp4", pdf: "application/pdf", html: "text/html" };
-  var root = document.getElementById("locked-page"), form = document.getElementById("locked-form"),
-      input = document.getElementById("locked-code"), btn = document.getElementById("locked-go"),
-      msg = document.getElementById("locked-msg");
-
-  function say(text, busy) { msg.textContent = text; msg.className = busy ? "msg busy" : "msg"; }
   function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
-
   function deriveKey(code) {
     return crypto.subtle.importKey("raw", new TextEncoder().encode(code.normalize("NFKC")), "PBKDF2", false, ["deriveKey"])
       .then(function (base) {
@@ -55,66 +207,52 @@ permalink: /works/marmoset-fus-setup/
           base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
       });
   }
-  function open(key, url) {
-    return fetch(url).then(function (r) {
-      if (!r.ok) throw new Error("load");
-      return r.arrayBuffer();
-    }).then(function (buf) {
-      return crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(buf, 0, 12) }, key, new Uint8Array(buf, 12));
-    });
-  }
-  // Scripts added through innerHTML do not run, so rebuild each one.
-  function runScripts(el) {
-    Array.prototype.forEach.call(el.querySelectorAll("script"), function (old) {
-      var s = document.createElement("script");
-      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
-      s.text = old.text;
-      old.parentNode.replaceChild(s, old);
-    });
+  function save(data, name) {
+    var url = URL.createObjectURL(new Blob([data], { type: "application/zip" }));
+    var a = document.createElement("a");
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
   }
 
-  function unlock(code, quiet) {
-    btn.disabled = true;
-    say("Checking…", true);
-    var key;
-    return deriveKey(code).then(function (k) {
-      key = k;
-      return open(key, "page.enc").catch(function (e) { throw new Error(e.message === "load" ? "load" : "wrong"); });
-    }).then(function (buf) {
-      try { sessionStorage.setItem(STORE, code); } catch (e) {}
-      var page = JSON.parse(new TextDecoder().decode(buf)), html = page.html, done = 0;
-      say("Opening…", true);
-      return Promise.all(page.assets.map(function (path) {
-        return open(key, path + ".enc").then(function (data) {
-          var type = TYPES[path.split(".").pop().toLowerCase()] || "application/octet-stream";
-          var url = URL.createObjectURL(new Blob([data], { type: type }));
-          html = html.split('"' + path + '"').join('"' + url + '"').split("'" + path + "'").join("'" + url + "'");
-          say("Opening… " + (++done) + " / " + page.assets.length, true);
-        });
-      })).then(function () {
-        root.innerHTML = html;
-        runScripts(root);
+  Array.prototype.forEach.call(document.querySelectorAll(".fus-setup [data-download]"), function (box) {
+    var open = box.querySelector(".dl-btn"), form = box.querySelector(".dl-form"), input = form.querySelector("input"),
+        go = form.querySelector("button"), msg = box.querySelector(".dl-msg");
+    function say(text, cls) { msg.textContent = text; msg.className = "dl-msg" + (cls ? " " + cls : ""); }
+
+    function download(code) {
+      go.disabled = true;
+      say("Checking…", "busy");
+      var file = fetch(box.getAttribute("data-download") + ".enc").then(function (r) {
+        if (!r.ok) throw new Error("load");
+        return r.arrayBuffer();
       });
-    }).catch(function (e) {
-      btn.disabled = false;
-      if (e.message === "wrong") {
-        try { sessionStorage.removeItem(STORE); } catch (x) {}
-        say(quiet ? "" : "That code is not right. Check it and try again.");
-        input.select();
-      } else {
-        say("The page could not be loaded. Check your connection and try again.");
-      }
-    });
-  }
+      return Promise.all([deriveKey(code), file]).then(function (v) {
+        return crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(v[1], 0, 12) }, v[0], new Uint8Array(v[1], 12))
+          .catch(function () { throw new Error("wrong"); });
+      }).then(function (data) {
+        try { sessionStorage.setItem(STORE, code); } catch (e) {}
+        save(data, box.getAttribute("data-name"));
+        say("Download started.", "ok");
+      }).catch(function (e) {
+        if (e.message === "wrong") {
+          try { sessionStorage.removeItem(STORE); } catch (x) {}
+          say("That code is not right. Check it and try again.");
+          input.select();
+        } else {
+          say("The file could not be loaded. Check your connection and try again.");
+        }
+      }).then(function () { go.disabled = false; });
+    }
 
-  if (!window.crypto || !crypto.subtle) {
-    say("This page needs a secure (https) connection and a current browser.");
-    btn.disabled = true;
-    return;
-  }
-  form.addEventListener("submit", function (e) { e.preventDefault(); if (input.value) unlock(input.value, false); });
-  var saved = null;
-  try { saved = sessionStorage.getItem(STORE); } catch (e) {}
-  if (saved) unlock(saved, true);
+    open.addEventListener("click", function () {
+      form.hidden = false;
+      var saved = null;
+      try { saved = sessionStorage.getItem(STORE); } catch (e) {}
+      if (!window.crypto || !crypto.subtle) { say("Downloads need a secure (https) connection and a current browser."); go.disabled = true; return; }
+      if (saved) { input.value = saved; download(saved); } else { input.focus(); }
+    });
+    form.addEventListener("submit", function (e) { e.preventDefault(); if (input.value) download(input.value); });
+  });
 })();
 </script>

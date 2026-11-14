@@ -30,7 +30,6 @@ const CONTACT = "zhangcy@mit.edu";
 
 function fail(msg) { console.error("lock-pages: " + msg); process.exit(1); }
 
-if (!existsSync(PAGES)) fail("nothing to lock: " + PAGES + " does not exist");
 if (!existsSync(CODE_FILE)) fail("put the access code in " + CODE_FILE);
 const code = readFileSync(CODE_FILE, "utf8").trim();
 if (code.length < 6) fail("the access code must be at least 6 characters");
@@ -62,11 +61,25 @@ function findPages(dir) {
   return readdirSync(dir).map((n) => join(dir, n)).filter((p) => statSync(p).isDirectory()).flatMap(findPages);
 }
 
+// Locked downloads: every file in _private/downloads/<site path> is published as
+// <site path>.enc. The (public) page that offers it asks for the code, decrypts
+// the file in the browser and saves it. See works/marmoset-fus-setup/index.html.
+const DOWNLOADS = join(PRIVATE, "downloads");
+if (existsSync(DOWNLOADS)) {
+  for (const p of walk(DOWNLOADS)) {
+    const rel = relative(DOWNLOADS, p).split(sep).join("/");
+    const out = join(ROOT, rel + ".enc");
+    mkdirSync(dirname(out), { recursive: true });
+    writeFileSync(out, encrypt(rel, readFileSync(p)));
+    console.log("locked download /" + rel);
+  }
+}
+
 const gate = readFileSync(GATE_TEMPLATE, "utf8");
 const gateEmbedded = readFileSync(join(ROOT, "bin", "lock-gate-embedded.html"), "utf8");
 const escapeHtml = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-for (const src of findPages(PAGES)) {
+for (const src of existsSync(PAGES) ? findPages(PAGES) : []) {
   const sitePath = relative(PAGES, src).split(sep).join("/");
   const dest = join(ROOT, sitePath);
   let html = readFileSync(join(src, "index.html"), "utf8").replace(/\r\n/g, "\n");
