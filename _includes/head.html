@@ -34,6 +34,7 @@
     {% if site.enable_darkmode %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/{{ site.highlight_theme_dark | append: '.css' }}" media="none" id="highlight_theme_dark" />
 
+    {% if page.default_theme %}<script>window.PAGE_DEFAULT_THEME = "{{ page.default_theme }}";</script>{% endif %}
     <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/dark_mode.js' | relative_url }}"></script>
     {% endif %}
