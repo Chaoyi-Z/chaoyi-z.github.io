@@ -63,13 +63,20 @@ function findPages(dir) {
 }
 
 const gate = readFileSync(GATE_TEMPLATE, "utf8");
+const gateEmbedded = readFileSync(join(ROOT, "bin", "lock-gate-embedded.html"), "utf8");
 const escapeHtml = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 for (const src of findPages(PAGES)) {
   const sitePath = relative(PAGES, src).split(sep).join("/");
   const dest = join(ROOT, sitePath);
-  const html = readFileSync(join(src, "index.html"), "utf8");
-  const title = (html.match(/<title>([^<]*)<\/title>/i) || [, sitePath])[1].trim();
+  let html = readFileSync(join(src, "index.html"), "utf8").replace(/\r\n/g, "\n");
+  // A source that starts with Jekyll front matter is published inside the site
+  // layout (navbar, theme, footer); the gate swaps the decrypted content in place.
+  const fm = html.match(/^---\n([\s\S]*?)\n---\n/);
+  if (fm) html = html.slice(fm[0].length);
+  const title = fm
+    ? (fm[1].match(/^title:\s*(.*)$/m) || [, sitePath])[1].trim()
+    : (html.match(/<title>([^<]*)<\/title>/i) || [, sitePath])[1].trim();
   const assets = walk(src).map((p) => relative(src, p).split(sep).join("/")).filter((p) => p !== "index.html").sort();
 
   rmSync(dest, { recursive: true, force: true });
@@ -81,14 +88,21 @@ for (const src of findPages(PAGES)) {
   }
   const payload = Buffer.from(JSON.stringify({ html, assets }), "utf8");
   writeFileSync(join(dest, "page.enc"), encrypt(sitePath + "/page", payload));
-  writeFileSync(
-    join(dest, "index.html"),
-    gate
-      .replaceAll("{{TITLE}}", escapeHtml(title))
-      .replaceAll("{{CONTACT}}", CONTACT)
-      .replaceAll("{{SUBJECT}}", encodeURIComponent("Access request: " + title))
-      .replaceAll("{{SALT}}", salt.toString("base64"))
-      .replaceAll("{{ITERATIONS}}", String(ITERATIONS)),
-  );
-  console.log("locked /" + sitePath + "/  (" + assets.length + " files + page)");
+  const fill = (template, open, close) =>
+    template
+      .replaceAll(open + "TITLE" + close, escapeHtml(title))
+      .replaceAll(open + "CONTACT" + close, CONTACT)
+      .replaceAll(open + "SUBJECT" + close, encodeURIComponent("Access request: " + title))
+      .replaceAll(open + "SALT" + close, salt.toString("base64"))
+      .replaceAll(open + "ITERATIONS" + close, String(ITERATIONS));
+  let out;
+  if (fm) {
+    out = fm[0] + fill(gateEmbedded, "[[", "]]");
+    // Jekyll runs Liquid over this file, so it must not contain Liquid tags.
+    if (/\{\{|\{%/.test(out.slice(fm[0].length))) fail("embedded gate for /" + sitePath + "/ contains Liquid syntax");
+  } else {
+    out = fill(gate, "{{", "}}");
+  }
+  writeFileSync(join(dest, "index.html"), out);
+  console.log("locked /" + sitePath + "/  (" + assets.length + " files + page, " + (fm ? "in site layout" : "standalone") + ")");
 }

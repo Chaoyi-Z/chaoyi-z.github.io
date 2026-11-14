@@ -1,0 +1,114 @@
+<div id="locked-page">
+  <style>
+    #locked-page .gate{max-width:440px;margin:1.5rem auto 3rem;padding:1.6rem 1.5rem;border:1px solid var(--global-divider-color,rgba(0,0,0,.1));border-radius:6px;background:var(--global-card-bg-color,#fff);}
+    #locked-page .lock{width:36px;height:36px;color:var(--global-theme-color,#b509ac);margin-bottom:.6rem;}
+    #locked-page h2{font-size:1.25rem;margin:0 0 .4rem;}
+    #locked-page p{margin:0 0 1rem;}
+    #locked-page label{display:block;font-size:.85rem;color:var(--global-text-color-light,#828282);margin-bottom:.3rem;}
+    #locked-page .row{display:flex;gap:.5rem;}
+    #locked-page input{flex:1;min-width:0;font:inherit;padding:.45rem .65rem;border-radius:4px;border:1px solid var(--global-divider-color,rgba(0,0,0,.2));background:var(--global-bg-color,#fff);color:var(--global-text-color,#000);}
+    #locked-page input:focus{outline:2px solid var(--global-theme-color,#b509ac);outline-offset:1px;}
+    #locked-page button{font:inherit;font-weight:500;padding:.45rem 1rem;border-radius:4px;border:1px solid var(--global-theme-color,#b509ac);background:var(--global-theme-color,#b509ac);color:var(--global-hover-text-color,#fff);cursor:pointer;}
+    #locked-page button:disabled{opacity:.6;cursor:default;}
+    #locked-page .msg{min-height:1.4rem;margin:.6rem 0 0;font-size:.9rem;color:#c0392b;}
+    #locked-page .msg.busy{color:var(--global-text-color-light,#828282);}
+    #locked-page .ask{margin:1rem 0 0;padding-top:.9rem;border-top:1px solid var(--global-divider-color,rgba(0,0,0,.1));font-size:.95rem;}
+  </style>
+  <div class="gate">
+    <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+    <h2>Access code required</h2>
+    <p>This page is shared on request. Enter the access code to open it.</p>
+    <form id="locked-form" autocomplete="off">
+      <label for="locked-code">Access code</label>
+      <div class="row">
+        <input id="locked-code" type="password" required>
+        <button id="locked-go" type="submit">Unlock</button>
+      </div>
+      <div id="locked-msg" class="msg" role="status"></div>
+    </form>
+    <p class="ask">No code? Email <a href="mailto:[[CONTACT]]?subject=[[SUBJECT]]">[[CONTACT]]</a> to request access.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var SALT = "[[SALT]]", ITER = [[ITERATIONS]], STORE = "locked-pages-code";
+  var TYPES = { glb: "model/gltf-binary", js: "text/javascript", css: "text/css", png: "image/png", jpg: "image/jpeg",
+    jpeg: "image/jpeg", gif: "image/gif", svg: "image/svg+xml", webp: "image/webp", json: "application/json",
+    mp4: "video/mp4", pdf: "application/pdf", html: "text/html" };
+  var root = document.getElementById("locked-page"), form = document.getElementById("locked-form"),
+      input = document.getElementById("locked-code"), btn = document.getElementById("locked-go"),
+      msg = document.getElementById("locked-msg");
+
+  function say(text, busy) { msg.textContent = text; msg.className = busy ? "msg busy" : "msg"; }
+  function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+
+  function deriveKey(code) {
+    return crypto.subtle.importKey("raw", new TextEncoder().encode(code.normalize("NFKC")), "PBKDF2", false, ["deriveKey"])
+      .then(function (base) {
+        return crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(SALT), iterations: ITER, hash: "SHA-256" },
+          base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+      });
+  }
+  function open(key, url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error("load");
+      return r.arrayBuffer();
+    }).then(function (buf) {
+      return crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(buf, 0, 12) }, key, new Uint8Array(buf, 12));
+    });
+  }
+  // Scripts added through innerHTML do not run, so rebuild each one.
+  function runScripts(el) {
+    Array.prototype.forEach.call(el.querySelectorAll("script"), function (old) {
+      var s = document.createElement("script");
+      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+      s.text = old.text;
+      old.parentNode.replaceChild(s, old);
+    });
+  }
+
+  function unlock(code, quiet) {
+    btn.disabled = true;
+    say("Checking…", true);
+    var key;
+    return deriveKey(code).then(function (k) {
+      key = k;
+      return open(key, "page.enc").catch(function (e) { throw new Error(e.message === "load" ? "load" : "wrong"); });
+    }).then(function (buf) {
+      try { sessionStorage.setItem(STORE, code); } catch (e) {}
+      var page = JSON.parse(new TextDecoder().decode(buf)), html = page.html, done = 0;
+      say("Opening…", true);
+      return Promise.all(page.assets.map(function (path) {
+        return open(key, path + ".enc").then(function (data) {
+          var type = TYPES[path.split(".").pop().toLowerCase()] || "application/octet-stream";
+          var url = URL.createObjectURL(new Blob([data], { type: type }));
+          html = html.split('"' + path + '"').join('"' + url + '"').split("'" + path + "'").join("'" + url + "'");
+          say("Opening… " + (++done) + " / " + page.assets.length, true);
+        });
+      })).then(function () {
+        root.innerHTML = html;
+        runScripts(root);
+      });
+    }).catch(function (e) {
+      btn.disabled = false;
+      if (e.message === "wrong") {
+        try { sessionStorage.removeItem(STORE); } catch (x) {}
+        say(quiet ? "" : "That code is not right. Check it and try again.");
+        input.select();
+      } else {
+        say("The page could not be loaded. Check your connection and try again.");
+      }
+    });
+  }
+
+  if (!window.crypto || !crypto.subtle) {
+    say("This page needs a secure (https) connection and a current browser.");
+    btn.disabled = true;
+    return;
+  }
+  form.addEventListener("submit", function (e) { e.preventDefault(); if (input.value) unlock(input.value, false); });
+  var saved = null;
+  try { saved = sessionStorage.getItem(STORE); } catch (e) {}
+  if (saved) unlock(saved, true);
+})();
+</script>

@@ -1,59 +1,49 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Marmoset fUS Imaging Setup</title>
-<style>
-  :root{--bg:#14171a;--card:#1c211f;--line:#333a35;--ink:#ede7d8;--dim:#9ca39a;--accent:#5c9a86;--warn:#e3a574;}
-  @media (prefers-color-scheme: light){
-    :root{--bg:#f4efe3;--card:#ffffff;--line:#d8d0bd;--ink:#262420;--dim:#6f675e;--accent:#2f7a63;--warn:#a8551c;}
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;
-    background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;}
-  .gate{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:32px 28px;}
-  .lock{width:40px;height:40px;color:var(--accent);margin-bottom:14px;}
-  .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;}
-  h1{font-size:22px;margin:0 0 10px;text-wrap:balance;}
-  p{margin:0 0 18px;color:var(--dim);font-size:14.5px;}
-  label{display:block;font-size:13px;color:var(--dim);margin-bottom:6px;}
-  .row{display:flex;gap:8px;}
-  input{flex:1;min-width:0;font:inherit;padding:10px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);}
-  input:focus{outline:2px solid var(--accent);outline-offset:1px;}
-  button{font:inherit;font-weight:600;padding:10px 16px;border-radius:6px;border:0;background:var(--accent);color:#fff;cursor:pointer;}
-  button:disabled{opacity:.6;cursor:default;}
-  .msg{min-height:22px;margin:10px 0 0;font-size:13.5px;color:var(--warn);}
-  .msg.busy{color:var(--dim);}
-  .ask{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:14px;}
-  a{color:var(--accent);}
-</style>
-</head>
-<body>
-<main class="gate">
-  <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
-  <p class="kicker">Access code required</p>
-  <h1>Marmoset fUS Imaging Setup</h1>
-  <p>This page is shared on request. Enter the access code to open it.</p>
-  <form id="f" autocomplete="off">
-    <label for="code">Access code</label>
-    <div class="row">
-      <input id="code" type="password" required autofocus>
-      <button id="go" type="submit">Unlock</button>
-    </div>
-    <div id="msg" class="msg" role="status"></div>
-  </form>
-  <p class="ask">No code? Email <a href="mailto:zhangcy@mit.edu?subject=Access%20request%3A%20Marmoset%20fUS%20Imaging%20Setup">zhangcy@mit.edu</a> to request access.</p>
-</main>
+---
+layout: page
+title: Marmoset fUS Imaging Setup
+description: The head implant and chair we built for functional ultrasound imaging in awake marmosets
+permalink: /works/marmoset-fus-setup/
+---
+<div id="locked-page">
+  <style>
+    #locked-page .gate{max-width:440px;margin:1.5rem auto 3rem;padding:1.6rem 1.5rem;border:1px solid var(--global-divider-color,rgba(0,0,0,.1));border-radius:6px;background:var(--global-card-bg-color,#fff);}
+    #locked-page .lock{width:36px;height:36px;color:var(--global-theme-color,#b509ac);margin-bottom:.6rem;}
+    #locked-page h2{font-size:1.25rem;margin:0 0 .4rem;}
+    #locked-page p{margin:0 0 1rem;}
+    #locked-page label{display:block;font-size:.85rem;color:var(--global-text-color-light,#828282);margin-bottom:.3rem;}
+    #locked-page .row{display:flex;gap:.5rem;}
+    #locked-page input{flex:1;min-width:0;font:inherit;padding:.45rem .65rem;border-radius:4px;border:1px solid var(--global-divider-color,rgba(0,0,0,.2));background:var(--global-bg-color,#fff);color:var(--global-text-color,#000);}
+    #locked-page input:focus{outline:2px solid var(--global-theme-color,#b509ac);outline-offset:1px;}
+    #locked-page button{font:inherit;font-weight:500;padding:.45rem 1rem;border-radius:4px;border:1px solid var(--global-theme-color,#b509ac);background:var(--global-theme-color,#b509ac);color:var(--global-hover-text-color,#fff);cursor:pointer;}
+    #locked-page button:disabled{opacity:.6;cursor:default;}
+    #locked-page .msg{min-height:1.4rem;margin:.6rem 0 0;font-size:.9rem;color:#c0392b;}
+    #locked-page .msg.busy{color:var(--global-text-color-light,#828282);}
+    #locked-page .ask{margin:1rem 0 0;padding-top:.9rem;border-top:1px solid var(--global-divider-color,rgba(0,0,0,.1));font-size:.95rem;}
+  </style>
+  <div class="gate">
+    <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+    <h2>Access code required</h2>
+    <p>This page is shared on request. Enter the access code to open it.</p>
+    <form id="locked-form" autocomplete="off">
+      <label for="locked-code">Access code</label>
+      <div class="row">
+        <input id="locked-code" type="password" required>
+        <button id="locked-go" type="submit">Unlock</button>
+      </div>
+      <div id="locked-msg" class="msg" role="status"></div>
+    </form>
+    <p class="ask">No code? Email <a href="mailto:zhangcy@mit.edu?subject=Access%20request%3A%20Marmoset%20fUS%20Imaging%20Setup">zhangcy@mit.edu</a> to request access.</p>
+  </div>
+</div>
 <script>
 (function () {
   var SALT = "LZgWWGVSuUgDOGVGkoK0rw==", ITER = 600000, STORE = "locked-pages-code";
   var TYPES = { glb: "model/gltf-binary", js: "text/javascript", css: "text/css", png: "image/png", jpg: "image/jpeg",
     jpeg: "image/jpeg", gif: "image/gif", svg: "image/svg+xml", webp: "image/webp", json: "application/json",
     mp4: "video/mp4", pdf: "application/pdf", html: "text/html" };
-  var form = document.getElementById("f"), input = document.getElementById("code"),
-      btn = document.getElementById("go"), msg = document.getElementById("msg");
+  var root = document.getElementById("locked-page"), form = document.getElementById("locked-form"),
+      input = document.getElementById("locked-code"), btn = document.getElementById("locked-go"),
+      msg = document.getElementById("locked-msg");
 
   function say(text, busy) { msg.textContent = text; msg.className = busy ? "msg busy" : "msg"; }
   function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
@@ -71,6 +61,15 @@
       return r.arrayBuffer();
     }).then(function (buf) {
       return crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(buf, 0, 12) }, key, new Uint8Array(buf, 12));
+    });
+  }
+  // Scripts added through innerHTML do not run, so rebuild each one.
+  function runScripts(el) {
+    Array.prototype.forEach.call(el.querySelectorAll("script"), function (old) {
+      var s = document.createElement("script");
+      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+      s.text = old.text;
+      old.parentNode.replaceChild(s, old);
     });
   }
 
@@ -93,9 +92,8 @@
           say("Opening… " + (++done) + " / " + page.assets.length, true);
         });
       })).then(function () {
-        document.open();
-        document.write(html);
-        document.close();
+        root.innerHTML = html;
+        runScripts(root);
       });
     }).catch(function (e) {
       btn.disabled = false;
@@ -120,5 +118,3 @@
   if (saved) unlock(saved, true);
 })();
 </script>
-</body>
-</html>

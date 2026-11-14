@@ -12,3 +12,4 @@ vendor
 
 # Readable sources of locked pages and the access code (see bin/lock-pages.mjs)
 _private
+*.local.html
