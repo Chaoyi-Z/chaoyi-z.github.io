@@ -1,10 +1,132 @@
-<meta charset="UTF-8">
-<title>Comparative Skull Atlas</title>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+<!DOCTYPE html>
+<html lang="en">
 
-  :root{
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Comparative Skull Atlas | Chaoyi Zhang</title>
+    <meta name="author" content="Chaoyi  Zhang">
+    <meta name="description" content="An interactive comparative atlas of cranial size and calvarial thickness, from mouse to human">
+    <meta name="keywords" content="Chaoyi Zhang, personal, academic-website, portfolio-website">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Bootstrap Table -->
+    <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://chaoyi-z.github.io/works/five-skulls/">
+
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/">Chaoyi Zhang</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">About</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/blog/">Blogs</a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/works/">Works</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">Publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">Biosketch</a>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      
+        <!-- page.html -->
+        <div class="post">
+
+          <header class="post-header">
+            <h1 class="post-title">Comparative Skull Atlas</h1>
+            <p class="post-description">An interactive comparative atlas of cranial size and calvarial thickness, from mouse to human</p>
+          </header>
+
+          <article>
+            <style>
+.work-skulls{
     --ground:#14171a;
     --surface:#1c211f;
     --surface-2:#262b28;
@@ -20,160 +142,177 @@
     --plate-ink:#262420;
     --plate-line:#d8d0bd;
   }
-
-  *{box-sizing:border-box;}
-  html{background:var(--ground);}
-  body{
+.work-skulls *{box-sizing:border-box;}
+.work-skulls{background:var(--ground);}
+.work-skulls{
     background:var(--ground);
     color:var(--bone);
-    font-family:'Archivo',sans-serif;
+    font-family:inherit;
     line-height:1.5;
     margin:0;
   }
-  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;text-wrap:balance;margin:0;}
-  .sci{font-style:italic;font-family:'Fraunces',serif;}
-  .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;}
-
-  a{color:inherit;}
-
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
-
-  /* ---------- hero ---------- */
-  .hero{
+.work-skulls h1, .work-skulls h2, .work-skulls h3{font-family:inherit;font-weight:600;text-wrap:balance;margin:0;}
+.work-skulls .sci{font-style:italic;font-family:inherit;}
+.work-skulls .mono{font-family:SFMono-Regular,Consolas,Menlo,monospace;font-variant-numeric:tabular-nums;}
+.work-skulls a{color:inherit;}
+.work-skulls .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.work-skulls .hero{
     padding:88px 32px 56px;
     background:
       radial-gradient(ellipse 900px 420px at 50% -10%, rgba(92,154,134,0.16), transparent 65%),
       var(--ground);
     border-bottom:1px solid var(--line);
   }
-  .hero-inner{max-width:1180px;margin:0 auto;}
-  .eyebrow{
+.work-skulls .hero-inner{max-width:1180px;margin:0 auto;}
+.work-skulls .eyebrow{
     display:flex;align-items:center;gap:10px;
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.14em;
+    font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:12.5px;letter-spacing:0.14em;
     text-transform:uppercase;color:var(--teal);margin-bottom:22px;
   }
-  .eyebrow::before{content:'';width:26px;height:1px;background:var(--teal);display:inline-block;}
-  .hero h1{font-size:clamp(40px,6vw,68px);letter-spacing:-0.01em;color:var(--bone);}
-  .hero p.lede{
+.work-skulls .eyebrow::before{content:'';width:26px;height:1px;background:var(--teal);display:inline-block;}
+.work-skulls .hero h1{font-size:clamp(40px,6vw,68px);letter-spacing:-0.01em;color:var(--bone);}
+.work-skulls .hero p.lede{
     max-width:620px;margin:20px 0 0;color:var(--bone-dim);
     font-size:17px;line-height:1.65;
   }
-
-  .filmstrip{
+.work-skulls .filmstrip{
     margin-top:56px;
     display:flex;align-items:flex-end;gap:0;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
     padding:28px 0 18px;
     overflow-x:auto;
   }
-  .filmstrip .cell{
+.work-skulls .filmstrip .cell{
     flex:0 0 auto;display:flex;flex-direction:column;align-items:center;
     padding:0 22px;position:relative;
   }
-  .filmstrip .cell + .cell::before{
+.work-skulls .filmstrip .cell + .cell::before{
     content:'';position:absolute;left:0;top:10%;bottom:28px;width:1px;background:var(--line);
   }
-  .filmstrip img{display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));}
-  .filmstrip .tag{margin-top:14px;font-size:12px;letter-spacing:0.04em;color:var(--ink-dim);text-align:center;}
-  .filmstrip .tag b{display:block;color:var(--bone);font-family:'Fraunces',serif;font-weight:500;font-size:14px;}
-
-  /* ---------- section shell ---------- */
-  section{padding:64px 32px;}
-  .section-head{max-width:640px;margin-bottom:40px;}
-  .section-head .kicker{
-    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;
+.work-skulls .filmstrip img{display:block;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));}
+.work-skulls .filmstrip .tag{margin-top:14px;font-size:12px;letter-spacing:0.04em;color:var(--ink-dim);text-align:center;}
+.work-skulls .filmstrip .tag b{display:block;color:var(--bone);font-family:inherit;font-weight:500;font-size:14px;}
+.work-skulls section{padding:64px 32px;}
+.work-skulls .section-head{max-width:640px;margin-bottom:40px;}
+.work-skulls .section-head .kicker{
+    font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:12px;letter-spacing:0.12em;
     text-transform:uppercase;color:var(--terracotta);margin-bottom:10px;display:block;
   }
-  .section-head h2{font-size:30px;color:var(--bone);}
-  .section-head p{color:var(--ink-dim);margin-top:12px;font-size:15.5px;}
-
-  /* ---------- plate (figure) ---------- */
-  .plate-card{
+.work-skulls .section-head h2{font-size:30px;color:var(--bone);}
+.work-skulls .section-head p{color:var(--ink-dim);margin-top:12px;font-size:15.5px;}
+.work-skulls .plate-card{
     max-width:1180px;margin:0 auto;
     background:var(--plate-bg);
     border-radius:6px;
     padding:20px 20px 26px;
     box-shadow:0 24px 60px -24px rgba(0,0,0,0.6), 0 2px 0 rgba(0,0,0,0.15);
   }
-  .plate-card img{width:100%;display:block;border-radius:2px;}
-  .plate-caption{
+.work-skulls .plate-card img{width:100%;display:block;border-radius:2px;}
+.work-skulls .plate-caption{
     display:flex;justify-content:space-between;gap:24px;
     padding:14px 6px 2px;color:var(--plate-ink);
     font-size:12.5px;border-top:1px solid var(--plate-line);margin-top:14px;
   }
-  .plate-caption .label{font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;text-transform:uppercase;color:#8a8060;}
-  .plate-caption p{margin:0;max-width:760px;line-height:1.55;}
-
-  /* ---------- specimen grid ---------- */
-  .grid{
+.work-skulls .plate-caption .label{font-family:SFMono-Regular,Consolas,Menlo,monospace;letter-spacing:0.06em;text-transform:uppercase;color:#8a8060;}
+.work-skulls .plate-caption p{margin:0;max-width:760px;line-height:1.55;}
+.work-skulls .sk-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:1px;background:var(--ground);
     border:1px solid var(--line);border-radius:8px;overflow:hidden;
   }
-  .card{
+.work-skulls .sk-card{
     background:var(--surface);padding:22px 22px 24px;
     display:flex;flex-direction:column;
   }
-  .card .viewbox{
+.work-skulls .sk-card .viewbox{
     height:220px;margin:0 -22px 16px;position:relative;
     background:radial-gradient(ellipse 70% 70% at 50% 45%, rgba(255,255,255,0.05), transparent 70%);
   }
-  .card model-viewer{width:100%;height:100%;--poster-color:transparent;}
-  .card .viewbox::after{
+.work-skulls .sk-card model-viewer{width:100%;height:100%;--poster-color:transparent;}
+.work-skulls .sk-card .viewbox::after{
     content:'drag to rotate \00b7 scroll to zoom';
     position:absolute;bottom:6px;right:12px;
-    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.03em;
+    font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:9.5px;letter-spacing:0.03em;
     color:var(--ink-dim);opacity:0.7;pointer-events:none;
   }
-  .card .names{margin-bottom:14px;}
-  .card .names .common{font-size:19px;color:var(--bone);display:block;}
-  .card .names .sci{font-size:14px;color:var(--accent,var(--teal));display:block;margin-top:2px;}
-  .card .stats{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
-  .stat-row{display:flex;justify-content:space-between;font-size:12.5px;border-bottom:1px dashed var(--line);padding-bottom:6px;}
-  .stat-row .k{color:var(--ink-dim);letter-spacing:0.02em;}
-  .stat-row .v{color:var(--bone);}
-  .card .note{font-size:13px;color:var(--ink-dim);line-height:1.55;margin:0;}
-  .card[data-accent="teal"]{--accent:var(--teal);}
-  .card[data-accent="terracotta"]{--accent:var(--terracotta);}
-  .card[data-accent="slate"]{--accent:var(--slate);}
-  .card[data-accent="slate-deep"]{--accent:var(--slate-deep);}
-  .card .swatch{width:8px;height:8px;border-radius:50%;background:var(--accent,var(--teal));display:inline-block;margin-right:7px;position:relative;top:-1px;}
-
-  /* ---------- methodology ---------- */
-  .method{border-top:1px solid var(--line);}
-  .method-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;}
-  @media (max-width:820px){.method-grid{grid-template-columns:1fr;}}
-  .method h3{color:var(--bone);font-size:17px;margin-bottom:10px;}
-  .method p, .method li{color:var(--ink-dim);font-size:14.5px;line-height:1.65;}
-  .method ul{margin:0;padding-left:18px;}
-  .method li{margin-bottom:8px;}
-  .source-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .source-table th{
-    text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;
+.work-skulls .sk-card .names{margin-bottom:14px;}
+.work-skulls .sk-card .names .common{font-size:19px;color:var(--bone);display:block;}
+.work-skulls .sk-card .names .sci{font-size:14px;color:var(--accent,var(--teal));display:block;margin-top:2px;}
+.work-skulls .sk-card .stats{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.work-skulls .stat-row{display:flex;justify-content:space-between;font-size:12.5px;border-bottom:1px dashed var(--line);padding-bottom:6px;}
+.work-skulls .stat-row .k{color:var(--ink-dim);letter-spacing:0.02em;}
+.work-skulls .stat-row .v{color:var(--bone);}
+.work-skulls .sk-card .sk-note{font-size:13px;color:var(--ink-dim);line-height:1.55;margin:0;}
+.work-skulls .sk-card[data-accent="teal"]{--accent:var(--teal);}
+.work-skulls .sk-card[data-accent="terracotta"]{--accent:var(--terracotta);}
+.work-skulls .sk-card[data-accent="slate"]{--accent:var(--slate);}
+.work-skulls .sk-card[data-accent="slate-deep"]{--accent:var(--slate-deep);}
+.work-skulls .sk-card .swatch{width:8px;height:8px;border-radius:50%;background:var(--accent,var(--teal));display:inline-block;margin-right:7px;position:relative;top:-1px;}
+.work-skulls .method{border-top:1px solid var(--line);}
+.work-skulls .method-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;}
+@media (max-width:820px){
+.work-skulls .method-grid{grid-template-columns:1fr;}
+}
+.work-skulls .method h3{color:var(--bone);font-size:17px;margin-bottom:10px;}
+.work-skulls .method p, .work-skulls .method li{color:var(--ink-dim);font-size:14.5px;line-height:1.65;}
+.work-skulls .method ul{margin:0;padding-left:18px;}
+.work-skulls .method li{margin-bottom:8px;}
+.work-skulls .source-table{width:100%;border-collapse:collapse;font-size:13px;}
+.work-skulls .source-table th{
+    text-align:left;font-family:SFMono-Regular,Consolas,Menlo,monospace;font-size:11px;
     letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-dim);
     padding:0 10px 8px 0;border-bottom:1px solid var(--line);font-weight:500;
   }
-  .source-table td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);color:var(--bone-dim);vertical-align:top;}
-  .source-table tr:last-child td{border-bottom:none;}
-
-  footer{
+.work-skulls .source-table td{padding:9px 10px 9px 0;border-bottom:1px solid var(--line);color:var(--bone-dim);vertical-align:top;}
+.work-skulls .source-table tr:last-child td{border-bottom:none;}
+.work-skulls footer{
     padding:32px 32px 48px;text-align:center;
     color:var(--ink-dim);font-size:12.5px;border-top:1px solid var(--line);
   }
+.work-skulls, html[data-theme='dark'] .work-skulls{--ground:var(--global-bg-color);--surface:var(--global-card-bg-color);--surface-2:var(--global-card-bg-color);--line:var(--global-divider-color);--bone:var(--global-text-color);--bone-dim:var(--global-text-color);--ink-dim:var(--global-text-color-light);--teal:var(--global-theme-color);--terracotta:#b8692f;--slate:#5f7f8f;--slate-deep:#566a86;}
+html[data-theme='dark'] .work-skulls{--terracotta:#e3a574;--slate:#9db0b8;--slate-deep:#8797a8;}
+.work-skulls{background:none;line-height:inherit;}
+.work-skulls .hero{padding:0 0 1.5rem;background:none;border-bottom:none;}
+.work-skulls .hero p.lede{margin-top:0;max-width:none;font-size:inherit;line-height:inherit;color:inherit;}
+.work-skulls section{padding:2rem 0;}
+.work-skulls .section-head h2{font-size:1.6rem;font-weight:400;}
+.work-skulls h3{font-weight:500;}
+.work-skulls .filmstrip{margin-top:1.5rem;}
+.work-skulls .sk-card .viewbox{background:radial-gradient(ellipse 70% 70% at 50% 45%,rgba(130,130,130,.16),transparent 70%);}
+.work-skulls footer{padding:1.5rem 0 0;}
+html:not([data-theme='dark']) .work-skulls .filmstrip img{filter:brightness(.72) contrast(1.15) drop-shadow(0 4px 10px rgba(0,0,0,.18));}
+html:not([data-theme='dark']) .work-skulls .sk-card .viewbox{background:radial-gradient(ellipse 75% 75% at 50% 45%,rgba(60,60,60,.34),transparent 72%);}
 </style>
+<div class="work-skulls">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+
 
 <div class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">Comparative osteology &middot; five specimens</span>
-    <h1>Comparative Skull Atlas</h1>
-    <p class="lede">Mouse to human, rendered from the same five surface meshes at one shared scale &mdash; a working atlas of cranial size and calvarial thickness across the model species used in neuroscience research. Every specimen below is a live 3D model &mdash; drag to rotate, scroll to zoom.</p>
+    
+    <p class="lede">Mouse to human, rendered from the same five surface meshes at one shared scale — a working atlas of cranial size and calvarial thickness across the model species used in neuroscience research. Every specimen below is a live 3D model — drag to rotate, scroll to zoom.</p>
 
     <div class="filmstrip">
-      <div class="cell"><img src="img/filmstrip-mouse.png" width="14" height="6" alt="Mouse skull, true scale"><div class="tag"><b>Mouse</b>21 mm</div></div>
-      <div class="cell"><img src="img/filmstrip-rat.png" width="31" height="16" alt="Rat skull, true scale"><div class="tag"><b>Rat</b>47 mm</div></div>
-      <div class="cell"><img src="img/filmstrip-marmoset.png" width="32" height="19" alt="Marmoset skull, true scale"><div class="tag"><b>Marmoset</b>50 mm</div></div>
-      <div class="cell"><img src="img/filmstrip-macaque.png" width="92" height="62" alt="Macaque skull, true scale"><div class="tag"><b>Macaque</b>136 mm</div></div>
-      <div class="cell"><img src="img/filmstrip-human.png" width="153" height="110" alt="Human skull, true scale"><div class="tag"><b>Human</b>228 mm</div></div>
+      <div class="cell">
+<img src="img/filmstrip-mouse.png" width="14" height="6" alt="Mouse skull, true scale"><div class="tag">
+<b>Mouse</b>21 mm</div>
+</div>
+      <div class="cell">
+<img src="img/filmstrip-rat.png" width="31" height="16" alt="Rat skull, true scale"><div class="tag">
+<b>Rat</b>47 mm</div>
+</div>
+      <div class="cell">
+<img src="img/filmstrip-marmoset.png" width="32" height="19" alt="Marmoset skull, true scale"><div class="tag">
+<b>Marmoset</b>50 mm</div>
+</div>
+      <div class="cell">
+<img src="img/filmstrip-macaque.png" width="92" height="62" alt="Macaque skull, true scale"><div class="tag">
+<b>Macaque</b>136 mm</div>
+</div>
+      <div class="cell">
+<img src="img/filmstrip-human.png" width="153" height="110" alt="Human skull, true scale"><div class="tag">
+<b>Human</b>228 mm</div>
+</div>
     </div>
   </div>
 </div>
@@ -188,97 +327,112 @@
     <img src="img/plate1.png" alt="Skull thickness and size comparison across five species">
     <div class="plate-caption">
       <span class="label">Fig. 1</span>
-      <p>Renders generated from the specimens' own surface meshes at a shared scale. Thickness ranges are total calvarial thickness over the dorsal cortex, drawn from the comparative-anatomy literature; the human temporal squama is a notable exception at &asymp;2&ndash;5&nbsp;mm, the thin-bone window used for transcranial ultrasound.</p>
+      <p>Renders generated from the specimens' own surface meshes at a shared scale. Thickness ranges are total calvarial thickness over the dorsal cortex, drawn from the comparative-anatomy literature; the human temporal squama is a notable exception at ≈2–5 mm, the thin-bone window used for transcranial ultrasound.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="section-head">
-    <span class="kicker">Specimens &middot; interactive</span>
+    <span class="kicker">Specimens · interactive</span>
     <h2>The five, in detail</h2>
-    <p>Each model below is the specimen's actual 3D mesh, decimated for the web. Measurements are taken directly from the mesh, not textbook averages &mdash; individual skulls vary.</p>
+    <p>Each model below is the specimen's actual 3D mesh, decimated for the web. Measurements are taken directly from the mesh, not textbook averages — individual skulls vary.</p>
   </div>
-  <div class="grid">
+  <div class="sk-grid">
     
-    <div class="card" data-accent="teal">
+    <div class="sk-card" data-accent="teal">
       <div class="viewbox">
-        <model-viewer src="models/mouse.glb" alt="Interactive 3D model of the Mouse skull"
-          camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
-          exposure="1.05" orientation="180deg 0deg 0deg" camera-orbit="180deg 90deg 105%" field-of-view="30deg"
-          interaction-prompt="when-focused" style="background-color:transparent;">
+        <model-viewer src="models/mouse.glb" alt="Interactive 3D model of the Mouse skull" camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9" exposure="1.05" orientation="180deg 0deg 0deg" camera-orbit="180deg 90deg 105%" field-of-view="30deg" interaction-prompt="when-focused" style="background-color:transparent;">
         </model-viewer>
       </div>
-      <div class="names"><span class="common">Mouse</span><span class="sci">Mus musculus</span></div>
+      <div class="names">
+<span class="common">Mouse</span><span class="sci">Mus musculus</span>
+</div>
       <div class="stats">
-        <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">21 mm</span></div>
-        <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">0.15–0.50 mm</span></div>
+        <div class="stat-row">
+<span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">21 mm</span>
+</div>
+        <div class="stat-row">
+<span class="k">Calvarial thickness</span><span class="v mono">0.15–0.50 mm</span>
+</div>
       </div>
-      <p class="note">The standard laboratory rodent. Its calvaria is thin enough that many optical and ultrasound techniques work through intact bone, or through bone merely thinned rather than removed.</p>
+      <p class="sk-note">The standard laboratory rodent. Its calvaria is thin enough that many optical and ultrasound techniques work through intact bone, or through bone merely thinned rather than removed.</p>
     </div>
 
-    <div class="card" data-accent="teal">
+    <div class="sk-card" data-accent="teal">
       <div class="viewbox">
-        <model-viewer src="models/rat.glb" alt="Interactive 3D model of the Rat skull"
-          camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
-          exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg"
-          interaction-prompt="when-focused" style="background-color:transparent;">
+        <model-viewer src="models/rat.glb" alt="Interactive 3D model of the Rat skull" camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9" exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg" interaction-prompt="when-focused" style="background-color:transparent;">
         </model-viewer>
       </div>
-      <div class="names"><span class="common">Rat</span><span class="sci">Rattus norvegicus</span></div>
+      <div class="names">
+<span class="common">Rat</span><span class="sci">Rattus norvegicus</span>
+</div>
       <div class="stats">
-        <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">47 mm</span></div>
-        <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">0.65–0.98 mm</span></div>
+        <div class="stat-row">
+<span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">47 mm</span>
+</div>
+        <div class="stat-row">
+<span class="k">Calvarial thickness</span><span class="v mono">0.65–0.98 mm</span>
+</div>
       </div>
-      <p class="note">Larger than the mouse by skull length alone, with a calvaria roughly twice as thick — already enough of a jump to change which through-bone methods still work.</p>
+      <p class="sk-note">Larger than the mouse by skull length alone, with a calvaria roughly twice as thick — already enough of a jump to change which through-bone methods still work.</p>
     </div>
 
-    <div class="card" data-accent="terracotta">
+    <div class="sk-card" data-accent="terracotta">
       <div class="viewbox">
-        <model-viewer src="models/marmoset.glb" alt="Interactive 3D model of the Marmoset skull"
-          camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
-          exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg"
-          interaction-prompt="when-focused" style="background-color:transparent;">
+        <model-viewer src="models/marmoset.glb" alt="Interactive 3D model of the Marmoset skull" camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9" exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg" interaction-prompt="when-focused" style="background-color:transparent;">
         </model-viewer>
       </div>
-      <div class="names"><span class="common">Marmoset</span><span class="sci">Callithrix jacchus</span></div>
+      <div class="names">
+<span class="common">Marmoset</span><span class="sci">Callithrix jacchus</span>
+</div>
       <div class="stats">
-        <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">50 mm</span></div>
-        <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">≈1.0–1.5 mm</span></div>
+        <div class="stat-row">
+<span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">50 mm</span>
+</div>
+        <div class="stat-row">
+<span class="k">Calvarial thickness</span><span class="v mono">≈1.0–1.5 mm</span>
+</div>
       </div>
-      <p class="note">A small New World monkey and a fast-growing model for primate neuroscience, valued partly because its skull stays thin enough for some through-bone methods that fail in larger primates.</p>
+      <p class="sk-note">A small New World monkey and a fast-growing model for primate neuroscience, valued partly because its skull stays thin enough for some through-bone methods that fail in larger primates.</p>
     </div>
 
-    <div class="card" data-accent="slate">
+    <div class="sk-card" data-accent="slate">
       <div class="viewbox">
-        <model-viewer src="models/macaque.glb" alt="Interactive 3D model of the Macaque skull"
-          camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
-          exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg"
-          interaction-prompt="when-focused" style="background-color:transparent;">
+        <model-viewer src="models/macaque.glb" alt="Interactive 3D model of the Macaque skull" camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9" exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg" interaction-prompt="when-focused" style="background-color:transparent;">
         </model-viewer>
       </div>
-      <div class="names"><span class="common">Macaque</span><span class="sci">Macaca mulatta</span></div>
+      <div class="names">
+<span class="common">Macaque</span><span class="sci">Macaca mulatta</span>
+</div>
       <div class="stats">
-        <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">136 mm</span></div>
-        <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">≈2–4 mm</span></div>
+        <div class="stat-row">
+<span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">136 mm</span>
+</div>
+        <div class="stat-row">
+<span class="k">Calvarial thickness</span><span class="v mono">≈2–4 mm</span>
+</div>
       </div>
-      <p class="note">The classic laboratory primate. Its temporal bone is thick enough that most functional-imaging and neuromodulation work still needs a craniotomy or a surgically thinned window.</p>
+      <p class="sk-note">The classic laboratory primate. Its temporal bone is thick enough that most functional-imaging and neuromodulation work still needs a craniotomy or a surgically thinned window.</p>
     </div>
 
-    <div class="card" data-accent="slate-deep">
+    <div class="sk-card" data-accent="slate-deep">
       <div class="viewbox">
-        <model-viewer src="models/human.glb" alt="Interactive 3D model of the Human skull"
-          camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9"
-          exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg"
-          interaction-prompt="when-focused" style="background-color:transparent;">
+        <model-viewer src="models/human.glb" alt="Interactive 3D model of the Human skull" camera-controls touch-action="pan-y" shadow-intensity="0.8" shadow-softness="0.9" exposure="1.05" camera-orbit="0deg 90deg 105%" field-of-view="30deg" interaction-prompt="when-focused" style="background-color:transparent;">
         </model-viewer>
       </div>
-      <div class="names"><span class="common">Human</span><span class="sci">Homo sapiens</span></div>
+      <div class="names">
+<span class="common">Human</span><span class="sci">Homo sapiens</span>
+</div>
       <div class="stats">
-        <div class="stat-row"><span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">228 mm</span></div>
-        <div class="stat-row"><span class="k">Calvarial thickness</span><span class="v mono">≈4–8 mm</span></div>
+        <div class="stat-row">
+<span class="k"><span class="swatch"></span>Cranial length</span><span class="v mono">228 mm</span>
+</div>
+        <div class="stat-row">
+<span class="k">Calvarial thickness</span><span class="v mono">≈4–8 mm</span>
+</div>
       </div>
-      <p class="note">Thickest calvaria of the five: two dense outer tables around a spongy diploë. The temporal squama, at roughly 2–5 mm, is the one patch thin enough for transcranial ultrasound — its “acoustic window.”</p>
+      <p class="sk-note">Thickest calvaria of the five: two dense outer tables around a spongy diploë. The temporal squama, at roughly 2–5 mm, is the one patch thin enough for transcranial ultrasound — its “acoustic window.”</p>
     </div>
   </div>
 </section>
@@ -291,27 +445,56 @@
   <div class="method-grid">
     <div>
       <h3>Rendering &amp; orientation</h3>
-      <p>Each specimen is a 3D surface mesh (STL/GLB) oriented to a true lateral view automatically: its mediolateral mirror-symmetry axis is detected first, then the model is leveled within the perpendicular plane so the ventral tooth-row/palate line runs horizontal &mdash; a stand-in for the anatomist's convention of orienting the occlusal plane level. The static Plate&nbsp;1 renders are lit and shaded identically in parallel projection, so no specimen is foreshortened relative to another. The models below are the same oriented meshes, simplified to under 80,000 faces each for smooth in-browser rotation.</p>
+      <p>Each specimen is a 3D surface mesh (STL/GLB) oriented to a true lateral view automatically: its mediolateral mirror-symmetry axis is detected first, then the model is leveled within the perpendicular plane so the ventral tooth-row/palate line runs horizontal — a stand-in for the anatomist's convention of orienting the occlusal plane level. The static Plate 1 renders are lit and shaded identically in parallel projection, so no specimen is foreshortened relative to another. The models below are the same oriented meshes, simplified to under 80,000 faces each for smooth in-browser rotation.</p>
       <h3 style="margin-top:22px;">Scale</h3>
-      <p>The "true scale" plate shares one field of view (mm) across all five renders. Lengths are each specimen's greatest cranial length along its own long axis, measured directly from the mesh &mdash; these are single specimens, not species averages, and will sit inside (or occasionally outside) the ranges reported in the literature.</p>
+      <p>The "true scale" plate shares one field of view (mm) across all five renders. Lengths are each specimen's greatest cranial length along its own long axis, measured directly from the mesh — these are single specimens, not species averages, and will sit inside (or occasionally outside) the ranges reported in the literature.</p>
     </div>
     <div>
       <h3>Specimen sources</h3>
       <table class="source-table">
-        <tr><th>Specimen</th><th>Format</th><th>Note</th></tr>
-        <tr><td>Mouse<br><span class="sci" style="font-size:12px;">Mus musculus</span></td><td>STL</td><td>Whole-skull surface scan</td></tr>
-        <tr><td>Rat<br><span class="sci" style="font-size:12px;">Rattus norvegicus</span></td><td>STL</td><td>Whole-skull surface scan</td></tr>
-        <tr><td>Marmoset<br><span class="sci" style="font-size:12px;">Callithrix jacchus</span></td><td>STL</td><td>Whole-skull surface scan</td></tr>
-        <tr><td>Macaque<br><span class="sci" style="font-size:12px;">Macaca mulatta</span></td><td>GLB</td><td>23-part mesh, merged for rendering</td></tr>
-        <tr><td>Human<br><span class="sci" style="font-size:12px;">Homo sapiens</span></td><td>GLB</td><td>25 labeled cranial bones, merged; ×10 unit correction applied</td></tr>
+        <thead><tr>
+<th>Specimen</th>
+<th>Format</th>
+<th>Note</th>
+</tr></thead>
+        <tr>
+<td>Mouse<br><span class="sci" style="font-size:12px;">Mus musculus</span>
+</td>
+<td>STL</td>
+<td>Whole-skull surface scan</td>
+</tr>
+        <tr>
+<td>Rat<br><span class="sci" style="font-size:12px;">Rattus norvegicus</span>
+</td>
+<td>STL</td>
+<td>Whole-skull surface scan</td>
+</tr>
+        <tr>
+<td>Marmoset<br><span class="sci" style="font-size:12px;">Callithrix jacchus</span>
+</td>
+<td>STL</td>
+<td>Whole-skull surface scan</td>
+</tr>
+        <tr>
+<td>Macaque<br><span class="sci" style="font-size:12px;">Macaca mulatta</span>
+</td>
+<td>GLB</td>
+<td>23-part mesh, merged for rendering</td>
+</tr>
+        <tr>
+<td>Human<br><span class="sci" style="font-size:12px;">Homo sapiens</span>
+</td>
+<td>GLB</td>
+<td>25 labeled cranial bones, merged; ×10 unit correction applied</td>
+</tr>
       </table>
-      <p style="margin-top:16px;">The human mesh ships in centimeter-scale units in its source file; a &times;10 correction was applied to bring it to millimeters and rough agreement with adult cranial dimensions. Calvarial-thickness ranges (the Plate&nbsp;1 bars) are literature figures for each species, independent of these meshes.</p>
+      <p style="margin-top:16px;">The human mesh ships in centimeter-scale units in its source file; a ×10 correction was applied to bring it to millimeters and rough agreement with adult cranial dimensions. Calvarial-thickness ranges (the Plate 1 bars) are literature figures for each species, independent of these meshes.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  Built from specimen meshes supplied for this project &middot; renders &amp; figure generated with PyVista and Matplotlib &middot; 3D viewer by &lt;model-viewer&gt; &middot; not for clinical or taxonomic use
+  Built from specimen meshes supplied for this project · renders &amp; figure generated with PyVista and Matplotlib · 3D viewer by &lt;model-viewer&gt; · not for clinical or taxonomic use
 </footer>
 
 <script>
@@ -333,3 +516,145 @@
     });
   })();
 </script>
+</div>
+
+          </article>
+
+        </div>
+
+      
+    </div>
+
+    <!-- Footer -->    <footer class="sticky-bottom mt-5">
+      <div class="container">
+        © Copyright 2026 Chaoyi  Zhang. 
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script>
+
+  <!-- Bootstrap Table -->
+  <script defer src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+
+  <!-- Load Common JS -->
+  <script src="/assets/js/no_defer.js"></script>
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCV05YMQBF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XCV05YMQBF');
+  </script>
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>
